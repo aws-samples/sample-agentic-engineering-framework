@@ -1,0 +1,24 @@
+# Quality gate: Test Pass
+# Evaluated after the Test phase completes.
+# Triggers the resolve-test healing loop on failure.
+
+gate: test-pass
+version: 1
+trigger: after-test
+severity: blocker
+
+criteria:
+  all_tests_pass: true
+
+on_fail: retry
+max_retries: 4
+retry_strategy: resolve-test
+stop_on_no_progress: true
+
+escalation:
+  after_retries_exhausted: human
+  message: "Tests failed after {retries} resolve attempts. No progress detected."
+  context:
+    - test_results
+    - build_report
+    - fix_attempts

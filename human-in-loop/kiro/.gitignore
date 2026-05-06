@@ -1,0 +1,8 @@
+node_modules/
+dist/
+
+# Runtime output (keep .gitkeep, ignore contents)
+specs/*
+!specs/.gitkeep
+ai_docs/*
+!ai_docs/.gitkeep

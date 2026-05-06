@@ -1,0 +1,103 @@
+# AEF Reference -- Agentic Development Workflow Configuration (Kiro)
+#
+# Defines the 8-phase SDLC pipeline using Kiro CLI as the runner.
+# Prompts, agent personas, and quality gates live in kiro-layer/.
+#
+# Kiro-specific design:
+# - runner: kiro (selects Kiro CLI execution)
+# - agents_dir: kiro-layer/agents (persona files prepended to prompts)
+# - pre_research: configuration for plan-phase subagent pre-fetching
+# - No model selection (Kiro CLI selects model internally)
+
+version: 1
+name: aef-sdlc-kiro
+runner: kiro
+description: "Standard SDLC agentic development workflow using Kiro CLI: classify, plan, build, test, review, document, deploy, monitor"
+
+# Agent persona directory (loaded by agent_loader, prepended to prompts)
+agents_dir: kiro-layer/agents
+
+# Pre-research configuration for plan phase
+# Research is pre-fetched via sequential subagent invocations before planning
+pre_research:
+  enabled: true
+  agents:
+    - name: codebase-locator
+      timeout: 120
+    - name: codebase-analyzer
+      timeout: 120
+    - name: pattern-finder
+      timeout: 120
+
+# Phase definitions
+phases:
+  classify:
+    prompt: kiro-layer/prompts/classify.md
+    permissions: classify
+    required: true
+    description: "Determine issue type and route to appropriate planner"
+
+  plan:
+    prompt: kiro-layer/prompts/plan-{issue_class}.md
+    permissions: plan
+    required: true
+    description: "Create implementation plan from issue (with pre-research)"
+    persona: null  # No persona prepend for plan -- pre-research handles context
+
+  build:
+    prompt: kiro-layer/prompts/build.md
+    permissions: build
+    required: true
+    description: "Execute the implementation plan"
+    persona: builder  # Prepend builder.md persona to prompt
+
+  test:
+    prompt: kiro-layer/prompts/test.md
+    gate: kiro-layer/gates/test-pass.yaml
+    permissions: test
+    required: true
+    description: "Run validation test suite"
+    persona: tester
+    healing:
+      strategy: resolve-test
+      prompt: kiro-layer/prompts/resolve-test.md
+      max_retries: 4
+      stop_on_no_progress: true
+
+  review:
+    prompt: kiro-layer/prompts/review.md
+    gate: kiro-layer/gates/review-severity.yaml
+    permissions: review
+    required: true
+    description: "Review implementation against specification"
+    healing:
+      strategy: patch
+      plan_prompt: kiro-layer/prompts/plan-patch.md
+      build_prompt: kiro-layer/prompts/build.md
+      test_prompt: kiro-layer/prompts/test.md
+      max_retries: 3
+      stop_on_no_progress: true
+
+  document:
+    prompt: kiro-layer/prompts/document.md
+    permissions: document
+    required: true
+    description: "Generate documentation from implementation changes"
+
+  deploy:
+    prompt: kiro-layer/prompts/deploy.md
+    gate: kiro-layer/gates/deploy-readiness.yaml
+    permissions: deploy
+    required: true
+    description: "Commit changes and create pull request"
+
+  # monitor phase removed
+
+# Utility templates
+utilities:
+  branch_name:
+    prompt: kiro-layer/prompts/branch-name.md
+    description: "Generate branch name before worktree creation"
+
+# Tool permissions reference
+tools: kiro-layer/tools/permissions.yaml

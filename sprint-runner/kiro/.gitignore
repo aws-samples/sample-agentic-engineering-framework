@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Self-hosting runtime output (if someone installs this sample onto itself)
+.developer/
+specs/
+research/
+ai_docs/
+.kiro/e2e/
+install-diff.patch
