@@ -1,8 +1,0 @@
-{
-  "name": "deploy",
-  "description": "Handles git operations — commits, pushes, and creates pull requests",
-  "prompt": "file://prompts/deploy.md",
-  "tools": ["fs_read", "execute_bash", "grep", "glob"],
-  "allowedTools": ["fs_read", "execute_bash", "grep", "glob"],
-  "welcomeMessage": "Ready to deploy. I'll commit changes, push, and create a PR."
-}

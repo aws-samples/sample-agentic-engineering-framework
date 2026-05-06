@@ -1,8 +1,0 @@
-{
-  "name": "test",
-  "description": "Runs validation test suites and reports structured results",
-  "prompt": "file://prompts/test.md",
-  "tools": ["fs_read", "fs_write", "execute_bash", "grep", "glob", "code"],
-  "allowedTools": ["fs_read", "execute_bash", "grep", "glob", "code"],
-  "welcomeMessage": "Ready to test. I'll run the project's test suite and report results."
-}

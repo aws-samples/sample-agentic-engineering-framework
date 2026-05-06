@@ -1,8 +1,0 @@
-{
-  "name": "plan",
-  "description": "Creates implementation plans from issue descriptions with codebase research",
-  "prompt": "file://prompts/plan.md",
-  "tools": ["fs_read", "grep", "glob", "code"],
-  "allowedTools": ["fs_read", "grep", "glob", "code"],
-  "welcomeMessage": "Ready to plan. Provide an issue description or feature request."
-}
