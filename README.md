@@ -1,34 +1,55 @@
 # Agentic Engineering Framework — Samples
 
-Reference implementations of the **Agentic Engineering Framework (AEF)**, a framework for building the "agentic layer" that turns ad-hoc AI coding sessions into a repeatable engineering process.
+![Agentic Engineering Framework hero](./assets/agentic-layer-hero.png)
+
+Reference implementations of the **Agentic Engineering Framework (AEF)** — a framework for building the "agentic layer" that turns ad-hoc AI coding sessions into a repeatable engineering process.
+
+📖 **[Read the guide](https://aws-samples.github.io/sample-agentic-engineering-framework/)** · 🗂️ **[Pick a sample](#samples)** · 🛠️ **[Customize the layer](#the-agentic-layer-what-you-customize)**
+
+[![License: MIT-0](https://img.shields.io/badge/License-MIT--0-blue.svg)](./LICENSE)
+[![AWS Samples](https://img.shields.io/badge/AWS-Samples-232F3E?logo=amazon-aws)](https://github.com/aws-samples)
+[![Last commit](https://img.shields.io/github/last-commit/aws-samples/sample-agentic-engineering-framework)](https://github.com/aws-samples/sample-agentic-engineering-framework/commits)
+
+<details>
+<summary><b>Table of contents</b></summary>
+
+- [What this repo is](#what-this-repo-is)
+- [Samples](#samples)
+- [Which sample should I start with?](#which-sample-should-i-start-with)
+- [Sample 1 — `human-in-loop`](#sample-1--human-in-loop)
+- [Sample 2 — `automated-kiro`](#sample-2--automated-kiro)
+- [Sample 3 — `sprint-runner`](#sample-3--sprint-runner)
+- [The agentic layer: what you customize](#the-agentic-layer-what-you-customize)
+- [How each sample maps to the framework](#how-each-sample-maps-to-the-framework)
+- [Prerequisites](#prerequisites)
+- [Runtime output directories](#runtime-output-directories)
+- [Customization](#customization)
+- [Contributing](#contributing)
+- [License](#license)
+
+</details>
 
 ## What this repo is
 
 AEF is a framework, not a tool. It defines the patterns: prompt templates, quality gates, feedback loops, workflow config. This repo contains **working samples** that show one way to build those patterns on top of specific agent runtimes. Pick a sample that matches where your team is today, then fork and adapt it.
 
-### The Agentic Engineering Framework (AEF) model in one paragraph
+**The AEF model in one paragraph.** An AEF-shaped workflow has three layers. The **agentic layer** is what your team writes and versions: prompt templates, quality gates, tool permissions, workflow config. The **workflow engine** reads that layer and executes it: phase orchestration, state management, self-healing loops, escalation. The **codebase** is where agents do their work: reading, writing, testing, shipping code. The quality comes from the templates and gates you write, not from reviewing every output.
 
-An AEF-shaped workflow has three layers. The **agentic layer** is what your team writes and versions: prompt templates, quality gates, tool permissions, workflow config. The **workflow engine** reads that layer and executes it: phase orchestration, state management, self-healing loops, escalation. The **codebase** is where agents do their work: reading, writing, testing, shipping code. The quality comes from the templates and gates you write, not from reviewing every output.
-
-### What a run looks like
-
-A typical run cycles through phases: Plan → Build → Test → Review → Document → Deploy. When Test fails, a self-healing loop patches and retries before escalating. When Review finds blockers, a patch loop re-implements and re-tests. Each phase produces structured artifacts that the next phase consumes. State persists across the run so nothing starts from scratch.
+**What a run looks like.** A typical run cycles through phases: Plan → Build → Test → Review → Document → Deploy. When Test fails, a self-healing loop patches and retries before escalating. When Review finds blockers, a patch loop re-implements and re-tests. Each phase produces structured artifacts that the next phase consumes. State persists across the run so nothing starts from scratch.
 
 The full AEF framework defines two additional phases: **Intent** (upstream of Plan, normalizes the request) and **Monitor** (downstream of Deploy, closes the feedback loop). None of the samples in this repo materialize Intent as a dedicated phase yet, and Monitor is only partially covered (e.g. the `sprint-runner/claude/` live status server). Treat the 6-phase cycle above as the shape the samples implement, not the full framework surface.
 
-## The samples
+## Samples
 
 | Sample | Autonomy | Config style | Runner | Best for |
 |---|---|---|---|---|
-| `human-in-loop` | Level 1 Assisted | Markdown checklists | Any agent | Learning the AEF patterns by hand |
-| `automated-kiro` | Level 1– Level 4 capable | Declarative YAML + engine | Kiro CLI | Running AEF autonomously, configurable per team |
-| `sprint-runner` | Level 3 Autonomous | Imperative Python + per-sprint state | Kiro CLI or Claude Code CLI | Installing AEF into existing repos; sprint-batch delivery with crash-resumable runs |
+| [`human-in-loop`](./human-in-loop/) | L1 Assisted | Markdown checklists | Any agent | Learning the AEF patterns by hand |
+| [`automated-kiro`](./automated-kiro/) | L1–L4 capable | Declarative YAML + engine | Kiro CLI | Running AEF autonomously, configurable per team |
+| [`sprint-runner`](./sprint-runner/) | L3 Autonomous | Imperative Python + per-sprint state | Kiro CLI or Claude Code CLI | Installing AEF into existing repos; sprint-batch delivery with crash-resumable runs |
 
 AEF defines four autonomy levels. **L1 Assisted**: human runs every phase, inspects every output. **L2 Supervised**: engine runs phases, human approves at checkpoints. **L3 Autonomous**: engine runs end-to-end, human reviews the resulting PR. **L4 ASE**: engine merges the PR. You move up the ladder as your gates and templates prove themselves, not by flipping a switch.
 
-## Examples: pattern × tech matrix
-
-The two pattern samples are organized by **pattern** (what the workflow looks like) and **tech** (which agent runtime implements it). Each pattern has its own README at the top level linking to the per-tech implementations.
+### Pattern × tech matrix
 
 | Pattern | Kiro | Claude Code |
 |---|---|---|
@@ -37,122 +58,72 @@ The two pattern samples are organized by **pattern** (what the workflow looks li
 | Automated | [`automated-kiro/`](./automated-kiro/) | — |
 | Primitive agents | [`agent-samples/`](./agent-samples/) (tech-agnostic) | |
 
-## Which sample should I start with
-
-If your team has never run an AEF workflow before, start with **`human-in-loop`**. You invoke agents manually, read their outputs, and evaluate gate checklists by hand before moving on. You learn what each phase produces, where gates fit, and which of your assumptions hold. This is L1 made concrete: no engine to maintain, no YAML to configure, just the workflow shape.
-
-When you've run a workflow manually a few times and want to automate it, move to **`automated-kiro`**. It has a workflow engine that reads a `workflow.yaml` file, iterates phases, runs healing loops when gates fail, and escalates when healing exhausts. The same workflow supports L1–L4 through gate disposition configuration. You don't rewrite the pipeline, you change which failures are fatal.
-
-If you have an **existing codebase** (not a greenfield project) and want to deliver multiple features as a batch rather than one GitHub issue at a time, move to **`sprint-runner`**. Two implementations exist: the Kiro variant has an installer that scaffolds `.kiro/` plus a stdlib-only Python orchestrator into your repo; the Claude Code variant copies `.claude/` commands/agents plus the same orchestrator (which shells out to `claude` instead of `kiro-cli`). Each run processes a sprint backlog end-to-end with crash-resumable state, self-healing patch loops, and zero external Python dependencies.
-
-## Sample 1: `human-in-loop`
-
-A sample Vite landing page paired with three markdown gate checklists. You invoke agents manually (`/agent plan`, `/agent build`, etc.), read their outputs, and evaluate the corresponding gate checklist before moving on. No orchestration code; you are the engine.
+## Which sample should I start with?
 
 ```
-human-in-loop/
-├── README.md                       # Pattern overview + tech matrix
-├── kiro/                           # Kiro implementation (Vite app + gates)
-│   ├── agentic-layer/gates/
-│   │   ├── test-checklist.md       # After Test phase
-│   │   ├── review-checklist.md     # After Review phase
-│   │   └── deploy-checklist.md     # Before Deploy phase
-│   ├── src/ + index.html           # Sample landing page (the target)
-│   └── README.md
-└── claude/                         # Claude Code implementation (prompt library)
-    ├── prompts/                    # Slash-command bodies
-    ├── agents/                     # Subagent definitions
-    └── README.md
+Have you run an AEF-shaped workflow before?
+├── no  → human-in-loop            (learn the shape by hand)
+└── yes
+    └── Are you working in an existing repo and want sprint-batch delivery?
+        ├── yes → sprint-runner    (installer + crash-resumable orchestrator)
+        └── no  → automated-kiro   (declarative workflow.yaml engine, L1–L4 via config)
 ```
 
-Agent configs for the Kiro variant live in `agent-samples/` at the repo root: six generic configs (plan, build, test, review, document, deploy) with matching prompt templates. Copy them into your project's `.kiro/agents/` directory and invoke by name, or paste the prompts into any agent conversation. The Claude variant ships its own `prompts/` and `agents/` folders; copy them into `.claude/commands/` and `.claude/agents/` instead.
+## Sample 1 — `human-in-loop`
 
-**Quick start (Kiro)**:
-```
+A sample Vite landing page paired with three markdown gate checklists. You invoke agents manually (`/agent plan`, `/agent build`, …), read their outputs, and evaluate the corresponding gate checklist before moving on. No orchestration code; you are the engine.
+
+**Quick start (Kiro):**
+
+```bash
 cd human-in-loop/kiro
-# Copy agent configs into your own project
 mkdir -p .kiro/agents
 cp ../../agent-samples/agents/*.json .kiro/agents/
 # Run each phase in order, evaluating the gate checklists between them
 ```
 
-See `human-in-loop/README.md` for the pattern overview and per-tech READMEs for the full phase-by-phase flow.
+Agent configs for the Kiro variant live in [`agent-samples/`](./agent-samples/): six generic configs (plan, build, test, review, document, deploy) with matching prompt templates. The Claude variant ships its own `prompts/` and `agents/` folders; copy them into `.claude/commands/` and `.claude/agents/` instead.
 
-## Sample 2: `automated-kiro`
+See [`human-in-loop/README.md`](./human-in-loop/README.md) for the pattern overview and per-tech READMEs for the phase-by-phase flow.
+
+## Sample 2 — `automated-kiro`
 
 A sample FastAPI app paired with a complete agentic layer and workflow engine. The engine runs all phases in sequence, invokes Kiro CLI per phase, evaluates YAML-defined gates, runs self-healing loops on failure, and produces structured escalation reports when healing exhausts.
 
-```
-automated-kiro/
-├── agentic-layer/
-│   ├── engine/                     # Workflow orchestrator (Python)
-│   ├── runners/kiro/               # Kiro CLI subprocess wrapper
-│   ├── triggers/                   # CLI, API, webhook, cron entry points
-│   └── examples/kiro/
-│       ├── workflow.yaml           # Phase ordering, loop limits, gate bindings
-│       └── kiro-layer/
-│           ├── prompts/            # Phase prompt templates
-│           ├── agents/             # Agent personas
-│           └── gates/              # Quality gate definitions
-├── src/ + tests/                   # Sample FastAPI app (the target)
-└── pyproject.toml
-```
+**Quick start:**
 
-**Quick start**:
-```
+```bash
 cd automated-kiro/agentic-layer
 uv sync
 uv run run.py --local --spec "Add a /users endpoint" --issue-type feature
 ```
 
 Other triggers:
-```
-uv run run.py --api          # FastAPI server (default port 8002)
-uv run run.py --webhook      # GitHub webhook receiver
-uv run run.py --cron         # Poller for open GitHub issues
-```
 
-See `automated-kiro/README.md` for the full configuration reference.
-
-## Sample 3: `sprint-runner`
-
-An agent-driven SDLC pipeline shaped around installing into an existing git repository and batching multiple sprint briefs per run. The runner processes each sprint through 9 stages (branch → research → plan → build → test → e2e → review → document → commit → publish) with crash-resumable state and self-healing patch loops on every gate. Two implementations exist: the Kiro variant scaffolds a `.kiro/` runtime via `install.py`; the Claude Code variant copies `.claude/commands/` and `.claude/agents/` plus the orchestrator directly.
-
-```
-sprint-runner/
-├── README.md                             # Pattern overview + tech matrix
-├── kiro/                                 # Kiro implementation
-│   └── agentic-layer/
-│       ├── tools/
-│       │   ├── install.py                # scaffolds .kiro/ into a target project
-│       │   ├── sprint_runner.py          # imperative orchestrator (9 stages per sprint)
-│       │   ├── pipeline_dashboard.py     # real-time run dashboard
-│       │   ├── kpi_report.py             # KPI extraction from state.json
-│       │   ├── smoke_subagent.py         # Kiro subagent delegation probe
-│       │   └── pipeline.yaml.template    # config template (stack filled at install)
-│       ├── prompts/                      # 11 master phase prompts
-│       └── agents/                       # 5 subagents (builder, tester, codebase-*)
-└── claude/                               # Claude Code implementation
-    ├── .claude/
-    │   ├── commands/                     # Slash commands invoked via `claude -p`
-    │   └── agents/                       # General + pipeline-specific subagents
-    └── tools/
-        ├── sprint_runner.py              # orchestrator (shells out to `claude`)
-        └── pipeline_status_server.py     # live dashboard
+```bash
+uv run run.py --api       # FastAPI server (default port 8002)
+uv run run.py --webhook   # GitHub webhook receiver
+uv run run.py --cron      # Poller for open GitHub issues
 ```
 
-No target app ships inside the sample; you install into an external git repo you already own.
+See [`automated-kiro/README.md`](./automated-kiro/README.md) for the full configuration reference.
 
-**Quick start (Kiro)**:
-```
+## Sample 3 — `sprint-runner`
+
+An agent-driven SDLC pipeline shaped around installing into an existing git repository and batching multiple sprint briefs per run. The runner processes each sprint through 9 stages (branch → research → plan → build → test → e2e → review → document → commit → publish) with crash-resumable state and self-healing patch loops on every gate. No target app ships inside the sample; you install into an external git repo you already own.
+
+**Quick start (Kiro):**
+
+```bash
 python sprint-runner/kiro/agentic-layer/tools/install.py <target-project>
 cd <target-project>
 python tools/sprint_runner.py --list-sprints
 python tools/sprint_runner.py --sprint 03
 ```
 
-**Quick start (Claude Code)**:
-```
+**Quick start (Claude Code):**
+
+```bash
 cp -r sprint-runner/claude/.claude  <target-project>/
 cp -r sprint-runner/claude/tools    <target-project>/
 cd <target-project>
@@ -160,7 +131,7 @@ python tools/sprint_runner.py --list-sprints
 python tools/sprint_runner.py --sprint 03
 ```
 
-See `sprint-runner/README.md` for the pattern overview and per-tech READMEs for the full stage reference and installer/runner CLI details.
+See [`sprint-runner/README.md`](./sprint-runner/README.md) for the pattern overview and per-tech READMEs for the full stage reference and installer/runner CLI details.
 
 ## The agentic layer: what you customize
 
@@ -174,6 +145,8 @@ Every sample includes an `agentic-layer/` directory. This is the artifact your t
 When output quality drops, fix the layer, not the generated code. Patching the output treats the symptom. Improving the template treats the cause.
 
 ## How each sample maps to the framework
+
+![Self-healing loop diagram](./assets/self-healing-loop.png)
 
 All three samples produce structured artifacts per phase and chain them forward. All enforce phase-separated tool permissions. All support self-healing: manually in `human-in-loop`, automatically in `automated-kiro` and `sprint-runner`. They differ in where the engine lives and how the agentic layer is configured.
 
@@ -207,28 +180,34 @@ The two Kiro-based samples cover distinct operating models. Use this table to pi
 
 ## Prerequisites
 
-Common:
+<details>
+<summary><b>Common + per-sample prerequisites</b></summary>
+
+**Common:**
 - Node.js 18+ — for the `human-in-loop` sample app
 - Kiro CLI on PATH, or `KIRO_CLI_PATH` env var — for `automated-kiro`
 
-For `automated-kiro`:
+**`automated-kiro`:**
 - Python 3.11+ and `uv` package manager
 - `gh` CLI with a valid token, if you use the Deploy phase's PR creation
 
-For `sprint-runner` (Kiro variant):
+**`sprint-runner` (Kiro variant):**
 - Python 3.11+ (stdlib only — no `pip install` needed)
 - `kiro-cli` on `PATH`
 - An existing git repository to install into
 - Optional: `npx` for Playwright MCP used by the test/e2e/review browser role
 
-For `sprint-runner` (Claude Code variant):
+**`sprint-runner` (Claude Code variant):**
 - Python 3.11+ (stdlib only — no `pip install` needed)
 - `claude` CLI on `PATH`
 - An existing git repository to install into
 
+</details>
+
 ## Runtime output directories
 
-When a workflow runs, it produces artifacts in these directories. Add them to `.gitignore`:
+<details>
+<summary><b>Directories produced at runtime (add to .gitignore)</b></summary>
 
 | Directory | Contents |
 |---|---|
@@ -236,6 +215,8 @@ When a workflow runs, it produces artifacts in these directories. Add them to `.
 | `specs/` | Implementation plans generated by the Plan phase |
 | `ai_docs/` | Documentation generated by the Document phase and KPI reports |
 | `.developer/sprint-runs/` | Per-run `state.json`, step logs, patch specs, and merge outcomes (`sprint-runner` target projects) |
+
+</details>
 
 ## Customization
 
@@ -246,6 +227,14 @@ Each sample's `agentic-layer/` is designed to be forked and modified.
 - **Gates** — define new quality gates with custom criteria and healing strategies
 - **Workflow** — edit `workflow.yaml` to add or remove phases, change gate bindings, or adjust retry limits
 
-The most team-specific prompt surface is the `## Plan Format` section inside each planning prompt. Every team formats implementation plans differently. The samples ship an opinionated default with an invariants contract (what the rest of the pipeline depends on) and a safe-to-change list (what you can reshape). See the relevant sample's README for prompt-level customization guidance; `sprint-runner/README.md` covers this in depth.
+The most team-specific prompt surface is the `## Plan Format` section inside each planning prompt. Every team formats implementation plans differently. The samples ship an opinionated default with an invariants contract (what the rest of the pipeline depends on) and a safe-to-change list (what you can reshape). See the relevant sample's README for prompt-level customization guidance; [`sprint-runner/README.md`](./sprint-runner/README.md) covers this in depth.
 
 The code is output. The agentic layer is the product. Improve a template and every future run benefits. Tighten a gate and every future build is held to the new standard. That's where the leverage is.
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines and the [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+## License
+
+This library is licensed under the MIT-0 License. See [LICENSE](./LICENSE).
