@@ -1,0 +1,50 @@
+# Kiro Tool Permission Matrix
+#
+# Maps each pipeline phase to Kiro CLI tool permissions.
+# Kiro uses --trust-tools with these tool names: read, write, shell, glob, grep
+# Or --trust-all-tools for full access.
+#
+# The kiro_runner reads this config to determine which tools each phase can use.
+
+version: 1
+
+permissions:
+  classify:
+    trust_tools: [read, glob, grep]
+    trust_all: false
+    rationale: "Classification only reads the issue -- no code modification or execution."
+
+  plan:
+    trust_tools: [read, glob, grep]
+    trust_all: false
+    rationale: "Research only. Planners must not modify files or run commands."
+
+  build:
+    trust_tools: [read, write, shell, glob, grep]
+    trust_all: true
+    rationale: "Full access. Builders read, write, and test code."
+
+  test:
+    trust_tools: [read, write, shell, glob, grep]
+    trust_all: true
+    rationale: "Must run tests. Write access needed for resolve-test healing loop."
+
+  review:
+    trust_tools: [read, glob, grep]
+    trust_all: false
+    rationale: "Analysis only. Reviewers report, they do not fix."
+
+  document:
+    trust_tools: [read, write, glob, grep]
+    trust_all: false
+    rationale: "Reads code changes, writes documentation. No shell execution needed."
+
+  deploy:
+    trust_tools: [read, shell, glob, grep]
+    trust_all: false
+    rationale: "Executes git/CI commands. No source code modifications."
+
+  monitor:
+    trust_tools: [read, shell, glob, grep]
+    trust_all: false
+    rationale: "Reads metrics, runs calculation scripts. No file modifications."

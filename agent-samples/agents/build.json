@@ -1,0 +1,8 @@
+{
+  "name": "build",
+  "description": "Executes implementation plans with precision — reads, writes, and validates code",
+  "prompt": "file://prompts/build.md",
+  "tools": ["fs_read", "fs_write", "execute_bash", "grep", "glob", "code"],
+  "allowedTools": ["fs_read", "grep", "glob", "code"],
+  "welcomeMessage": "Ready to build. Provide a plan file path or implementation instructions."
+}

@@ -1,0 +1,51 @@
+# Agentic Pipeline configuration
+# Paths are relative to the target project root.
+sprint_dir: mvp-prd/sprint-planning
+research_dir: research
+specs_dir: specs
+patch_specs_dir: specs/patch
+ai_docs_dir: ai_docs
+e2e_dir: .kiro/e2e
+runs_dir: .developer/sprint-runs
+learnings_file: .developer/merge-learnings.jsonl
+
+# Per-stage agent mapping (Amendment B)
+agents:
+  plan: pipeline-plan                # research, plan, merge-conflict
+  execute: pipeline-execute          # build, document, commit
+  browser: pipeline-execute-browser  # test, e2e, review (Playwright MCP)
+
+# Self-healing patch cycle caps
+test_patch_max: 6
+e2e_patch_max: 5
+review_patch_max: 6
+
+# Per-stage timeouts (seconds)
+timeouts:
+  branch: 240
+  research: 3600
+  plan: 3600
+  build: 7200
+  test: 3600
+  e2e: 4800
+  review: 3600
+  document: 2400
+  commit: 1200
+  publish: 1200
+  merge_conflict: 3600
+
+# Transient API error retry policy
+max_transient_retries: 3
+transient_backoff_base: 120
+transient_backoff_cap: 300
+
+# Tech stack (filled by installer; TODO: means unset)
+stack:
+  language: "TODO:"
+  package_manager: "TODO:"
+  lint: "TODO:"
+  typecheck: "TODO:"
+  build: "TODO:"
+  test: "TODO:"
+  e2e: "TODO:"
+  test_runner: "TODO:"

@@ -1,0 +1,22 @@
+# Quality gate: Deploy Readiness
+# Evaluated before the Deploy phase begins.
+# Verifies that all prerequisites for deployment are met.
+
+gate: deploy-readiness
+version: 1
+trigger: before-deploy
+severity: blocker
+
+criteria:
+  manifest_complete: true
+  branch_exists: true
+
+on_fail: escalate
+max_retries: 0
+
+escalation:
+  after_retries_exhausted: human
+  message: "Deploy prerequisites not met. Manifest incomplete or branch missing."
+  context:
+    - manifest_state
+    - branch_status

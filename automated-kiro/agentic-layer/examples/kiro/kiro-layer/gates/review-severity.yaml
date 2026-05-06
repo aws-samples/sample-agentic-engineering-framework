@@ -1,0 +1,24 @@
+# Quality gate: Review Severity
+# Evaluated after the Review phase completes.
+# Triggers the patch healing loop for blocker issues.
+
+gate: review-severity
+version: 1
+trigger: after-review
+severity: blocker
+
+criteria:
+  no_blockers: true
+
+on_fail: patch
+max_retries: 3
+retry_strategy: rebuild_and_retest
+stop_on_no_progress: true
+
+escalation:
+  after_retries_exhausted: human
+  message: "Review found blocker issues after {retries} patch cycles."
+  context:
+    - review_verdict
+    - test_results
+    - plan_artifact

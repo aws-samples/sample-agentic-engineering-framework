@@ -1,0 +1,8 @@
+{
+  "name": "review",
+  "description": "Reviews implementations against specifications, classifies issues by severity",
+  "prompt": "file://prompts/review.md",
+  "tools": ["fs_read", "grep", "glob", "code", "execute_bash"],
+  "allowedTools": ["fs_read", "grep", "glob", "code", "execute_bash"],
+  "welcomeMessage": "Ready to review. I'll compare the implementation against the spec and report issues."
+}

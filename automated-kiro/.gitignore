@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+wheels/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+uv.lock
+
+# Runtime output (keep .gitkeep, ignore contents)
+agent_runs_log/*
+!agent_runs_log/.gitkeep
+specs/*
+!specs/.gitkeep
+ai_docs/*
+!ai_docs/.gitkeep

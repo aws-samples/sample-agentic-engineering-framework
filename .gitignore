@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+wheels/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+uv.lock
+
+# Node
+node_modules/
+dist/
+package-lock.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+/.claude/
+
+# Runtime output
+agent_runs_log/
+specs/
+ai_docs/
