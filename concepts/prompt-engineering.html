@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Prompt Engineering Patterns - AEF Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-void text-primary font-sans antialiased page-concepts">
+
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg></div><span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span></a>
+        <div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-healing loops</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Build<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Adopt<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By team size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Reference<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary" aria-label="Toggle navigation"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg></button>
+      </div>
+    </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Learn section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Learn
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-1 pb-1">Framework</p>
+          <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Overview</a>
+          <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Principles</a>
+          <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Architecture</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-2 pb-1">Concepts</p>
+          <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Autonomous Software Engineering</a>
+          <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Agentic layer</a>
+          <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Self-healing loops</a>
+          <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Artifact chaining</a>
+          <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prompt engineering</a>
+          <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Tool permissions</a>
+          <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Agent patterns</a>
+        </div>
+        <!-- Build section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Build
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-1 pb-1">Workflow</p>
+          <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow overview</a>
+          <a href="../workflow/intent.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Intent</a>
+          <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Plan</a>
+          <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Build</a>
+          <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Test</a>
+          <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Review</a>
+          <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Document</a>
+          <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Deploy</a>
+          <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Monitor</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-2 pb-1">Configuration</p>
+          <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prompt templates</a>
+          <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Commands &amp; skills</a>
+          <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Tool integrations</a>
+          <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Quality gates</a>
+          <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow config</a>
+        </div>
+        <!-- Adopt section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Adopt
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Getting started</a>
+          <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">By team size</a>
+          <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Maturity path</a>
+          <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Customization</a>
+        </div>
+        <!-- Reference section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Reference
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Glossary</a>
+          <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow Schema</a>
+          <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prerequisites</a>
+          <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Troubleshooting</a>
+        </div>
+        <div class="pt-2 border-t border-subtle">
+          <a href="../adopt/getting-started.html" class="block py-2 text-sm font-medium text-glow hover:text-glow-hover transition-colors">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pt-16 flex">
+    <aside class="hidden lg:block w-64 flex-shrink-0">
+      <div class="fixed top-16 w-64 h-[calc(100vh-4rem)] overflow-y-auto border-r border-subtle py-8 px-4">
+        <p class="text-xs font-mono text-muted uppercase tracking-wider mb-4">Concepts</p>
+        <nav class="space-y-1 mb-6">
+          <a href="agentic-layer.html" class="sidebar-link">The Agentic Layer</a>
+          <a href="agent-patterns.html" class="sidebar-link">Agent Patterns</a>
+          <a href="self-healing.html" class="sidebar-link">Self-Healing Loops</a>
+          <a href="artifact-chaining.html" class="sidebar-link">Artifact Chaining</a>
+          <a href="prompt-engineering.html" class="sidebar-link active">Prompt Engineering</a>
+          <a href="tool-permissions.html" class="sidebar-link">Tool Permissions</a>
+          <a href="ase.html" class="sidebar-link">Autonomous Software Engineering</a>
+        </nav>
+        <p class="text-xs font-mono text-muted uppercase tracking-wider mb-4">On This Page</p>
+        <nav class="space-y-1" id="page-toc">
+          <a href="#role-assignment" class="sidebar-link">1. Role Assignment</a>
+          <a href="#structured-output" class="sidebar-link">2. Structured Output</a>
+          <a href="#anti-scope" class="sidebar-link">3. Anti-Scope-Creep</a>
+          <a href="#conditional-loading" class="sidebar-link">4. Conditional Loading</a>
+          <a href="#template-variables" class="sidebar-link">5. Template Variables</a>
+          <a href="#file-line" class="sidebar-link">6. file:line Precision</a>
+          <a href="#issue-routing" class="sidebar-link">7. Issue-Type Routing</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main id="main-content" class="flex-1 min-w-0">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+          <ol class="flex items-center gap-0">
+            <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><a href="../framework/overview.html" class="hover:text-secondary transition-colors">Learn</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><span class="text-secondary" aria-current="page">Prompt Engineering</span></li>
+          </ol>
+        </nav>
+      </div>
+
+      <section class="relative py-16 sm:py-24 overflow-hidden">
+        <div class="absolute inset-0 dot-grid opacity-40"></div>
+        <div class="ambient-glow w-[500px] h-[500px] bg-document/[0.04] -top-40 -right-40"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="reveal">
+            <p class="text-sm font-mono text-glow mb-4 tracking-wider uppercase">Concept 05</p>
+            <h1 class="text-4xl sm:text-5xl font-bold text-primary mb-6">Prompt Engineering Patterns</h1>
+            <p class="text-lg text-secondary max-w-2xl leading-relaxed">Seven reusable techniques for writing effective phase templates. Tool-agnostic, model-agnostic. The building blocks of every good prompt.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="reveal bg-glow-faint border border-glow/20 rounded-xl p-6 sm:p-8">
+          <p class="text-lg sm:text-xl font-medium text-primary leading-relaxed">"Prompt engineering patterns are like design patterns in software: named solutions to recurring problems."</p>
+          <p class="text-sm text-secondary mt-2">Role Assignment is the Strategy pattern. Structured Output is the Interface pattern. Learn them once, apply them to any agent stack.</p>
+        </div>
+      </section>
+
+      <!-- Prompt Anatomy Diagram -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="reveal">
+          <h2 class="text-lg font-semibold text-primary mb-4">Anatomy of a prompt template</h2>
+          <svg viewBox="0 0 600 280" class="w-full max-w-xl mx-auto mb-8" role="img" aria-label="Prompt anatomy diagram showing sections: Role, Context, Constraints, Required Reading, Output Format">
+            <!-- Role -->
+            <rect x="50" y="10" width="500" height="40" rx="6" fill="rgba(139, 92, 246, 0.08)" stroke="#8B5CF6" stroke-width="1" />
+            <text x="70" y="35" fill="#8B5CF6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Role Assignment</text>
+            <text x="430" y="35" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">Who is the agent?</text>
+
+            <!-- Context -->
+            <rect x="50" y="60" width="500" height="40" rx="6" fill="rgba(99, 102, 241, 0.08)" stroke="#6366F1" stroke-width="1" />
+            <text x="70" y="85" fill="#818CF8" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Context + Variables</text>
+            <text x="430" y="85" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">${plan_artifact}</text>
+
+            <!-- Constraints -->
+            <rect x="50" y="110" width="500" height="40" rx="6" fill="rgba(239, 68, 68, 0.06)" stroke="#EF4444" stroke-width="1" />
+            <text x="70" y="135" fill="#EF4444" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Anti-Scope-Creep</text>
+            <text x="430" y="135" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">What NOT to do</text>
+
+            <!-- Required Reading -->
+            <rect x="50" y="160" width="500" height="40" rx="6" fill="rgba(6, 182, 212, 0.06)" stroke="#06B6D4" stroke-width="1" />
+            <text x="70" y="185" fill="#06B6D4" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Conditional Loading</text>
+            <text x="430" y="185" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">Which files to read</text>
+
+            <!-- Output Format -->
+            <rect x="50" y="210" width="500" height="40" rx="6" fill="rgba(16, 185, 129, 0.06)" stroke="#10B981" stroke-width="1" />
+            <text x="70" y="235" fill="#10B981" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Structured Output</text>
+            <text x="430" y="235" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">Exact shape of response</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Pattern 1: Role Assignment -->
+      <section id="role-assignment" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 text-xs font-mono rounded bg-plan/10 text-plan border border-plan/20">01</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary">Role assignment</h2>
+          </div>
+          <p class="text-secondary leading-relaxed mb-6">Assign a specific professional persona at the start of every prompt. "You are a Software Architect." "You are a QA Engineer." This constrains the agent's behavior to that role's expectations. A QA engineer focuses on edge cases; a software architect focuses on structure.</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-xl overflow-hidden border border-subtle mb-6">
+            <div class="p-5 bg-surface border-b md:border-b-0 md:border-r border-subtle">
+              <p class="text-xs font-mono text-fail mb-2">Before</p>
+              <p class="text-sm text-secondary italic">"Analyze this code and suggest improvements."</p>
+              <p class="text-xs text-muted mt-2">Vague, unfocused. The agent tries to do everything.</p>
+            </div>
+            <div class="p-5 bg-surface">
+              <p class="text-xs font-mono text-pass mb-2">After</p>
+              <p class="text-sm text-secondary italic">"You are a Senior Security Engineer. Analyze this code for authentication vulnerabilities, injection risks, and data exposure. Ignore style and performance."</p>
+              <p class="text-xs text-muted mt-2">Focused, bounded. The agent knows its lane.</p>
+            </div>
+          </div>
+          <p class="text-sm text-secondary"><strong class="text-primary">Pattern:</strong> always place role assignment as the first section. Include what the role IS responsible for and what it is NOT.</p>
+        </div>
+      </section>
+
+      <!-- Pattern 2: Structured Output Contracts -->
+      <section id="structured-output" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 text-xs font-mono rounded bg-plan/10 text-plan border border-plan/20">02</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary">Structured output contracts</h2>
+          </div>
+          <p class="text-secondary leading-relaxed mb-6">Define the exact output format in the prompt. Downstream consumers (other agents or humans) depend on predictable structure. If the plan artifact is free-form text one time and a numbered list the next, the Build template's <span class="font-mono text-glow-hover text-xs">${plan_artifact}</span> substitution becomes unreliable.</p>
+
+          <div class="code-block p-6 mb-4">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="comment">// JSON contract: output must match this schema</span>
+{
+  <span class="var">"verdict"</span>: <span class="string">"pass | fail"</span>,
+  <span class="var">"issues"</span>: [
+    {
+      <span class="var">"severity"</span>: <span class="string">"blocker | tech_debt | skippable"</span>,
+      <span class="var">"file"</span>: <span class="string">"string"</span>,
+      <span class="var">"line"</span>: <span class="type">number</span>,
+      <span class="var">"description"</span>: <span class="string">"string"</span>,
+      <span class="var">"suggested_fix"</span>: <span class="string">"string"</span>
+    }
+  ]
+}</code></pre>
+          </div>
+          <p class="text-sm text-secondary">This is how <a href="artifact-chaining.html" class="concept-link">artifact chaining</a> stays reliable. When the output contract is explicit, every workflow run produces the same artifact shape.</p>
+        </div>
+      </section>
+
+      <!-- Pattern 3: Anti-Scope-Creep -->
+      <section id="anti-scope" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 text-xs font-mono rounded bg-plan/10 text-plan border border-plan/20">03</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary">Anti-scope-creep instructions</h2>
+          </div>
+          <p class="text-secondary leading-relaxed mb-6">Agents are eager to help. Given the Plan prompt, an agent might start implementing. Given the Review prompt, it might start fixing bugs. Explicit boundaries prevent this. Every prompt template should have a "What we are NOT doing" section.</p>
+
+          <div class="code-block p-6 mb-4">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="keyword">## What We Are NOT Doing</span>
+- Do NOT modify files outside the plan scope
+- Do NOT refactor code that is not part of this task
+- Do NOT add features not requested in the issue
+- Do NOT fix pre-existing bugs you encounter
+- If you find issues outside scope, <span class="string">NOTE</span> them in a
+  <span class="string">"Future Work"</span> section -- do not act on them</code></pre>
+          </div>
+          <p class="text-sm text-secondary">This pattern works hand-in-hand with <a href="tool-permissions.html" class="concept-link">tool permissions</a>. Constraints in the prompt tell the agent what it should not do. Permissions enforce what it cannot do.</p>
+        </div>
+      </section>
+
+      <!-- Pattern 4: Conditional Documentation Loading -->
+      <section id="conditional-loading" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 text-xs font-mono rounded bg-plan/10 text-plan border border-plan/20">04</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary">Conditional documentation loading</h2>
+          </div>
+          <p class="text-secondary leading-relaxed mb-6">Context windows are finite. Loading irrelevant files wastes tokens and introduces noise. Tell agents exactly which files to read, and which to ignore.</p>
+
+          <div class="code-block p-6 mb-4">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="keyword">## Required Reading</span>
+Read <span class="string">ONLY</span> the following files before proceeding:
+- <span class="var">src/auth/tokens.py</span> <span class="comment">(module being modified)</span>
+- <span class="var">src/auth/session.py</span> <span class="comment">(related dependency)</span>
+- <span class="var">tests/auth/test_tokens.py</span> <span class="comment">(existing tests)</span>
+
+<span class="keyword">## Do NOT Read</span>
+- Any files outside <span class="var">src/auth/</span> and <span class="var">tests/auth/</span>
+- Configuration files unless referenced in the plan</code></pre>
+          </div>
+          <p class="text-sm text-secondary"><strong class="text-primary">Advanced:</strong> use the plan artifact to dynamically determine which files to load. The Plan phase identifies target files; the Build template uses those as the conditional loading list.</p>
+        </div>
+      </section>
+
+      <!-- Pattern 5: Template Variable Substitution -->
+      <section id="template-variables" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 text-xs font-mono rounded bg-plan/10 text-plan border border-plan/20">05</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary">Template variable substitution</h2>
+          </div>
+          <p class="text-secondary leading-relaxed mb-6">Use <span class="font-mono text-glow-hover text-sm">${variable}</span> syntax to inject dynamic context into prompts. The workflow engine substitutes these before sending to the agent. Templates are reusable across tasks: the variables change, the structure stays the same.</p>
+
+          <div class="space-y-3">
+            <div class="p-4 rounded-lg bg-surface border border-subtle">
+              <p class="text-sm text-primary mb-1">Use descriptive names</p>
+              <p class="text-xs text-secondary"><span class="font-mono text-pass">${plan_artifact}</span> not <span class="font-mono text-fail">${input}</span></p>
+            </div>
+            <div class="p-4 rounded-lg bg-surface border border-subtle">
+              <p class="text-sm text-primary mb-1">Document what each variable contains</p>
+              <p class="text-xs text-secondary">include expected format (markdown, JSON, string) in template comments</p>
+            </div>
+            <div class="p-4 rounded-lg bg-surface border border-subtle">
+              <p class="text-sm text-primary mb-1">Use fallback values for optional variables</p>
+              <p class="text-xs text-secondary"><span class="font-mono text-glow-hover">${branch_name:-main}</span> defaults to "main" if unset</p>
+            </div>
+            <div class="p-4 rounded-lg bg-surface border border-subtle">
+              <p class="text-sm text-primary mb-1">Never nest variables</p>
+              <p class="text-xs text-secondary"><span class="font-mono text-fail">${${phase}_artifact}</span> is fragile. Use explicit names like <span class="font-mono text-pass">${plan_artifact}</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pattern 6: file:line Precision -->
+      <section id="file-line" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 text-xs font-mono rounded bg-plan/10 text-plan border border-plan/20">06</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary">file:line precision references</h2>
+          </div>
+          <p class="text-secondary leading-relaxed mb-6">Always reference specific file paths and line numbers in prompts and outputs. Precision dramatically improves execution accuracy. Vague references lead to the agent searching (wasting tokens), guessing (wrong file), or modifying the wrong code.</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-xl overflow-hidden border border-subtle mb-4">
+            <div class="p-5 bg-surface border-b md:border-b-0 md:border-r border-subtle">
+              <p class="text-xs font-mono text-fail mb-2">Vague</p>
+              <p class="text-sm text-secondary italic">"Update the auth module to handle token refresh."</p>
+            </div>
+            <div class="p-5 bg-surface">
+              <p class="text-xs font-mono text-pass mb-2">Precise</p>
+              <p class="text-sm text-secondary italic">"Replace the token refresh logic at <span class="font-mono text-glow-hover">src/auth/tokens.py:112-130</span>. Update the expiry check at <span class="font-mono text-glow-hover">src/auth/session.py:55</span>."</p>
+            </div>
+          </div>
+          <p class="text-sm text-secondary">Require the agent to produce file:line references in its own output so downstream phases have the same precision.</p>
+        </div>
+      </section>
+
+      <!-- Pattern 7: Issue-Type Routing -->
+      <section id="issue-routing" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="px-2.5 py-1 text-xs font-mono rounded bg-plan/10 text-plan border border-plan/20">07</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary">Issue-type routing</h2>
+          </div>
+          <p class="text-secondary leading-relaxed mb-8">A feature needs user stories and acceptance criteria. A bug needs root cause analysis. A patch needs minimal-scope constraints. One-size-fits-all prompts produce mediocre results across the board. Use different templates for different issue types.</p>
+
+          <!-- Issue type router SVG -->
+          <div class="mb-8">
+            <svg viewBox="0 0 500 160" class="w-full max-w-md mx-auto" role="img" aria-label="Issue-type router: four paths from issue_type to different templates">
+              <polygon points="120,60 180,80 120,100 60,80" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+              <text x="120" y="78" text-anchor="middle" fill="#818CF8" font-size="9" font-family="JetBrains Mono, monospace">${issue_type}</text>
+
+              <line x1="180" y1="68" x2="260" y2="25" stroke="#8B5CF6" stroke-width="1" opacity="0.5" />
+              <line x1="180" y1="75" x2="260" y2="60" stroke="#EF4444" stroke-width="1" opacity="0.5" />
+              <line x1="180" y1="85" x2="260" y2="100" stroke="#F59E0B" stroke-width="1" opacity="0.5" />
+              <line x1="180" y1="92" x2="260" y2="140" stroke="#10B981" stroke-width="1" opacity="0.5" />
+
+              <rect x="265" y="5" width="120" height="35" rx="6" fill="#111113" stroke="#8B5CF6" stroke-width="1" />
+              <text x="325" y="27" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Feature</text>
+
+              <rect x="265" y="45" width="120" height="35" rx="6" fill="#111113" stroke="#EF4444" stroke-width="1" />
+              <text x="325" y="67" text-anchor="middle" fill="#EF4444" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Bug</text>
+
+              <rect x="265" y="85" width="120" height="35" rx="6" fill="#111113" stroke="#F59E0B" stroke-width="1" />
+              <text x="325" y="107" text-anchor="middle" fill="#F59E0B" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Patch</text>
+
+              <rect x="265" y="125" width="120" height="35" rx="6" fill="#111113" stroke="#10B981" stroke-width="1" />
+              <text x="325" y="147" text-anchor="middle" fill="#10B981" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Task</text>
+            </svg>
+          </div>
+
+          <!-- Tab component for issue types -->
+          <div class="rounded-xl border border-subtle overflow-hidden mb-4">
+            <div class="flex border-b border-subtle overflow-x-auto">
+              <button class="it-tab px-4 py-3 text-xs font-mono text-plan border-b-2 border-plan bg-raised/50 whitespace-nowrap" data-tab="feature" onclick="showIssueTab('feature')">Feature</button>
+              <button class="it-tab px-4 py-3 text-xs font-mono text-secondary border-b-2 border-transparent hover:border-subtle whitespace-nowrap" data-tab="bug" onclick="showIssueTab('bug')">Bug</button>
+              <button class="it-tab px-4 py-3 text-xs font-mono text-secondary border-b-2 border-transparent hover:border-subtle whitespace-nowrap" data-tab="patch" onclick="showIssueTab('patch')">Patch</button>
+              <button class="it-tab px-4 py-3 text-xs font-mono text-secondary border-b-2 border-transparent hover:border-subtle whitespace-nowrap" data-tab="task" onclick="showIssueTab('task')">Task</button>
+            </div>
+            <div class="code-block border-0 rounded-none p-6">
+              <div id="it-feature">
+                <pre class="font-mono text-sm leading-relaxed"><code><span class="keyword">## Feature Plan Template</span>
+While [<span class="var">context</span>], when [<span class="var">trigger</span>],
+the system shall [<span class="var">action</span>] so that [<span class="var">outcome</span>].
+
+<span class="keyword">User stories:</span>
+- As a [<span class="var">role</span>], I want [<span class="var">capability</span>] so that [<span class="var">benefit</span>]
+
+<span class="keyword">Acceptance criteria:</span>
+- Given [<span class="var">state</span>], when [<span class="var">action</span>], then [<span class="var">result</span>]</code></pre>
+              </div>
+              <div id="it-bug" class="hidden">
+                <pre class="font-mono text-sm leading-relaxed"><code><span class="keyword">## Bug Fix Template</span>
+<span class="keyword">### Symptoms</span>
+<span class="var">${issue_description}</span>
+
+<span class="keyword">### Root Cause Analysis</span>
+<span class="string">1.</span> Reproduce the bug (identify the trigger)
+<span class="string">2.</span> Trace the execution path
+<span class="string">3.</span> Identify the root cause (not just the symptom)
+<span class="string">4.</span> Propose the minimal fix
+
+<span class="keyword">### Constraints</span>
+- Fix <span class="string">ONLY</span> the root cause
+- Do NOT refactor surrounding code
+- Regression test: fails before fix, passes after</code></pre>
+              </div>
+              <div id="it-patch" class="hidden">
+                <pre class="font-mono text-sm leading-relaxed"><code><span class="keyword">## Patch Template</span>
+<span class="keyword">### Scope</span>
+This is a minimal patch. Maximum <span class="type">50</span> lines changed.
+
+<span class="keyword">### Rules</span>
+- Change the fewest files possible
+- No new dependencies
+- No refactoring
+- Must pass all existing tests</code></pre>
+              </div>
+              <div id="it-task" class="hidden">
+                <pre class="font-mono text-sm leading-relaxed"><code><span class="keyword">## Task Template</span>
+<span class="keyword">### Objective</span>
+<span class="var">${issue_description}</span>
+
+<span class="keyword">### Implementation</span>
+Follow standard implementation patterns.
+Reference existing code in the same module for style.
+
+<span class="keyword">### Deliverables</span>
+- Code changes with tests
+- Updated documentation if public API changes</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cross-links -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-lg font-semibold text-primary mb-6">Related concepts</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="artifact-chaining.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Artifact Chaining</p>
+              <p class="text-xs text-muted mt-1">template variables are the mechanism for chaining</p>
+            </a>
+            <a href="tool-permissions.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Tool Permissions</p>
+              <p class="text-xs text-muted mt-1">constraints section often mirrors tool permissions</p>
+            </a>
+            <a href="agentic-layer.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">The Agentic Layer</p>
+              <p class="text-xs text-muted mt-1">templates live in the agentic layer</p>
+            </a>
+            <a href="self-healing.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Self-Healing Loops</p>
+              <p class="text-xs text-muted mt-1">retry prompts use these patterns with failure context</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prev/Next -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-subtle">
+        <div class="flex justify-between items-center">
+          <a href="artifact-chaining.html" class="group flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors">
+            <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            Artifact Chaining
+          </a>
+          <a href="tool-permissions.html" class="group flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors">
+            Tool Permission Design
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="border-t border-subtle py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg></div><span class="font-mono text-xs text-muted">Agentic Engineering Framework</span></div>
+                <div class="flex items-center gap-6">
+          <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+          <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+          <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+          <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+        </div>
+        <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => ro.observe(el));
+    const tocLinks = document.querySelectorAll('#page-toc .sidebar-link');
+    const tocSections = Array.from(tocLinks).map(l => document.getElementById(l.getAttribute('href').slice(1))).filter(Boolean);
+    window.addEventListener('scroll', () => { let c = ''; tocSections.forEach(s => { if (scrollY >= s.offsetTop - 120) c = s.id; }); tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + c); }); });
+
+    function showIssueTab(tab) {
+      ['feature','bug','patch','task'].forEach(t => {
+        document.getElementById('it-' + t).classList.toggle('hidden', t !== tab);
+      });
+      document.querySelectorAll('.it-tab').forEach(el => {
+        const isActive = el.dataset.tab === tab;
+        el.classList.toggle('text-plan', isActive);
+        el.classList.toggle('border-plan', isActive);
+        el.classList.toggle('bg-raised/50', isActive);
+        el.classList.toggle('text-secondary', !isActive);
+        el.classList.toggle('border-transparent', !isActive);
+      });
+    }
+  </script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

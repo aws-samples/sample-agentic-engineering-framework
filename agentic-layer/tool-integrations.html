@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Tool Integrations - Agentic Engineering Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-void text-primary font-sans antialiased page-agentic-layer">
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg></div><span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span></a>
+        <div class="hidden md:flex items-center gap-8">
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="my-1 border-t border-subtle"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic Layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-Healing</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact Chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent Patterns</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="nav-link active text-sm text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="my-1 border-t border-subtle"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; Skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality Gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Config</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting Started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By Team Size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity Path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary cursor-pointer" aria-label="Toggle menu"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg></button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Learn <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+            <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Principles</a>
+            <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Architecture</a>
+            <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Autonomous Software Engineering</a>
+            <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agentic Layer</a>
+            <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Self-Healing</a>
+            <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Artifact Chaining</a>
+            <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Engineering</a>
+            <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Permissions</a>
+            <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agent Patterns</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Build <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Overview</a>
+            <a href="../workflow/intent.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Intent</a>
+            <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Plan</a>
+            <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Build</a>
+            <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Test</a>
+            <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Review</a>
+            <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Document</a>
+            <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Deploy</a>
+            <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Monitor</a>
+            <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Templates</a>
+            <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Commands &amp; Skills</a>
+            <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Integrations</a>
+            <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Quality Gates</a>
+            <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Config</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Adopt <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Getting Started</a>
+            <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary">By Team Size</a>
+            <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Maturity Path</a>
+            <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Customization</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Reference <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Glossary</a>
+            <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Schema</a>
+            <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prerequisites</a>
+            <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Troubleshooting</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pt-16 flex">
+    <aside class="hidden lg:block w-64 flex-shrink-0 border-r border-subtle">
+      <div class="sticky top-20 p-6 space-y-1">
+        <p class="text-[10px] font-mono text-muted uppercase tracking-wider mb-4">Agentic Layer</p>
+        <a href="prompt-templates.html" class="sidebar-link block px-3 py-2 text-sm border-l-2 border-transparent text-secondary hover:text-primary">Prompt Templates</a>
+        <a href="commands-skills.html" class="sidebar-link block px-3 py-2 text-sm border-l-2 border-transparent text-secondary hover:text-primary">Commands &amp; Skills</a>
+        <a href="tool-integrations.html" class="sidebar-link active block px-3 py-2 text-sm border-l-2 border-glow text-primary">Tool Integrations</a>
+        <a href="quality-gates.html" class="sidebar-link block px-3 py-2 text-sm border-l-2 border-transparent text-secondary hover:text-primary">Quality Gates</a>
+        <a href="workflow-config.html" class="sidebar-link block px-3 py-2 text-sm border-l-2 border-transparent text-secondary hover:text-primary">Workflow Config</a>
+      </div>
+    </aside>
+
+    <main id="main-content" class="flex-1 min-w-0">
+      <!-- Hero -->
+      <section class="relative py-16 sm:py-24 overflow-hidden">
+        <div class="ambient-glow w-[500px] h-[500px] bg-deploy/[0.04] -top-40 -right-40"></div>
+        <div class="absolute inset-0 dot-grid opacity-30"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8">
+          <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+            <ol class="flex items-center gap-0">
+              <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+              <li><span class="mx-2 text-subtle">/</span></li>
+              <li><a href="../workflow/index.html" class="hover:text-secondary transition-colors">Build</a></li>
+              <li><span class="mx-2 text-subtle">/</span></li>
+              <li><span class="text-secondary" aria-current="page">Tool Integrations</span></li>
+            </ol>
+          </nav>
+          <div class="reveal">
+            <p class="text-sm font-mono text-glow mb-3 tracking-wider uppercase">The Agentic Layer</p>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">Tool Integrations</h1>
+            <p class="text-lg text-secondary max-w-2xl leading-relaxed">Tools are capabilities you give to agents. File reading, code execution, API access, context gathering. Not IDEs. Not products. Capabilities.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- What Are Tools -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">What are tools in this context</h2>
+            <p class="text-sm text-secondary leading-relaxed mb-8">In this framework, a "tool" is a capability boundary. It defines what an agent can do in the environment. Reading a file is a tool. Running a shell command is a tool. The framework organizes these into 4 categories and controls which phases get access to which.</p>
+            <div class="p-5 rounded-xl bg-raised border border-glow-faint">
+              <p class="text-sm text-secondary leading-relaxed"><span class="text-glow font-semibold">Tools are not products.</span> "File system access" is a tool category. A specific editor, IDE, or CLI is a product that provides that tool category. The framework defines the categories. Your tooling stack provides the implementations.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Four Tool Categories -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-8">The four tool categories</h2>
+
+            <!-- Category 1: File System -->
+            <div class="mb-4 rounded-xl bg-surface border border-subtle overflow-hidden">
+              <button class="expand-btn w-full p-5 flex items-center gap-4 cursor-pointer text-left" data-target="cat-fs">
+                <div class="w-10 h-10 rounded-lg bg-glow/10 border border-glow/20 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-mono text-sm font-semibold text-primary">1. File System</h3>
+                  <p class="text-xs text-secondary">Read, write, and search files in the codebase</p>
+                </div>
+                <svg class="w-5 h-5 text-muted transition-transform duration-200 expand-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+              </button>
+              <div id="cat-fs" class="expandable-content">
+                <div class="px-5 pb-5 space-y-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-glow-hover font-semibold mb-1">Read</p><p class="text-[11px] text-secondary">read file contents, list directories, check existence</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-glow-hover font-semibold mb-1">Write</p><p class="text-[11px] text-secondary">create new files, edit existing files, delete files</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-glow-hover font-semibold mb-1">Search</p><p class="text-[11px] text-secondary">pattern matching (grep/glob), find files, AST search</p></div>
+                  </div>
+                  <div class="code-block p-4 overflow-x-auto">
+                    <pre class="font-mono text-xs leading-relaxed"><code><span class="comment"># tools/file-system.yaml</span>
+<span class="keyword">file_system</span>:
+  <span class="keyword">read</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">allowed_paths</span>:
+      - <span class="string">"src/**"</span>
+      - <span class="string">"tests/**"</span>
+      - <span class="string">"docs/**"</span>
+    <span class="type">denied_paths</span>:
+      - <span class="string">".env"</span>
+      - <span class="string">"**/*.secret"</span>
+      - <span class="string">"node_modules/**"</span>
+  <span class="keyword">write</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">allowed_paths</span>:
+      - <span class="string">"src/**"</span>
+      - <span class="string">"tests/**"</span>
+    <span class="type">denied_paths</span>:
+      - <span class="string">"src/config/production.ts"</span>
+      - <span class="string">"**/*.lock"</span>
+  <span class="keyword">search</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">max_results</span>: <span class="type">100</span>
+    <span class="type">timeout_ms</span>: <span class="type">5000</span></code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 2: Code Execution -->
+            <div class="mb-4 rounded-xl bg-surface border border-subtle overflow-hidden">
+              <button class="expand-btn w-full p-5 flex items-center gap-4 cursor-pointer text-left" data-target="cat-exec">
+                <div class="w-10 h-10 rounded-lg bg-build/10 border border-build/20 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-build" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-mono text-sm font-semibold text-primary">2. Code Execution</h3>
+                  <p class="text-xs text-secondary">Shell commands, test runners, linters, build tools</p>
+                </div>
+                <svg class="w-5 h-5 text-muted transition-transform duration-200 expand-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+              </button>
+              <div id="cat-exec" class="expandable-content">
+                <div class="px-5 pb-5 space-y-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-build font-semibold mb-1">Shell</p><p class="text-[11px] text-secondary">run arbitrary commands (with sandboxing)</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-build font-semibold mb-1">Test Runners</p><p class="text-[11px] text-secondary">jest, pytest, go test, cargo test</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-build font-semibold mb-1">Linters/Formatters</p><p class="text-[11px] text-secondary">eslint, prettier, ruff, gofmt, rustfmt</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-build font-semibold mb-1">Build Tools</p><p class="text-[11px] text-secondary">tsc, webpack, cargo build, go build</p></div>
+                  </div>
+                  <!-- Security callout -->
+                  <div class="p-4 rounded-lg bg-fail/5 border border-fail/20">
+                    <p class="text-xs text-fail font-semibold mb-1">Security Warning</p>
+                    <p class="text-xs text-secondary leading-relaxed">code execution is the most powerful and most dangerous tool category. Always sandbox agent execution environments. Agents should never run commands that modify system-level configuration, access network resources not explicitly allowed, delete files outside the project, or install global packages.</p>
+                  </div>
+                  <div class="code-block p-4 overflow-x-auto">
+                    <pre class="font-mono text-xs leading-relaxed"><code><span class="comment"># tools/code-execution.yaml</span>
+<span class="keyword">code_execution</span>:
+  <span class="keyword">shell</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">sandbox</span>: <span class="string">true</span>
+    <span class="type">timeout_ms</span>: <span class="type">120000</span>
+    <span class="type">allowed_commands</span>:
+      - <span class="string">"npm *"</span>
+      - <span class="string">"npx *"</span>
+      - <span class="string">"node *"</span>
+      - <span class="string">"git *"</span>
+      - <span class="string">"tsc *"</span>
+    <span class="type">denied_commands</span>:
+      - <span class="string">"rm -rf /*"</span>
+      - <span class="string">"sudo *"</span>
+      - <span class="string">"curl * | bash"</span>
+      - <span class="string">"npm publish"</span>
+  <span class="keyword">test_runners</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">commands</span>:
+      <span class="type">unit</span>: <span class="string">"npm test"</span>
+      <span class="type">integration</span>: <span class="string">"npm run test:integration"</span>
+      <span class="type">e2e</span>: <span class="string">"npm run test:e2e"</span>
+    <span class="type">timeout_ms</span>: <span class="type">300000</span>
+  <span class="keyword">linters</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">commands</span>:
+      <span class="type">lint</span>: <span class="string">"npm run lint"</span>
+      <span class="type">format_check</span>: <span class="string">"npm run format:check"</span>
+  <span class="keyword">build</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">commands</span>:
+      <span class="type">typecheck</span>: <span class="string">"npx tsc --noEmit"</span>
+      <span class="type">build</span>: <span class="string">"npm run build"</span></code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 3: External APIs -->
+            <div class="mb-4 rounded-xl bg-surface border border-subtle overflow-hidden">
+              <button class="expand-btn w-full p-5 flex items-center gap-4 cursor-pointer text-left" data-target="cat-api">
+                <div class="w-10 h-10 rounded-lg bg-deploy/10 border border-deploy/20 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-deploy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-mono text-sm font-semibold text-primary">3. External APIs</h3>
+                  <p class="text-xs text-secondary">Version control, CI/CD, issue trackers, browser automation</p>
+                </div>
+                <svg class="w-5 h-5 text-muted transition-transform duration-200 expand-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+              </button>
+              <div id="cat-api" class="expandable-content">
+                <div class="px-5 pb-5 space-y-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-deploy font-semibold mb-1">Version Control</p><p class="text-[11px] text-secondary">Git operations, branch management, PR creation</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-deploy font-semibold mb-1">CI/CD</p><p class="text-[11px] text-secondary">trigger workflows, check build status, read logs</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-deploy font-semibold mb-1">Issue Trackers</p><p class="text-[11px] text-secondary">read issues, update status, create sub-tasks</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-deploy font-semibold mb-1">Browser Automation</p><p class="text-[11px] text-secondary">E2E testing, visual review, screenshot comparison</p></div>
+                  </div>
+                  <div class="code-block p-4 overflow-x-auto">
+                    <pre class="font-mono text-xs leading-relaxed"><code><span class="comment"># tools/external-apis.yaml</span>
+<span class="keyword">external_apis</span>:
+  <span class="keyword">version_control</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">provider</span>: <span class="string">git</span>               <span class="comment"># tool-agnostic: just git</span>
+    <span class="type">operations</span>:
+      - <span class="string">branch_create</span>
+      - <span class="string">branch_switch</span>
+      - <span class="string">commit</span>
+      - <span class="string">push</span>
+      - <span class="string">pull_request_create</span>
+      - <span class="string">pull_request_update</span>
+    <span class="type">protected_branches</span>:
+      - <span class="string">main</span>
+      - <span class="string">production</span>
+  <span class="keyword">ci_cd</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">operations</span>: [<span class="string">trigger_pipeline</span>, <span class="string">check_status</span>, <span class="string">read_logs</span>]
+    <span class="type">auto_trigger</span>: <span class="string">false</span>
+  <span class="keyword">issue_tracker</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">operations</span>: [<span class="string">read_issue</span>, <span class="string">update_status</span>, <span class="string">add_comment</span>, <span class="string">create_subtask</span>]
+  <span class="keyword">browser</span>:
+    <span class="type">enabled</span>: <span class="string">false</span>               <span class="comment"># enable for visual review</span></code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 4: Context Providers -->
+            <div class="mb-4 rounded-xl bg-surface border border-subtle overflow-hidden">
+              <button class="expand-btn w-full p-5 flex items-center gap-4 cursor-pointer text-left" data-target="cat-ctx">
+                <div class="w-10 h-10 rounded-lg bg-plan/10 border border-plan/20 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-plan" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" /></svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-mono text-sm font-semibold text-primary">4. Context Providers</h3>
+                  <p class="text-xs text-secondary">Codebase indexing, documentation loaders, dependency analyzers</p>
+                </div>
+                <svg class="w-5 h-5 text-muted transition-transform duration-200 expand-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+              </button>
+              <div id="cat-ctx" class="expandable-content">
+                <div class="px-5 pb-5 space-y-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-plan font-semibold mb-1">Codebase Indexing</p><p class="text-[11px] text-secondary">AST parsing, dependency graphs, symbol tables</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-plan font-semibold mb-1">Documentation</p><p class="text-[11px] text-secondary">relevant docs on demand, API references, READMEs</p></div>
+                    <div class="p-3 rounded-lg bg-void border border-subtle"><p class="text-xs font-mono text-plan font-semibold mb-1">Dependencies</p><p class="text-[11px] text-secondary">package relationships, version compatibility</p></div>
+                  </div>
+                  <p class="text-xs text-secondary leading-relaxed">Agents with too much context perform worse. Context providers are not "dump everything." They retrieve and surface only what is relevant. A Plan agent analyzing a bug in the auth module does not need the entire codebase.</p>
+                  <div class="code-block p-4 overflow-x-auto">
+                    <pre class="font-mono text-xs leading-relaxed"><code><span class="comment"># tools/context-providers.yaml</span>
+<span class="keyword">context_providers</span>:
+  <span class="keyword">codebase_index</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">index_type</span>: <span class="string">ast</span>              <span class="comment"># ast | text | hybrid</span>
+    <span class="type">languages</span>: [<span class="string">typescript</span>, <span class="string">python</span>]
+    <span class="type">max_context_tokens</span>: <span class="type">8000</span>
+    <span class="type">relevance_threshold</span>: <span class="type">0.7</span>
+  <span class="keyword">documentation</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">sources</span>:
+      - <span class="type">path</span>: <span class="string">"docs/**/*.md"</span>
+      - <span class="type">path</span>: <span class="string">"README.md"</span>
+      - <span class="type">path</span>: <span class="string">"ARCHITECTURE.md"</span>
+    <span class="type">max_docs_per_request</span>: <span class="type">5</span>
+  <span class="keyword">dependency_analyzer</span>:
+    <span class="type">enabled</span>: <span class="string">true</span>
+    <span class="type">manifest_files</span>: [<span class="string">"package.json"</span>, <span class="string">"tsconfig.json"</span>]</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Permission Matrix -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-8">Permission matrix: tools by phase</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs font-mono">
+                <thead>
+                  <tr class="border-b border-subtle">
+                    <th class="text-left py-3 px-2 text-muted uppercase tracking-wider">Tool</th>
+                    <th class="py-3 px-2 text-plan text-center">Plan</th>
+                    <th class="py-3 px-2 text-build text-center">Build</th>
+                    <th class="py-3 px-2 text-test text-center">Test</th>
+                    <th class="py-3 px-2 text-review text-center">Review</th>
+                    <th class="py-3 px-2 text-document text-center">Doc</th>
+                    <th class="py-3 px-2 text-deploy text-center">Deploy</th>
+                    <th class="py-3 px-2 text-monitor text-center">Monitor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">file.read</td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td></tr>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">file.write</td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td></tr>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">file.search</td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td></tr>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">exec.shell</td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td></tr>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">exec.test</td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td></tr>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">exec.lint</td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td></tr>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">api.git</td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td></tr>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">api.issues</td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td></tr>
+                  <tr class="border-b border-subtle/50 hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">ctx.index</td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td></tr>
+                  <tr class="hover:bg-surface transition-colors"><td class="py-2 px-2 text-secondary">ctx.docs</td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-allowed px-1.5 py-0.5 rounded text-[9px]">Y</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td><td class="py-2 px-2 text-center"><span class="perm-denied px-1.5 py-0.5 rounded text-[9px]">N</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mt-6">This is the default matrix. Override per-project in your <a href="workflow-config.html" class="text-glow hover:text-glow-hover underline decoration-glow/30 hover:decoration-glow/60 transition-all duration-200">workflow.yaml</a>. The principle is least privilege: each phase gets only what it needs. Planners cannot execute code. Reviewers cannot write files. This is not a limitation; it is a safety pattern.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Adding a New Tool -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-8">Adding a new tool integration</h2>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">1</div><div><p class="text-sm text-primary font-semibold">Define the config file</p><p class="text-xs text-secondary">Create a YAML file in <code class="font-mono text-glow-hover">agentic-layer/tools/</code> describing capabilities, allowed operations, and security boundaries.</p></div></div>
+              <div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">2</div><div><p class="text-sm text-primary font-semibold">Declare permissions per phase</p><p class="text-xs text-secondary">In <code class="font-mono text-glow-hover">workflow.yaml</code>, specify which phases can access the new tool. Default to denied; explicitly grant.</p></div></div>
+              <div class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">3</div><div><p class="text-sm text-primary font-semibold">Reference in templates</p><p class="text-xs text-secondary">Update the relevant <a href="prompt-templates.html" class="text-glow hover:text-glow-hover underline decoration-glow/30">prompt templates</a> to inform the agent about the new capability. An agent cannot use a tool it does not know exists.</p></div></div>
+            </div>
+            <div class="code-block p-6 overflow-x-auto">
+              <pre class="font-mono text-sm leading-relaxed"><code><span class="comment"># workflow.yaml -- adding a custom tool</span>
+<span class="keyword">tools</span>:
+  <span class="var">file_system</span>: <span class="string">tools/file-system.yaml</span>
+  <span class="var">code_execution</span>: <span class="string">tools/code-execution.yaml</span>
+  <span class="var">external_apis</span>: <span class="string">tools/external-apis.yaml</span>
+  <span class="var">context_providers</span>: <span class="string">tools/context-providers.yaml</span>
+  <span class="var">custom_analytics</span>: <span class="string">tools/analytics.yaml</span>    <span class="comment"># your new tool</span>
+
+<span class="keyword">phase_tools</span>:
+  <span class="type">plan</span>: [<span class="string">file_system.read</span>, <span class="string">file_system.search</span>, <span class="string">context_providers</span>, <span class="string">custom_analytics.read</span>]
+  <span class="type">build</span>: [<span class="string">file_system</span>, <span class="string">code_execution</span>, <span class="string">context_providers</span>]
+  <span class="comment"># ... etc</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="border-t border-subtle py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg></div><span class="font-mono text-xs text-muted">Agentic Engineering Framework</span></div>
+            <div class="flex items-center gap-6">
+              <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+              <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+              <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+              <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+            </div>
+            <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    document.querySelectorAll('#mobile-menu a').forEach(l => l.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden')));
+
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver(e => e.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => ro.observe(el));
+
+    // Expandable cards
+    document.querySelectorAll('.expand-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        const icon = btn.querySelector('.expand-icon');
+        target.classList.toggle('open');
+        icon.style.transform = target.classList.contains('open') ? 'rotate(180deg)' : '';
+      });
+    });
+  </script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

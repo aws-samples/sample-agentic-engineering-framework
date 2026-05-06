@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Commands &amp; Skills - Agentic Engineering Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="bg-void text-primary font-sans antialiased page-agentic-layer">
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3 cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg>
+          </div>
+          <span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="my-1 border-t border-subtle"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic Layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-Healing</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact Chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent Patterns</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="nav-link active text-sm text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="my-1 border-t border-subtle"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; Skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality Gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Config</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting Started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By Team Size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity Path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-1.5 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary cursor-pointer" aria-label="Toggle navigation menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Learn <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+            <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Principles</a>
+            <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Architecture</a>
+            <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Autonomous Software Engineering</a>
+            <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agentic Layer</a>
+            <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Self-Healing</a>
+            <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Artifact Chaining</a>
+            <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Engineering</a>
+            <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Permissions</a>
+            <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agent Patterns</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Build <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Overview</a>
+            <a href="../workflow/intent.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Intent</a>
+            <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Plan</a>
+            <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Build</a>
+            <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Test</a>
+            <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Review</a>
+            <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Document</a>
+            <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Deploy</a>
+            <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Monitor</a>
+            <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Templates</a>
+            <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Commands &amp; Skills</a>
+            <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Integrations</a>
+            <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Quality Gates</a>
+            <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Config</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Adopt <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Getting Started</a>
+            <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary">By Team Size</a>
+            <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Maturity Path</a>
+            <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Customization</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Reference <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Glossary</a>
+            <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Schema</a>
+            <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prerequisites</a>
+            <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Troubleshooting</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pt-16 flex">
+    <!-- Sidebar -->
+    <aside class="hidden lg:block w-64 flex-shrink-0 border-r border-subtle">
+      <div class="sticky top-20 p-6 space-y-1">
+        <p class="text-[10px] font-mono text-muted uppercase tracking-wider mb-4">Agentic Layer</p>
+        <a href="prompt-templates.html" class="sidebar-link block px-3 py-2 text-sm border-l-2 border-transparent text-secondary hover:text-primary">Prompt Templates</a>
+        <a href="commands-skills.html" class="sidebar-link active block px-3 py-2 text-sm border-l-2 border-glow text-primary">Commands &amp; Skills</a>
+        <a href="tool-integrations.html" class="sidebar-link block px-3 py-2 text-sm border-l-2 border-transparent text-secondary hover:text-primary">Tool Integrations</a>
+        <a href="quality-gates.html" class="sidebar-link block px-3 py-2 text-sm border-l-2 border-transparent text-secondary hover:text-primary">Quality Gates</a>
+        <a href="workflow-config.html" class="sidebar-link block px-3 py-2 text-sm border-l-2 border-transparent text-secondary hover:text-primary">Workflow Config</a>
+      </div>
+    </aside>
+
+    <main id="main-content" class="flex-1 min-w-0">
+      <!-- Hero -->
+      <section class="relative py-16 sm:py-24 overflow-hidden">
+        <div class="ambient-glow w-[500px] h-[500px] bg-build/[0.04] -top-40 -right-40"></div>
+        <div class="absolute inset-0 dot-grid opacity-30"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8">
+          <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+            <ol class="flex items-center gap-0">
+              <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+              <li><span class="mx-2 text-subtle">/</span></li>
+              <li><a href="../workflow/index.html" class="hover:text-secondary transition-colors">Build</a></li>
+              <li><span class="mx-2 text-subtle">/</span></li>
+              <li><span class="text-secondary" aria-current="page">Commands &amp; Skills</span></li>
+            </ol>
+          </nav>
+          <div class="reveal">
+            <p class="text-sm font-mono text-glow mb-3 tracking-wider uppercase">The Agentic Layer</p>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">Custom Commands &amp; Skills</h1>
+            <p class="text-lg text-secondary max-w-2xl leading-relaxed">Commands are what humans type. Skills are what agents call. Together they make your agentic layer interactive and composable.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Commands vs Skills -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-8">Commands vs skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Commands Card -->
+              <div class="p-6 rounded-xl bg-surface border border-subtle border-t-2 border-t-glow">
+                <h3 class="font-mono text-sm font-semibold text-glow mb-1">Commands</h3>
+                <p class="text-xs text-muted font-mono mb-3">Human-invoked</p>
+                <p class="text-sm text-secondary leading-relaxed mb-4">A human types a command, and an agent executes it. Commands are the interface between your team and the agentic layer. Named, parameterized entry points.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-glow/8 text-glow-hover border border-glow/15">/plan</code>
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-glow/8 text-glow-hover border border-glow/15">/build</code>
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-glow/8 text-glow-hover border border-glow/15">/commit</code>
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-glow/8 text-glow-hover border border-glow/15">/security-audit</code>
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-glow/8 text-glow-hover border border-glow/15">/explain</code>
+                </div>
+                <p class="text-xs text-muted"><span class="text-secondary font-medium">When to use:</span> When a human wants to trigger a specific agent behavior on demand, outside the full workflow.</p>
+              </div>
+
+              <!-- Skills Card -->
+              <div class="p-6 rounded-xl bg-surface border border-subtle border-t-2 border-t-build">
+                <h3 class="font-mono text-sm font-semibold text-build mb-1">Skills</h3>
+                <p class="text-xs text-muted font-mono mb-3">Agent-invoked</p>
+                <p class="text-sm text-secondary leading-relaxed mb-4">One agent calls another agent's capability programmatically. Skills let agents delegate sub-tasks. The calling agent gets structured output it can parse and act on.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-build/8 text-build border border-build/15">run-tests</code>
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-build/8 text-build border border-build/15">lint-check</code>
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-build/8 text-build border border-build/15">dependency-check</code>
+                  <code class="text-xs font-mono px-2 py-1 rounded bg-build/8 text-build border border-build/15">generate-commit-message</code>
+                </div>
+                <p class="text-xs text-muted"><span class="text-secondary font-medium">When to use:</span> When a workflow phase needs to delegate a sub-task to a specialized capability.</p>
+              </div>
+            </div>
+            <p class="text-sm text-secondary mt-6 leading-relaxed">The key difference: commands output human-readable text because humans read the result. Skills output structured JSON because agents parse the result.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Anatomy of a Command -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Anatomy of a command</h2>
+            <p class="text-sm text-secondary mb-6">Here is a complete <code class="font-mono text-glow-hover text-xs">/commit</code> command. YAML frontmatter declares metadata; the prompt body follows the <a href="prompt-templates.html" class="text-glow hover:text-glow-hover underline decoration-glow/30 hover:decoration-glow/60 transition-all duration-200">4-section anatomy</a>.</p>
+
+            <div class="code-block p-6 overflow-x-auto border-l-2 border-glow">
+              <pre class="font-mono text-sm leading-relaxed"><code><span class="comment">---</span>
+<span class="keyword">name</span>: <span class="string">commit</span>
+<span class="keyword">description</span>: <span class="string">Stage changes, generate a conventional commit message, and commit.</span>
+<span class="keyword">parameters</span>:
+  - <span class="keyword">name</span>: <span class="type">scope</span>
+    <span class="keyword">type</span>: <span class="type">string</span>
+    <span class="keyword">required</span>: <span class="type">false</span>
+    <span class="keyword">description</span>: <span class="string">"Conventional commit scope (e.g., auth, api, ui)"</span>
+<span class="keyword">tools</span>:
+  - <span class="var">file_system.read</span>
+  - <span class="var">file_system.search</span>
+  - <span class="var">code_execution.shell</span>
+<span class="comment">---</span>
+
+<span class="comment"># /commit Command</span>
+
+<span class="keyword">## Role</span>
+You are a <span class="type">Release Engineer</span>. Your job is to create a clean,
+conventional commit from the current staged changes.
+
+<span class="keyword">## Context</span>
+Current diff:
+<span class="var">${git_diff_staged}</span>
+
+Recent commit history:
+<span class="var">${recent_commits}</span>
+
+Scope (if provided): <span class="var">${scope}</span>
+
+<span class="keyword">## Constraints</span>
+- Use Conventional Commits format: <span class="string">type(scope): description</span>
+- Types: feat, fix, refactor, test, docs, chore, perf, ci
+- Subject line max 72 characters
+- Body should explain WHY, not WHAT (the diff shows what)
+- Do NOT amend previous commits
+- Do NOT force push
+- If no files are staged, tell the user and stop
+
+<span class="keyword">## Output</span>
+1. Show the generated commit message to the user
+2. Ask for confirmation (y/n)
+3. If confirmed, execute: <span class="string">git commit -m "&lt;message&gt;"</span>
+4. Show the commit hash and summary</code></pre>
+            </div>
+            <div class="flex flex-wrap gap-3 mt-4">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-muted/8 text-secondary border border-muted/15">YAML Frontmatter</span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-fail/8 text-fail border border-fail/15">Tool Permissions</span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15">Parameter Declaration</span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-warning/8 text-warning border border-warning/15">Confirmation Step</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Anatomy of a Skill -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Anatomy of a skill</h2>
+            <p class="text-sm text-secondary mb-6">Skills declare a <code class="font-mono text-glow-hover text-xs">trigger</code> and <code class="font-mono text-glow-hover text-xs">output_format</code> instead of parameters. Their output is JSON, always structured, always parseable.</p>
+
+            <div class="code-block p-6 overflow-x-auto border-l-2 border-build">
+              <pre class="font-mono text-sm leading-relaxed"><code><span class="comment">---</span>
+<span class="keyword">name</span>: <span class="string">run-tests</span>
+<span class="keyword">description</span>: <span class="string">Execute the test suite and return structured results.</span>
+<span class="keyword">trigger</span>: <span class="string">called by build, test, or review phases</span>
+<span class="keyword">output_format</span>: <span class="type">json</span>
+<span class="keyword">tools</span>:
+  - <span class="var">code_execution.shell</span>
+  - <span class="var">file_system.read</span>
+<span class="comment">---</span>
+
+<span class="comment"># run-tests Skill</span>
+
+<span class="keyword">## Role</span>
+You are a <span class="type">Test Runner</span>. Execute the project's test suite and
+return structured results that the calling agent can parse.
+
+<span class="keyword">## Context</span>
+Test commands:
+<span class="var">${test_commands}</span>
+
+Project type: <span class="var">${project_type}</span>      <span class="comment"># node | python | go | rust | java</span>
+
+<span class="keyword">## Constraints</span>
+- Run ALL test suites, not just unit tests
+- Do NOT modify test files or source code
+- Do NOT skip failing tests
+- If a test command fails to execute (not test failure,
+  but command error), report it separately
+- Timeout per test suite: 120 seconds
+
+<span class="keyword">## Output Format</span>
+Return a JSON object:
+<span class="string">{</span>
+  <span class="var">"status"</span>: <span class="string">"pass | fail | error"</span>,
+  <span class="var">"suites"</span>: [
+    {
+      <span class="var">"name"</span>: <span class="string">"unit"</span>,
+      <span class="var">"command"</span>: <span class="string">"npm test"</span>,
+      <span class="var">"passed"</span>: <span class="type">42</span>,
+      <span class="var">"failed"</span>: <span class="type">1</span>,
+      <span class="var">"skipped"</span>: <span class="type">0</span>,
+      <span class="var">"duration_ms"</span>: <span class="type">3200</span>,
+      <span class="var">"failures"</span>: [
+        {
+          <span class="var">"test"</span>: <span class="string">"UserService.create should validate email"</span>,
+          <span class="var">"file"</span>: <span class="string">"src/services/__tests__/user.test.ts"</span>,
+          <span class="var">"line"</span>: <span class="type">28</span>,
+          <span class="var">"error"</span>: <span class="string">"Expected 'invalid' to throw ValidationError"</span>,
+          <span class="var">"type"</span>: <span class="string">"assertion"</span>
+        }
+      ]
+    }
+  ],
+  <span class="var">"coverage"</span>: { <span class="var">"lines"</span>: <span class="type">84.2</span>, <span class="var">"branches"</span>: <span class="type">71.5</span>, <span class="var">"functions"</span>: <span class="type">89.1</span> },
+  <span class="var">"total_passed"</span>: <span class="type">42</span>,
+  <span class="var">"total_failed"</span>: <span class="type">1</span>,
+  <span class="var">"total_skipped"</span>: <span class="type">0</span>
+<span class="string">}</span></code></pre>
+            </div>
+            <div class="flex flex-wrap gap-3 mt-4">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-test/8 text-test border border-test/15">Structured JSON Output</span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15">Agent-Parseable</span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-fail/8 text-fail border border-fail/15">No Code Modification</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example Commands (Tabbed) -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Example commands</h2>
+            <div class="rounded-xl bg-surface border border-subtle overflow-hidden">
+              <div class="flex items-center gap-0 border-b border-subtle overflow-x-auto" id="cmd-tabs">
+                <button class="cmd-tab active-tab px-4 py-3 text-xs font-mono cursor-pointer whitespace-nowrap tab-color-glow tab-active-glow" data-tab="security-audit">/security-audit</button>
+                <button class="cmd-tab px-4 py-3 text-xs font-mono text-secondary hover:text-primary border-b-2 border-transparent hover:border-subtle transition-colors duration-200 cursor-pointer whitespace-nowrap tab-color-glow" data-tab="explain">/explain</button>
+              </div>
+
+              <!-- /security-audit -->
+              <div id="cmd-security-audit" class="cmd-content">
+                <div class="code-block border-0 rounded-none p-6 overflow-x-auto">
+                  <pre class="font-mono text-sm leading-relaxed"><code><span class="comment">---</span>
+<span class="keyword">name</span>: <span class="string">security-audit</span>
+<span class="keyword">description</span>: <span class="string">Scan the codebase for OWASP Top 10 vulnerabilities.</span>
+<span class="keyword">parameters</span>:
+  - <span class="keyword">name</span>: <span class="type">target</span>
+    <span class="keyword">type</span>: <span class="type">string</span>
+    <span class="keyword">required</span>: <span class="type">false</span>
+    <span class="keyword">description</span>: <span class="string">"Specific directory or file to audit (default: entire project)"</span>
+<span class="keyword">tools</span>:
+  - <span class="var">file_system.read</span>
+  - <span class="var">file_system.search</span>
+  - <span class="var">code_execution.shell</span>
+<span class="comment">---</span>
+
+<span class="comment"># /security-audit Command</span>
+
+<span class="keyword">## Role</span>
+You are a <span class="type">Security Engineer</span> specializing in application security.
+Scan the codebase for vulnerabilities from the OWASP Top 10.
+
+<span class="keyword">## Context</span>
+Project: <span class="var">${project_name}</span>
+Target: <span class="var">${target}</span>
+Language: <span class="var">${primary_language}</span>
+
+<span class="keyword">### Codebase Summary</span>
+<span class="var">${codebase_summary}</span>
+
+<span class="keyword">## Constraints</span>
+- <span class="string">READ-ONLY</span>. Do not modify any files.
+- Focus on the OWASP Top 10 2021 categories:
+  1. Broken Access Control
+  2. Cryptographic Failures
+  3. Injection (SQL, NoSQL, OS command, LDAP)
+  4. Insecure Design
+  5. Security Misconfiguration
+  6. Vulnerable and Outdated Components
+  7. Identification and Authentication Failures
+  8. Software and Data Integrity Failures
+  9. Security Logging and Monitoring Failures
+  10. Server-Side Request Forgery (SSRF)
+- Prioritize findings by severity: critical, high, medium, low
+- Do NOT report false positives -- if unsure, mark as "needs review"
+
+<span class="keyword">## Output Format</span>
+<span class="keyword">### Security Audit Report</span>
+
+<span class="type">**Overall Risk Level:**</span> CRITICAL | HIGH | MEDIUM | LOW | CLEAN
+
+| # | Category | Severity | File | Line | Finding | Remediation |
+|---|----------|----------|------|------|---------|-------------|
+
+<span class="keyword">### Summary</span>
+- Critical: (count)
+- High: (count)
+- Medium: (count)
+- Low: (count)
+- Needs Review: (count)
+
+<span class="keyword">### Recommended Next Steps</span>
+(Prioritized list of remediations)</code></pre>
+                </div>
+              </div>
+
+              <!-- /explain -->
+              <div id="cmd-explain" class="cmd-content hidden">
+                <div class="code-block border-0 rounded-none p-6 overflow-x-auto">
+                  <pre class="font-mono text-sm leading-relaxed"><code><span class="comment">---</span>
+<span class="keyword">name</span>: <span class="string">explain</span>
+<span class="keyword">description</span>: <span class="string">Explain a function, module, or architecture decision with full context.</span>
+<span class="keyword">parameters</span>:
+  - <span class="keyword">name</span>: <span class="type">target</span>
+    <span class="keyword">type</span>: <span class="type">string</span>
+    <span class="keyword">required</span>: <span class="type">true</span>
+    <span class="keyword">description</span>: <span class="string">"File path, function name, or module to explain"</span>
+  - <span class="keyword">name</span>: <span class="type">depth</span>
+    <span class="keyword">type</span>: <span class="type">string</span>
+    <span class="keyword">required</span>: <span class="type">false</span>
+    <span class="keyword">description</span>: <span class="string">"brief | detailed | architecture (default: detailed)"</span>
+<span class="keyword">tools</span>:
+  - <span class="var">file_system.read</span>
+  - <span class="var">file_system.search</span>
+<span class="comment">---</span>
+
+<span class="comment"># /explain Command</span>
+
+<span class="keyword">## Role</span>
+You are a <span class="type">Senior Software Architect</span> explaining code to a
+colleague. Be clear, precise, and contextual.
+
+<span class="keyword">## Context</span>
+Target: <span class="var">${target}</span>
+Depth: <span class="var">${depth}</span>
+
+<span class="keyword">### File Contents</span>
+<span class="var">${target_file_contents}</span>
+
+<span class="keyword">### Call Graph</span>
+<span class="var">${call_graph}</span>
+
+<span class="keyword">### Related Files</span>
+<span class="var">${related_files}</span>
+
+<span class="keyword">## Constraints</span>
+- <span class="string">READ-ONLY</span>. Do not modify any files.
+- Explain the WHAT, the WHY, and the HOW.
+- Reference the actual code -- use line numbers.
+- If the target depends on other modules, explain the relationship.
+- Adjust depth based on the depth parameter:
+  - brief: 2-3 sentences, what it does and why
+  - detailed: full walkthrough with code references
+  - architecture: how it fits into the broader system
+
+<span class="keyword">## Output Format</span>
+<span class="keyword">### <span class="var">${target}</span></span>
+
+<span class="type">**Purpose:**</span> (one sentence)
+
+<span class="type">**How It Works:**</span>
+(Explanation at the requested depth level)
+
+<span class="type">**Dependencies:**</span>
+- (list of modules/functions this depends on)
+
+<span class="type">**Called By:**</span>
+- (list of modules/functions that call this)
+
+<span class="type">**Key Design Decisions:**</span>
+- (why was it built this way, not another way)</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example Skills (Tabbed) -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Example skills</h2>
+            <div class="rounded-xl bg-surface border border-subtle overflow-hidden">
+              <div class="flex items-center gap-0 border-b border-subtle overflow-x-auto" id="skill-tabs">
+                <button class="skill-tab active-tab px-4 py-3 text-xs font-mono cursor-pointer whitespace-nowrap tab-color-build tab-active-build" data-tab="lint-check">lint-check</button>
+                <button class="skill-tab px-4 py-3 text-xs font-mono text-secondary hover:text-primary border-b-2 border-transparent hover:border-subtle transition-colors duration-200 cursor-pointer whitespace-nowrap tab-color-build" data-tab="dependency-check">dependency-check</button>
+              </div>
+
+              <!-- lint-check -->
+              <div id="skill-lint-check" class="skill-content">
+                <div class="code-block border-0 rounded-none p-6 overflow-x-auto">
+                  <pre class="font-mono text-sm leading-relaxed"><code><span class="comment">---</span>
+<span class="keyword">name</span>: <span class="string">lint-check</span>
+<span class="keyword">description</span>: <span class="string">Run linter and categorize issues by severity.</span>
+<span class="keyword">trigger</span>: <span class="string">called by build or review phases</span>
+<span class="keyword">output_format</span>: <span class="type">json</span>
+<span class="keyword">tools</span>:
+  - <span class="var">code_execution.shell</span>
+  - <span class="var">file_system.read</span>
+<span class="comment">---</span>
+
+<span class="comment"># lint-check Skill</span>
+
+<span class="keyword">## Role</span>
+You are a <span class="type">Code Quality Analyst</span>. Run the project's linter
+and return categorized results.
+
+<span class="keyword">## Context</span>
+Lint command: <span class="var">${lint_command}</span>
+Project type: <span class="var">${project_type}</span>
+Files changed: <span class="var">${changed_files}</span>
+
+<span class="keyword">## Constraints</span>
+- Run the linter ONLY on changed files (if supported)
+- Do NOT auto-fix issues -- report only
+- Do NOT modify any files
+- Categorize: error (must fix), warning (should fix), info (optional)
+
+<span class="keyword">## Output Format</span>
+<span class="string">{</span>
+  <span class="var">"status"</span>: <span class="string">"clean | warnings | errors"</span>,
+  <span class="var">"issues"</span>: [
+    {
+      <span class="var">"file"</span>: <span class="string">"src/services/user.ts"</span>,
+      <span class="var">"line"</span>: <span class="type">15</span>,
+      <span class="var">"column"</span>: <span class="type">8</span>,
+      <span class="var">"severity"</span>: <span class="string">"error"</span>,
+      <span class="var">"rule"</span>: <span class="string">"no-unused-vars"</span>,
+      <span class="var">"message"</span>: <span class="string">"'tempData' is defined but never used"</span>
+    }
+  ],
+  <span class="var">"summary"</span>: { <span class="var">"errors"</span>: <span class="type">1</span>, <span class="var">"warnings"</span>: <span class="type">3</span>, <span class="var">"info"</span>: <span class="type">0</span> }
+<span class="string">}</span></code></pre>
+                </div>
+              </div>
+
+              <!-- dependency-check -->
+              <div id="skill-dependency-check" class="skill-content hidden">
+                <div class="code-block border-0 rounded-none p-6 overflow-x-auto">
+                  <pre class="font-mono text-sm leading-relaxed"><code><span class="comment">---</span>
+<span class="keyword">name</span>: <span class="string">dependency-check</span>
+<span class="keyword">description</span>: <span class="string">Analyze dependencies for vulnerabilities and outdated packages.</span>
+<span class="keyword">trigger</span>: <span class="string">called by review or monitor phases</span>
+<span class="keyword">output_format</span>: <span class="type">json</span>
+<span class="keyword">tools</span>:
+  - <span class="var">code_execution.shell</span>
+  - <span class="var">file_system.read</span>
+<span class="comment">---</span>
+
+<span class="comment"># dependency-check Skill</span>
+
+<span class="keyword">## Role</span>
+You are a <span class="type">Dependency Analyst</span>. Check the project's dependencies
+for known vulnerabilities, outdated versions, and license issues.
+
+<span class="keyword">## Context</span>
+Package file: <span class="var">${package_file}</span>     <span class="comment"># package.json, requirements.txt, go.mod</span>
+Project type: <span class="var">${project_type}</span>
+
+<span class="keyword">## Constraints</span>
+- Do NOT install or update any packages
+- Do NOT modify lock files
+- Use the project's native audit tool when available:
+  - Node: npm audit / yarn audit
+  - Python: pip-audit / safety
+  - Go: govulncheck
+  - Rust: cargo audit
+- If no native tool exists, analyze the manifest file directly
+
+<span class="keyword">## Output Format</span>
+<span class="string">{</span>
+  <span class="var">"status"</span>: <span class="string">"secure | vulnerable | unknown"</span>,
+  <span class="var">"vulnerabilities"</span>: [
+    {
+      <span class="var">"package"</span>: <span class="string">"lodash"</span>,
+      <span class="var">"installed_version"</span>: <span class="string">"4.17.15"</span>,
+      <span class="var">"patched_version"</span>: <span class="string">"4.17.21"</span>,
+      <span class="var">"severity"</span>: <span class="string">"high"</span>,
+      <span class="var">"cve"</span>: <span class="string">"CVE-2021-23337"</span>,
+      <span class="var">"description"</span>: <span class="string">"Prototype pollution in lodash"</span>
+    }
+  ],
+  <span class="var">"outdated"</span>: [
+    {
+      <span class="var">"package"</span>: <span class="string">"express"</span>,
+      <span class="var">"installed"</span>: <span class="string">"4.17.1"</span>,
+      <span class="var">"latest"</span>: <span class="string">"4.18.2"</span>,
+      <span class="var">"update_type"</span>: <span class="string">"minor"</span>
+    }
+  ],
+  <span class="var">"summary"</span>: {
+    <span class="var">"total_dependencies"</span>: <span class="type">142</span>,
+    <span class="var">"vulnerabilities_critical"</span>: <span class="type">0</span>,
+    <span class="var">"vulnerabilities_high"</span>: <span class="type">1</span>,
+    <span class="var">"vulnerabilities_medium"</span>: <span class="type">3</span>,
+    <span class="var">"outdated_major"</span>: <span class="type">2</span>,
+    <span class="var">"outdated_minor"</span>: <span class="type">8</span>
+  }
+<span class="string">}</span></code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Composability -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-2">Composability: commands use skills</h2>
+            <p class="text-sm text-secondary mb-8">Commands and skills compose. A command invokes skills internally, chaining structured outputs.</p>
+
+            <!-- Flow Diagram -->
+            <div class="max-w-xl mx-auto mb-8">
+              <svg viewBox="0 0 500 220" class="w-full" aria-label="Composability diagram: /build command calling run-tests and lint-check skills">
+                <text x="250" y="20" text-anchor="middle" fill="#52525B" font-size="11" font-family="JetBrains Mono, monospace">Human types /build</text>
+                <line x1="250" y1="28" x2="250" y2="50" stroke="#52525B" stroke-width="1" />
+                <polygon points="246,48 254,48 250,54" fill="#52525B" />
+
+                <rect x="140" y="58" width="220" height="120" rx="8" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
+                <text x="250" y="80" text-anchor="middle" fill="#F59E0B" font-size="13" font-weight="600" font-family="JetBrains Mono, monospace">/build</text>
+                <text x="250" y="96" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">(command)</text>
+
+                <line x1="360" y1="100" x2="410" y2="100" stroke="#10B981" stroke-width="1" stroke-dasharray="4 3" />
+                <polygon points="408,96 416,100 408,104" fill="#10B981" opacity="0.7" />
+                <rect x="416" y="86" width="80" height="28" rx="6" fill="#111113" stroke="#10B981" stroke-width="1" />
+                <text x="456" y="104" text-anchor="middle" fill="#10B981" font-size="9" font-weight="500" font-family="JetBrains Mono, monospace">run-tests</text>
+
+                <line x1="360" y1="140" x2="410" y2="140" stroke="#F59E0B" stroke-width="1" stroke-dasharray="4 3" />
+                <polygon points="408,136 416,140 408,144" fill="#F59E0B" opacity="0.7" />
+                <rect x="416" y="126" width="80" height="28" rx="6" fill="#111113" stroke="#F59E0B" stroke-width="1" />
+                <text x="456" y="144" text-anchor="middle" fill="#F59E0B" font-size="9" font-weight="500" font-family="JetBrains Mono, monospace">lint-check</text>
+
+                <text x="250" y="156" text-anchor="middle" fill="#A1A1AA" font-size="10" font-family="IBM Plex Sans, sans-serif">Build Report</text>
+
+                <line x1="250" y1="178" x2="250" y2="200" stroke="#52525B" stroke-width="1" />
+                <polygon points="246,198 254,198 250,204" fill="#52525B" />
+                <text x="250" y="216" text-anchor="middle" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace">output</text>
+              </svg>
+            </div>
+
+            <p class="text-sm text-secondary leading-relaxed">The <code class="font-mono text-glow-hover text-xs">/build</code> command's template can reference skills by name. When the build agent reaches the testing step, it invokes the <code class="font-mono text-glow-hover text-xs">run-tests</code> skill, receives structured JSON back, and uses that data to decide whether to continue or report failures. The <code class="font-mono text-glow-hover text-xs">lint-check</code> skill runs separately. The command orchestrates; the skills execute.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Creating Your Own -->
+      <section class="py-16 border-t border-subtle">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8">
+          <div class="reveal">
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">How to create your own</h2>
+
+            <div class="code-block p-6 overflow-x-auto mb-8">
+              <pre class="font-mono text-sm leading-loose"><code><span class="type">agentic-layer/</span>
+├── <span class="var">commands/</span>
+│   ├── commit.md
+│   ├── security-audit.md
+│   ├── explain.md
+│   └── <span class="string">your-command.md</span>        <span class="comment"># add here</span>
+├── <span class="var">skills/</span>
+│   ├── run-tests.md
+│   ├── lint-check.md
+│   ├── dependency-check.md
+│   └── <span class="string">your-skill.md</span>          <span class="comment"># add here</span></code></pre>
+            </div>
+
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">1</div>
+                <div>
+                  <p class="text-sm text-primary font-semibold">Choose command or skill</p>
+                  <p class="text-xs text-secondary">If a human triggers it, it is a command. If an agent triggers it, it is a skill.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">2</div>
+                <div>
+                  <p class="text-sm text-primary font-semibold">Create the file</p>
+                  <p class="text-xs text-secondary">Markdown with YAML frontmatter. The filename becomes the invocation name.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">3</div>
+                <div>
+                  <p class="text-sm text-primary font-semibold">Define the frontmatter</p>
+                  <p class="text-xs text-secondary">Name, description, parameters (commands) or trigger (skills), <a href="tool-integrations.html" class="text-glow hover:text-glow-hover underline decoration-glow/30">tool access</a>, output format.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">4</div>
+                <div>
+                  <p class="text-sm text-primary font-semibold">Write the prompt</p>
+                  <p class="text-xs text-secondary">Follow the <a href="prompt-templates.html" class="text-glow hover:text-glow-hover underline decoration-glow/30">4-section anatomy</a>: Role, Context, Constraints, Output Format.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">5</div>
+                <div>
+                  <p class="text-sm text-primary font-semibold">Test it</p>
+                  <p class="text-xs text-secondary">Run against 2-3 representative inputs. Verify the output structure matches your spec.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-full bg-surface border border-glow/30 flex items-center justify-center flex-shrink-0 text-xs font-mono text-glow">6</div>
+                <div>
+                  <p class="text-sm text-primary font-semibold">Commit and share</p>
+                  <p class="text-xs text-secondary">The command/skill is now available to your entire team.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Naming Conventions Callout -->
+            <div class="p-5 rounded-xl bg-raised border border-glow-faint">
+              <h4 class="font-mono text-sm font-semibold text-primary mb-2">Naming conventions</h4>
+              <ul class="text-xs text-secondary space-y-1">
+                <li><span class="text-primary font-medium">Commands:</span> lowercase, hyphenated. <code class="font-mono text-glow-hover">security-audit</code>, not <code class="font-mono text-muted">SecurityAudit</code>.</li>
+                <li><span class="text-primary font-medium">Skills:</span> lowercase, hyphenated. <code class="font-mono text-glow-hover">run-tests</code>, not <code class="font-mono text-muted">runTests</code>.</li>
+                <li><span class="text-primary font-medium">Filenames:</span> match invocation names. <code class="font-mono text-glow-hover">security-audit.md</code> is invoked as <code class="font-mono text-glow-hover">/security-audit</code>.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="border-t border-subtle py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center">
+                <svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg>
+              </div>
+              <span class="font-mono text-xs text-muted">Agentic Engineering Framework</span>
+            </div>
+            <div class="flex items-center gap-6">
+              <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+              <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+              <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+              <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+            </div>
+            <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    document.querySelectorAll('#mobile-menu a').forEach(l => l.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden')));
+
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver(e => e.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => ro.observe(el));
+
+    function setupTabs(tabSelector, contentPrefix) {
+      document.querySelectorAll(tabSelector).forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll(tabSelector).forEach(b => {
+            b.classList.remove('active-tab');
+            b.style.color = '';
+            b.style.borderBottom = '2px solid transparent';
+            b.style.background = '';
+          });
+          document.querySelectorAll(contentPrefix + '-content').forEach(c => c.classList.add('hidden'));
+          btn.classList.add('active-tab');
+          btn.style.color = btn.style.getPropertyValue('--tab-text');
+          btn.style.borderBottom = '2px solid ' + btn.style.getPropertyValue('--tab-color');
+          btn.style.background = 'rgba(26,26,31,0.5)';
+          const id = contentPrefix.replace('.', '') + '-' + btn.dataset.tab;
+          document.getElementById(id).classList.remove('hidden');
+        });
+      });
+    }
+    setupTabs('.cmd-tab', '.cmd');
+    setupTabs('.skill-tab', '.skill');
+  </script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

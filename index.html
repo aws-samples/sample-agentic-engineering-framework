@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content=".">
+  <title>Agentic Engineering Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/tailwind.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-void text-primary font-sans antialiased page-home">
+
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- ============================================ -->
+  <!-- NAVIGATION                                   -->
+  <!-- ============================================ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" />
+            </svg>
+          </div>
+          <span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="./framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="./framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="./framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="./concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="./concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic layer</a>
+              <a href="./concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-healing loops</a>
+              <a href="./concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact chaining</a>
+              <a href="./concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt engineering</a>
+              <a href="./concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool permissions</a>
+              <a href="./concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent patterns</a>
+            </div>
+          </div>
+
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="./workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow overview</a>
+              <a href="./workflow/intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="./workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="./workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="./workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="./workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="./workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="./workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="./workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="./agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt templates</a>
+              <a href="./agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; skills</a>
+              <a href="./agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool integrations</a>
+              <a href="./agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality gates</a>
+              <a href="./agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow config</a>
+            </div>
+          </div>
+
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="./adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting started</a>
+              <a href="./adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By team size</a>
+              <a href="./adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity path</a>
+              <a href="./adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="./reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="./reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="./reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="./reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+
+          <!-- Search button -->
+          <button aria-label="Search" id="search-trigger" class="p-2 text-muted hover:text-primary transition-colors rounded-lg hover:bg-raised">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+          <!-- Get Started CTA -->
+          <a href="./adopt/getting-started.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary cursor-pointer" aria-label="Toggle navigation menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">
+            Learn <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="./framework/overview.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Overview</a>
+            <a href="./framework/principles.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Principles</a>
+            <a href="./framework/architecture.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Architecture</a>
+            <a href="./concepts/ase.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Autonomous Software Engineering</a>
+            <a href="./concepts/agentic-layer.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Agentic layer</a>
+            <a href="./concepts/self-healing.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Self-healing loops</a>
+            <a href="./concepts/artifact-chaining.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Artifact chaining</a>
+            <a href="./concepts/prompt-engineering.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prompt engineering</a>
+            <a href="./concepts/tool-permissions.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Tool permissions</a>
+            <a href="./concepts/agent-patterns.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Agent patterns</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">
+            Build <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="./workflow/index.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow overview</a>
+            <a href="./workflow/intent.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Intent</a>
+            <a href="./workflow/plan.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Plan</a>
+            <a href="./workflow/build.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Build</a>
+            <a href="./workflow/test.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Test</a>
+            <a href="./workflow/review.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Review</a>
+            <a href="./workflow/document.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Document</a>
+            <a href="./workflow/deploy.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Deploy</a>
+            <a href="./workflow/monitor.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Monitor</a>
+            <a href="./agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prompt templates</a>
+            <a href="./agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Commands &amp; skills</a>
+            <a href="./agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Tool integrations</a>
+            <a href="./agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Quality gates</a>
+            <a href="./agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow config</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">
+            Adopt <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="./adopt/getting-started.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Getting started</a>
+            <a href="./adopt/by-team-size.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">By team size</a>
+            <a href="./adopt/maturity-path.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Maturity path</a>
+            <a href="./adopt/customization.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Customization</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">
+            Reference <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="./reference/glossary.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Glossary</a>
+            <a href="./reference/workflow-schema.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow Schema</a>
+            <a href="./reference/prerequisites.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prerequisites</a>
+            <a href="./reference/troubleshooting.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Troubleshooting</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <main id="main-content">
+
+  <!-- ============================================ -->
+  <!-- HERO                                         -->
+  <!-- ============================================ -->
+  <section class="relative flex items-center justify-center pt-16 overflow-hidden">
+    <div class="absolute inset-0 dot-grid opacity-40"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div class="text-center max-w-4xl mx-auto">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-subtle bg-surface/50 text-xs font-mono text-secondary mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-pass animate-pulse"></span>
+          Open Framework for Agentic Software Engineering
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.15] mb-6 max-w-3xl mx-auto">
+          <span class="text-primary">Your AI agent is only as good as </span>
+          <span class="bg-gradient-to-r from-glow via-glow-hover to-plan bg-clip-text text-transparent">the system around it.</span>
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
+          The Agentic Engineering Framework is an open framework for building the <strong class="text-primary">agentic layer</strong> (prompt templates, quality gates, and workflow config) that powers an <strong class="text-primary">agentic development workflow</strong>, giving AI coding sessions the structure of a repeatable engineering process.
+        </p>
+
+        <!-- Framework positioning banner -->
+        <div class="max-w-2xl mx-auto mb-10">
+          <div class="p-4 rounded-lg border border-glow/20 bg-glow/[0.03]">
+            <p class="text-sm text-secondary leading-relaxed">
+              <strong class="text-primary">The Agentic Engineering Framework (AEF) is a framework, not a tool.</strong> It defines the patterns: prompt templates, quality gates, feedback loops, workflow config. You build the implementation that fits your stack. See the <a href="https://github.com/aws-samples/sample-agentic-engineering-framework" target="_blank" rel="noopener noreferrer" class="text-glow hover:text-glow-hover transition-colors underline decoration-glow/30">reference example</a> for one way to do it with Kiro.
+            </p>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="./adopt/getting-started.html" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 cursor-pointer shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_20px_rgba(99,102,241,0.15)]">
+            Get Started
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+          <a href="./framework/overview.html" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg border border-subtle bg-surface/50 text-primary hover:bg-raised hover:border-glow-faint transition-all duration-200 cursor-pointer">
+            Read the Overview
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- THE SHIFT (Before / After)                   -->
+  <!-- ============================================ -->
+  <section class="relative py-12 sm:py-16 reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <p class="text-[10px] font-mono text-glow uppercase tracking-wider mb-3">The Shift</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">From ad-hoc prompts to engineered autonomy</h2>
+        <p class="text-secondary text-lg max-w-3xl mx-auto mt-4">Good engineering teams already enforce planning, testing, code review, and scope management. But when teams adopt AI agents, those practices don't transfer automatically. AEF encodes them into the agent's workflow.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <!-- Without -->
+        <div class="p-6 rounded-xl bg-surface border border-subtle">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider mb-5">Agents without structure</p>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-fail flex-shrink-0"></span>
+              <span class="text-sm text-secondary leading-relaxed">Prompts are often written from scratch each time</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-fail flex-shrink-0"></span>
+              <span class="text-sm text-secondary leading-relaxed">Error recovery typically requires manual intervention</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-fail flex-shrink-0"></span>
+              <span class="text-sm text-secondary leading-relaxed">Output quality varies across different prompt styles</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-fail flex-shrink-0"></span>
+              <span class="text-sm text-secondary leading-relaxed">Context does not automatically carry between tasks</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- With AEF -->
+        <div class="p-6 rounded-xl bg-surface border border-glow/20">
+          <p class="text-[10px] font-mono text-glow uppercase tracking-wider mb-5">With AEF</p>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-pass flex-shrink-0"></span>
+              <span class="text-sm text-secondary leading-relaxed"><a href="./workflow/intent.html" class="hover:text-primary transition-colors">Intent phase normalizes any request</a>; <a href="./agentic-layer/prompt-templates.html" class="hover:text-primary transition-colors">prompt templates enforce your standards</a></span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-pass flex-shrink-0"></span>
+              <a href="./concepts/self-healing.html" class="text-sm text-secondary leading-relaxed hover:text-primary transition-colors">Self-healing loops retry and patch before escalating</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-pass flex-shrink-0"></span>
+              <a href="./agentic-layer/quality-gates.html" class="text-sm text-secondary leading-relaxed hover:text-primary transition-colors">Quality gates are config, not opinions</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-pass flex-shrink-0"></span>
+              <a href="./concepts/artifact-chaining.html" class="text-sm text-secondary leading-relaxed hover:text-primary transition-colors">Artifact chaining passes context phase to phase</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- EXPLORE (Intent-based navigation)            -->
+  <!-- ============================================ -->
+  <section class="relative py-12 sm:py-16 reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <p class="text-[10px] font-mono text-glow uppercase tracking-wider mb-3">Explore</p>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">Pick your path</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- Understand -->
+        <div class="p-6 rounded-xl bg-surface border border-subtle hover:border-glow-faint hover:bg-raised transition-all duration-250">
+          <div class="w-10 h-10 rounded-lg bg-plan/10 border border-plan/20 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-plan" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-primary mb-2">Understand the framework</h3>
+          <p class="text-sm text-secondary leading-relaxed mb-4">Philosophy, principles, and the core concepts behind agentic engineering.</p>
+          <ul class="space-y-2">
+            <li><a href="./framework/overview.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Framework Overview</a></li>
+            <li><a href="./framework/principles.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Principles</a></li>
+            <li><a href="./concepts/ase.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Autonomous Software Engineering</a></li>
+            <li><a href="./concepts/agent-patterns.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Agent Patterns</a></li>
+          </ul>
+        </div>
+
+        <!-- Design -->
+        <div class="p-6 rounded-xl bg-surface border border-subtle hover:border-glow-faint hover:bg-raised transition-all duration-250">
+          <div class="w-10 h-10 rounded-lg bg-test/10 border border-test/20 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-test" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-primary mb-2">Design your workflow</h3>
+          <p class="text-sm text-secondary leading-relaxed mb-4">Phases, prompt templates, quality gates, and how they connect.</p>
+          <ul class="space-y-2">
+            <li><a href="./workflow/index.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Workflow Architecture</a></li>
+            <li><a href="./agentic-layer/quality-gates.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Quality Gates</a></li>
+          </ul>
+        </div>
+
+        <!-- Build -->
+        <div class="p-6 rounded-xl bg-surface border border-subtle hover:border-glow-faint hover:bg-raised transition-all duration-250">
+          <div class="w-10 h-10 rounded-lg bg-deploy/10 border border-deploy/20 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-deploy" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-primary mb-2">Start building today</h3>
+          <p class="text-sm text-secondary leading-relaxed mb-4">Practical guides to adopt the framework at your pace and team size.</p>
+          <ul class="space-y-2">
+            <li><a href="./adopt/getting-started.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Getting Started</a></li>
+            <li><a href="./adopt/maturity-path.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Maturity Path</a></li>
+            <li><a href="./adopt/by-team-size.html" class="text-sm text-glow-hover hover:text-glow transition-colors">By Team Size</a></li>
+            <li><a href="./reference/prerequisites.html" class="text-sm text-glow-hover hover:text-glow transition-colors">Prerequisites</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- CLOSING STATEMENT                            -->
+  <!-- ============================================ -->
+  <section class="relative py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
+        <span class="text-primary">The code is output. The </span><span class="bg-gradient-to-r from-glow via-glow-hover to-plan bg-clip-text text-transparent">agentic layer</span><span class="text-primary"> is the product.</span>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- FOOTER                                       -->
+  <!-- ============================================ -->
+  </main>
+
+  <footer class="border-t border-subtle py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" />
+            </svg>
+          </div>
+          <span class="font-mono text-xs text-muted">Agentic Engineering Framework</span>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <a href="./framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+          <a href="./workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+          <a href="./adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+          <a href="./reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+        </div>
+
+        <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Mobile accordion sections
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (scrollY >= top) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

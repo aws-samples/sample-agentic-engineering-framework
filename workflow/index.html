@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Workflow Architecture | Agentic Engineering Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="bg-void text-primary font-sans antialiased page-workflow">
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3 cursor-pointer">
+          <div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" />
+            </svg>
+          </div>
+          <span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <p class="px-4 py-1 mt-2 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic Layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-Healing</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact Chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent Patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <p class="px-4 py-1 mt-2 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; Skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality Gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting Started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By Team Size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity Path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary cursor-pointer" aria-label="Toggle navigation menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Learn section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Learn
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1">Framework</p>
+          <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+          <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Principles</a>
+          <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Architecture</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1 mt-2">Concepts</p>
+          <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Autonomous Software Engineering</a>
+          <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agentic Layer</a>
+          <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Self-Healing</a>
+          <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Artifact Chaining</a>
+          <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Engineering</a>
+          <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Permissions</a>
+          <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agent Patterns</a>
+        </div>
+        <!-- Build section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-glow font-medium" aria-expanded="false">
+          Build
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1">Workflow</p>
+          <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+          <a href="../workflow/intent.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Intent</a>
+          <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Plan</a>
+          <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Build</a>
+          <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Test</a>
+          <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Review</a>
+          <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Document</a>
+          <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Deploy</a>
+          <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Monitor</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1 mt-2">Configuration</p>
+          <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Templates</a>
+          <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Commands &amp; Skills</a>
+          <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Integrations</a>
+          <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Quality Gates</a>
+          <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Config</a>
+        </div>
+        <!-- Adopt section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Adopt
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Getting Started</a>
+          <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary">By Team Size</a>
+          <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Maturity Path</a>
+          <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Customization</a>
+        </div>
+        <!-- Reference section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Reference
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Glossary</a>
+          <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Schema</a>
+          <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prerequisites</a>
+          <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Troubleshooting</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE PHASE SELECTOR -->
+  <div class="lg:hidden fixed top-16 left-0 right-0 z-40 bg-void/90 backdrop-blur-md border-b border-subtle">
+    <div class="mobile-phase-bar flex items-center gap-4 px-4 py-3">
+      <a href="./" class="flex items-center gap-2 shrink-0 border-b-2 border-glow pb-1">
+        <span class="w-2 h-2 rounded-full bg-glow"></span>
+        <span class="font-mono text-xs text-glow whitespace-nowrap">Overview</span>
+      </a>
+      <a href="intent.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full" style="background: #EC4899"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Intent</span></a>
+      <a href="plan.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+        <span class="w-2 h-2 rounded-full bg-plan"></span>
+        <span class="font-mono text-xs text-secondary whitespace-nowrap">Plan</span>
+      </a>
+      <a href="build.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+        <span class="w-2 h-2 rounded-full bg-build"></span>
+        <span class="font-mono text-xs text-secondary whitespace-nowrap">Build</span>
+      </a>
+      <a href="test.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+        <span class="w-2 h-2 rounded-full bg-test"></span>
+        <span class="font-mono text-xs text-secondary whitespace-nowrap">Test</span>
+      </a>
+      <a href="review.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+        <span class="w-2 h-2 rounded-full bg-review"></span>
+        <span class="font-mono text-xs text-secondary whitespace-nowrap">Review</span>
+      </a>
+      <a href="document.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+        <span class="w-2 h-2 rounded-full bg-document"></span>
+        <span class="font-mono text-xs text-secondary whitespace-nowrap">Document</span>
+      </a>
+      <a href="deploy.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+        <span class="w-2 h-2 rounded-full bg-deploy"></span>
+        <span class="font-mono text-xs text-secondary whitespace-nowrap">Deploy</span>
+      </a>
+      <a href="monitor.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+        <span class="w-2 h-2 rounded-full bg-monitor"></span>
+        <span class="font-mono text-xs text-secondary whitespace-nowrap">Monitor</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- DESKTOP SIDEBAR -->
+  <aside class="hidden lg:block fixed left-0 top-16 bottom-0 w-64 border-r border-subtle bg-void/90 backdrop-blur-md z-40 overflow-y-auto py-8 px-4">
+    <div class="mb-6">
+      <span class="font-mono text-[10px] text-muted uppercase tracking-wider">Workflow</span>
+    </div>
+    <nav class="space-y-1">
+      <a href="./" class="phase-sidebar-item active flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-overview">
+        <span class="phase-dot w-2 h-2 rounded-full bg-glow shadow-[0_0_10px_rgba(99,102,241,0.5)]"></span>
+        <div>
+          <span class="phase-name font-mono text-xs text-glow">Overview</span>
+        </div>
+      </a>
+      <a href="intent.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50" style="--phase-color: #EC4899"><span class="phase-dot w-2 h-2 rounded-full" style="background: #EC4899"></span><div><span class="phase-name font-mono text-xs text-primary">Intent</span><span class="block text-[10px] text-muted">Requirements Analyst</span></div></a>
+      <a href="plan.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-plan">
+        <span class="phase-dot w-2 h-2 rounded-full bg-plan"></span>
+        <div>
+          <span class="phase-name font-mono text-xs text-primary">Plan</span>
+          <span class="block text-[10px] text-muted">Software Architect</span>
+        </div>
+      </a>
+      <a href="build.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-build">
+        <span class="phase-dot w-2 h-2 rounded-full bg-build"></span>
+        <div>
+          <span class="phase-name font-mono text-xs text-primary">Build</span>
+          <span class="block text-[10px] text-muted">Software Engineer</span>
+        </div>
+      </a>
+      <a href="test.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-test">
+        <span class="phase-dot w-2 h-2 rounded-full bg-test"></span>
+        <div>
+          <span class="phase-name font-mono text-xs text-primary">Test</span>
+          <span class="block text-[10px] text-muted">QA Engineer</span>
+        </div>
+      </a>
+      <a href="review.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-review">
+        <span class="phase-dot w-2 h-2 rounded-full bg-review"></span>
+        <div>
+          <span class="phase-name font-mono text-xs text-primary">Review</span>
+          <span class="block text-[10px] text-muted">Senior Reviewer</span>
+        </div>
+      </a>
+      <a href="document.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-document">
+        <span class="phase-dot w-2 h-2 rounded-full bg-document"></span>
+        <div>
+          <span class="phase-name font-mono text-xs text-primary">Document</span>
+          <span class="block text-[10px] text-muted">Technical Writer</span>
+        </div>
+      </a>
+      <a href="deploy.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-deploy">
+        <span class="phase-dot w-2 h-2 rounded-full bg-deploy"></span>
+        <div>
+          <span class="phase-name font-mono text-xs text-primary">Deploy</span>
+          <span class="block text-[10px] text-muted">Release Engineer</span>
+        </div>
+      </a>
+      <a href="monitor.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-monitor">
+        <span class="phase-dot w-2 h-2 rounded-full bg-monitor"></span>
+        <div>
+          <span class="phase-name font-mono text-xs text-primary">Monitor</span>
+          <span class="block text-[10px] text-muted">Operations</span>
+        </div>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="pt-16 lg:pl-64">
+    <div class="pt-12 lg:pt-0">
+
+      <!-- HERO HEADER -->
+      <section class="relative py-20 sm:py-28 overflow-hidden">
+        <div class="ambient-glow w-[600px] h-[600px] bg-glow/[0.04] -top-40 left-1/2 -translate-x-1/2"></div>
+        <div class="absolute inset-0 dot-grid opacity-40"></div>
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Breadcrumb -->
+          <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+            <ol class="flex items-center gap-0">
+              <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+              <li><span class="mx-2 text-subtle">/</span></li>
+              <li><span class="text-secondary" aria-current="page">Build</span></li>
+            </ol>
+          </nav>
+          <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
+              <span class="text-primary">The autonomous</span><br>
+              <span class="bg-gradient-to-r from-glow via-glow-hover to-plan bg-clip-text text-transparent">workflow</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
+              The agentic development workflow: seven phases plus optional Intent, three feedback loops, one PR at the end.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE PIPELINE DIAGRAM -->
+      <section class="relative py-16 sm:py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="reveal">
+            <svg viewBox="0 0 1090 280" class="w-full pipeline-diagram" role="img" aria-label="Workflow diagram: Intent, Plan, Build, Test, Review, Document, Deploy, Monitor with feedback loops">
+              <defs>
+                <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.6" />
+                  <stop offset="50%" stop-color="#6366F1" stop-opacity="0.8" />
+                  <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.6" />
+                </linearGradient>
+                <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0, 8 3, 0 6" fill="#6366F1" opacity="0.6" />
+                </marker>
+                <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0, 8 3, 0 6" fill="#10B981" opacity="0.5" />
+                </marker>
+                <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0, 8 3, 0 6" fill="#3B82F6" opacity="0.5" />
+                </marker>
+                <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                  <polygon points="0 0, 8 3, 0 6" fill="#EF4444" opacity="0.5" />
+                </marker>
+              </defs>
+
+              <!-- Intent -> Plan connection -->
+              <line x1="128" y1="100" x2="188" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-0" />
+              <text x="158" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">intent spec</text>
+
+              <!-- Main flow connections with artifact labels -->
+              <line x1="258" y1="100" x2="318" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-300" />
+              <text x="288" y="92" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">spec</text>
+
+              <line x1="388" y1="100" x2="448" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-600" />
+              <text x="418" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">code+tests</text>
+
+              <line x1="518" y1="100" x2="578" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-900" />
+              <text x="548" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">test report</text>
+
+              <line x1="648" y1="100" x2="708" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-1200" />
+              <text x="678" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">verdict</text>
+
+              <line x1="778" y1="100" x2="838" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-1500" />
+              <text x="808" y="92" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">docs</text>
+
+              <line x1="908" y1="100" x2="968" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-1800" />
+              <text x="938" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">PR/commits</text>
+
+              <!-- Test feedback loop -->
+              <path d="M 483 120 C 483 160 353 160 353 120" fill="none" stroke="#10B981" stroke-width="1.2" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowGreen)" opacity="0.5" />
+              <text x="418" y="172" text-anchor="middle" fill="#10B981" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.6">retry (3x)</text>
+
+              <!-- Review-Patch loop -->
+              <path d="M 613 120 C 613 185 353 185 353 120" fill="none" stroke="#3B82F6" stroke-width="1.2" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowBlue)" opacity="0.4" />
+              <text x="483" y="200" text-anchor="middle" fill="#3B82F6" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.5">patch (3x)</text>
+
+              <!-- Monitor -> Plan issues loop -->
+              <path d="M 1003 120 C 1030 240 190 240 217 120" fill="none" stroke="#EF4444" stroke-width="1.2" stroke-dasharray="6 4" class="issues-arc" opacity="0.35" marker-end="url(#arrowRed)" />
+              <text x="610" y="255" text-anchor="middle" fill="#EF4444" font-size="10" font-family="JetBrains Mono, monospace" opacity="0.4">issues</text>
+
+              <!-- Phase nodes -->
+              <a href="intent.html">
+                <g class="svg-phase-group">
+                  <rect x="58" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#EC4899" stroke-width="1.8" stroke-dasharray="6 3" class="pipeline-node" />
+                  <text x="93" y="95" text-anchor="middle" fill="#EC4899" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Intent</text>
+                  <text x="93" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Analyst</text>
+                </g>
+              </a>
+              <a href="plan.html">
+                <g class="svg-phase-group">
+                  <rect x="188" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#8B5CF6" stroke-width="1.8" class="pipeline-node node-color-plan anim-delay-500" />
+                  <text x="223" y="95" text-anchor="middle" fill="#8B5CF6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Plan</text>
+                  <text x="223" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Architect</text>
+                </g>
+              </a>
+              <a href="build.html">
+                <g class="svg-phase-group">
+                  <rect x="318" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#F59E0B" stroke-width="1.8" class="pipeline-node node-color-build anim-delay-1000" />
+                  <text x="353" y="95" text-anchor="middle" fill="#F59E0B" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Build</text>
+                  <text x="353" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Engineer</text>
+                </g>
+              </a>
+              <a href="test.html">
+                <g class="svg-phase-group">
+                  <rect x="448" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#10B981" stroke-width="1.8" class="pipeline-node node-color-test anim-delay-1500" />
+                  <text x="483" y="95" text-anchor="middle" fill="#10B981" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Test</text>
+                  <text x="483" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">QA</text>
+                </g>
+              </a>
+              <a href="review.html">
+                <g class="svg-phase-group">
+                  <rect x="578" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#3B82F6" stroke-width="1.8" class="pipeline-node node-color-review anim-delay-2000" />
+                  <text x="613" y="95" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
+                  <text x="613" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Reviewer</text>
+                </g>
+              </a>
+              <a href="document.html">
+                <g class="svg-phase-group">
+                  <rect x="708" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#A78BFA" stroke-width="1.8" class="pipeline-node node-color-document anim-delay-2500" />
+                  <text x="743" y="95" text-anchor="middle" fill="#A78BFA" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Document</text>
+                  <text x="743" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Writer</text>
+                </g>
+              </a>
+              <a href="deploy.html">
+                <g class="svg-phase-group">
+                  <rect x="838" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#F97316" stroke-width="1.8" class="pipeline-node node-color-deploy anim-delay-3000" />
+                  <text x="873" y="95" text-anchor="middle" fill="#F97316" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Deploy</text>
+                  <text x="873" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Release</text>
+                </g>
+              </a>
+              <a href="monitor.html">
+                <g class="svg-phase-group">
+                  <rect x="968" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#06B6D4" stroke-width="1.8" class="pipeline-node node-color-monitor anim-delay-3500" />
+                  <text x="1003" y="95" text-anchor="middle" fill="#06B6D4" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Monitor</text>
+                  <text x="1003" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Ops</text>
+                </g>
+              </a>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARTIFACT CHAIN -->
+      <section class="relative py-12 sm:py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10 reveal">
+            <p class="text-sm font-mono text-glow mb-3 tracking-wider uppercase">Artifact Chain</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary">What flows between phases</h2>
+          </div>
+          <div class="flex flex-nowrap gap-4 overflow-x-auto pb-4 reveal">
+            <!-- Intent Spec -->
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle" style="border-left: 3px solid #EC4899">
+              <span class="font-mono text-xs" style="color: #EC4899">Intent spec</span>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">normalized requirement with problem statement, acceptance criteria, and scope boundaries</p>
+              <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">Markdown</span>
+            </div>
+            <!-- Plan Spec -->
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle bl-3-plan">
+              <span class="font-mono text-xs text-plan">Plan spec</span>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">structured implementation plan with file:line targets</p>
+              <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">Markdown</span>
+            </div>
+            <!-- Build Report -->
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle bl-3-build">
+              <span class="font-mono text-xs text-build">Build report</span>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">changes made, tests written, verification steps</p>
+              <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">Markdown</span>
+            </div>
+            <!-- Test Report -->
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle bl-3-test">
+              <span class="font-mono text-xs text-test">Test report</span>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">pass/fail results, coverage metrics, fixes applied</p>
+              <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">JSON + MD</span>
+            </div>
+            <!-- Review Verdict -->
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle bl-3-review">
+              <span class="font-mono text-xs text-review">Review verdict</span>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">success/fail, issues classified by severity</p>
+              <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">JSON</span>
+            </div>
+            <!-- Documentation -->
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle bl-3-document">
+              <span class="font-mono text-xs text-document">Documentation</span>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">updated docs, ADRs, changelog entries</p>
+              <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">Markdown</span>
+            </div>
+            <!-- Commit Log -->
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle bl-3-deploy">
+              <span class="font-mono text-xs text-deploy">Commit log</span>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">atomic commits, structured PR with evidence</p>
+              <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">Mixed</span>
+            </div>
+            <!-- KPI Report -->
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle bl-3-monitor">
+              <span class="font-mono text-xs text-monitor">Production Health Report</span>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">error rates, latency, anomalies, feedback issues</p>
+              <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">Markdown</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUMMARY TABLE -->
+      <section class="relative py-16 sm:py-20 border-t border-subtle">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10 reveal">
+            <p class="text-sm font-mono text-glow mb-3 tracking-wider uppercase">At a Glance</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary">Phase summary</h2>
+          </div>
+          <div class="reveal overflow-x-auto">
+            <div class="rounded-xl bg-raised border border-subtle overflow-hidden min-w-[800px]">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-subtle">
+                    <th class="px-4 py-3 text-left font-mono text-xs text-muted font-medium">Phase</th>
+                    <th class="px-4 py-3 text-left font-mono text-xs text-muted font-medium">Role</th>
+                    <th class="px-4 py-3 text-left font-mono text-xs text-muted font-medium">Input</th>
+                    <th class="px-4 py-3 text-left font-mono text-xs text-muted font-medium">Output</th>
+                    <th class="px-4 py-3 text-left font-mono text-xs text-muted font-medium">Tools</th>
+                    <th class="px-4 py-3 text-left font-mono text-xs text-muted font-medium">Loop?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="summary-row border-b border-subtle/50" style="--tw-bg-opacity: 0.04;">
+                    <td class="px-4 py-3"><a href="intent.html" class="font-mono hover:underline" style="color: #EC4899">Intent</a></td>
+                    <td class="px-4 py-3 text-secondary text-xs">Requirements Analyst</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Raw request</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Intent spec with acceptance criteria</td>
+                    <td class="px-4 py-3"><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Read</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded">Search</span></td>
+                    <td class="px-4 py-3 text-muted text-xs">--</td>
+                  </tr>
+                  <tr class="summary-row border-b border-subtle/50 hover:bg-plan/[0.04]">
+                    <td class="px-4 py-3"><a href="plan.html" class="font-mono text-plan hover:underline">Plan</a></td>
+                    <td class="px-4 py-3 text-secondary text-xs">Software Architect</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Task description, codebase context</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Structured spec with file:line refs</td>
+                    <td class="px-4 py-3"><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Read</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded">Search</span></td>
+                    <td class="px-4 py-3 text-muted text-xs">--</td>
+                  </tr>
+                  <tr class="summary-row border-b border-subtle/50 hover:bg-build/[0.04]">
+                    <td class="px-4 py-3"><a href="build.html" class="font-mono text-build hover:underline">Build</a></td>
+                    <td class="px-4 py-3 text-secondary text-xs">Software Engineer</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Approved plan</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Code changes, tests, build report</td>
+                    <td class="px-4 py-3"><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Read</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Search</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Execute</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded">Write</span></td>
+                    <td class="px-4 py-3 text-muted text-xs">--</td>
+                  </tr>
+                  <tr class="summary-row border-b border-subtle/50 hover:bg-test/[0.04]">
+                    <td class="px-4 py-3"><a href="test.html" class="font-mono text-test hover:underline">Test</a></td>
+                    <td class="px-4 py-3 text-secondary text-xs">QA Engineer</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Code changes, test suite</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Test report (JSON + MD)</td>
+                    <td class="px-4 py-3"><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Read</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Search</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Execute</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded">Write</span></td>
+                    <td class="px-4 py-3"><span class="font-mono text-xs text-test">Test Loop (3x)</span></td>
+                  </tr>
+                  <tr class="summary-row border-b border-subtle/50 hover:bg-review/[0.04]">
+                    <td class="px-4 py-3"><a href="review.html" class="font-mono text-review hover:underline">Review</a></td>
+                    <td class="px-4 py-3 text-secondary text-xs">Senior Reviewer</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Code changes, test results, plan</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Review verdict JSON</td>
+                    <td class="px-4 py-3"><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Read</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded">Search</span></td>
+                    <td class="px-4 py-3"><span class="font-mono text-xs text-review">Patch Loop (3x)</span></td>
+                  </tr>
+                  <tr class="summary-row border-b border-subtle/50 hover:bg-document/[0.04]">
+                    <td class="px-4 py-3"><a href="document.html" class="font-mono text-document hover:underline">Document</a></td>
+                    <td class="px-4 py-3 text-secondary text-xs">Technical Writer</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Final changes, review summary</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Updated docs, architecture notes</td>
+                    <td class="px-4 py-3"><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Read</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Search</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded">Write</span></td>
+                    <td class="px-4 py-3 text-muted text-xs">--</td>
+                  </tr>
+                  <tr class="summary-row border-b border-subtle/50 hover:bg-deploy/[0.04]">
+                    <td class="px-4 py-3"><a href="deploy.html" class="font-mono text-deploy hover:underline">Deploy</a></td>
+                    <td class="px-4 py-3 text-secondary text-xs">Release Engineer</td>
+                    <td class="px-4 py-3 text-secondary text-xs">All artifacts</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Atomic commits, PR</td>
+                    <td class="px-4 py-3"><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Read</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Search</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded">Execute</span></td>
+                    <td class="px-4 py-3 text-muted text-xs">--</td>
+                  </tr>
+                  <tr class="summary-row hover:bg-monitor/[0.04]">
+                    <td class="px-4 py-3"><a href="monitor.html" class="font-mono text-monitor hover:underline">Monitor</a></td>
+                    <td class="px-4 py-3 text-secondary text-xs">Operations</td>
+                    <td class="px-4 py-3 text-secondary text-xs">PR/merge data, workflow metadata</td>
+                    <td class="px-4 py-3 text-secondary text-xs">Production Health Report</td>
+                    <td class="px-4 py-3"><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Read</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded mr-1">Search</span><span class="perm-allowed px-1.5 py-0.5 text-[9px] font-mono rounded">Execute</span></td>
+                    <td class="px-4 py-3"><span class="font-mono text-xs text-fail">Issues -&gt; Plan</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEEDBACK LOOPS -->
+      <section class="relative py-16 sm:py-20 border-t border-subtle">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10 reveal">
+            <p class="text-sm font-mono text-glow mb-3 tracking-wider uppercase">Self-Healing</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">Feedback loops</h2>
+            <p class="text-secondary max-w-xl mx-auto">The workflow is not linear. When something fails, it tries to fix itself before asking a human.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+            <!-- Test Loop -->
+            <div class="p-6 rounded-xl bg-surface border border-subtle overflow-hidden bt-3-test">
+              <h3 class="font-mono text-sm font-semibold text-test mb-3">Test loop</h3>
+              <p class="text-xs text-muted font-mono mb-4">Test -&gt; Build -&gt; Test</p>
+              <div class="space-y-3 text-sm text-secondary">
+                <p><span class="font-semibold text-primary">Trigger:</span> test failure</p>
+                <div>
+                  <span class="font-semibold text-primary">Action:</span>
+                  <ol class="list-decimal list-inside mt-1 space-y-1 text-xs">
+                    <li>Analyze all failures</li>
+                    <li>Spawn builder agent to fix</li>
+                    <li>Re-run full test suite</li>
+                  </ol>
+                </div>
+                <p><span class="font-semibold text-primary">Retry limit:</span> <span class="font-mono text-test">3</span> (configurable)</p>
+                <p><span class="font-semibold text-primary">Escalation:</span> surface to human with full context</p>
+              </div>
+            </div>
+            <!-- Review-Patch Loop -->
+            <div class="p-6 rounded-xl bg-surface border border-subtle overflow-hidden bt-3-review">
+              <h3 class="font-mono text-sm font-semibold text-review mb-3">Review-Patch Loop</h3>
+              <p class="text-xs text-muted font-mono mb-4">Review -&gt; Build -&gt; Test -&gt; Review</p>
+              <div class="space-y-3 text-sm text-secondary">
+                <p><span class="font-semibold text-primary">Trigger:</span> blocker issues found</p>
+                <div>
+                  <span class="font-semibold text-primary">Action:</span>
+                  <ol class="list-decimal list-inside mt-1 space-y-1 text-xs">
+                    <li>Generate patch context</li>
+                    <li>Build agent applies patches</li>
+                    <li>Re-test, then re-review</li>
+                  </ol>
+                </div>
+                <p><span class="font-semibold text-primary">Retry limit:</span> <span class="font-mono text-review">3</span> (configurable)</p>
+                <p><span class="font-semibold text-primary">Escalation:</span> full context to human reviewer</p>
+              </div>
+            </div>
+            <!-- Monitor -> Intent -> Plan -->
+            <div class="p-6 rounded-xl bg-surface border border-subtle overflow-hidden bt-3-fail">
+              <h3 class="font-mono text-sm font-semibold text-fail mb-3">Monitor -&gt; Intent -&gt; Plan</h3>
+              <p class="text-xs text-muted font-mono mb-4">Monitor -&gt; Intent (optional) -&gt; Plan (new workflow)</p>
+              <div class="space-y-3 text-sm text-secondary">
+                <p><span class="font-semibold text-primary">Trigger:</span> workflow failures, excessive retries, or threshold violations</p>
+                <div>
+                  <span class="font-semibold text-primary">Action:</span>
+                  <ol class="list-decimal list-inside mt-1 space-y-1 text-xs">
+                    <li>Generate issue from production health data</li>
+                    <li>Refine through Intent phase (recommended for raw signals)</li>
+                    <li>Feed refined intent to Plan phase</li>
+                    <li>Start new workflow run</li>
+                  </ol>
+                </div>
+                <p><span class="font-semibold text-primary">Limit:</span> <span class="font-mono text-fail">N/A</span> (new workflow each time)</p>
+                <p><span class="font-semibold text-primary">Purpose:</span> continuous improvement loop</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-secondary mt-6 text-sm">The Monitor-to-Plan loop is human-mediated by default. Automated feedback requires explicit safeguards. See <a href="monitor.html" class="text-glow-hover hover:underline">Monitor Phase</a> for details.</p>
+        </div>
+      </section>
+
+      <!-- PHASE GRID -->
+      <section class="relative py-16 sm:py-20 border-t border-subtle">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10 reveal">
+            <p class="text-sm font-mono text-glow mb-3 tracking-wider uppercase">Deep Dives</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">Explore each phase</h2>
+            <p class="text-secondary max-w-xl mx-auto">Each phase has its own role, methodology, tool permissions, and prompt template. Click any to dig in.</p>
+            <div class="p-5 rounded-xl bg-raised border border-glow-faint mt-6"><p class="text-sm text-secondary leading-relaxed">The phases below are reference examples. Your workflow will look different. Use this framework to define phases, gates, and loops that fit your team's workflow and tooling.</p></div>
+          </div>
+          <!-- Progressive disclosure toggle -->
+          <div class="flex flex-wrap items-center gap-2 mb-8" role="tablist" aria-label="Complexity level">
+            <button role="tab" aria-selected="true" data-level="beginner"
+              class="level-tab px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-glow text-white">
+              Beginner
+            </button>
+            <button role="tab" aria-selected="false" data-level="intermediate"
+              class="level-tab px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border border-subtle text-secondary hover:text-primary hover:border-glow-faint">
+              Intermediate
+            </button>
+            <button role="tab" aria-selected="false" data-level="advanced"
+              class="level-tab px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border border-subtle text-secondary hover:text-primary hover:border-glow-faint">
+              Advanced
+            </button>
+            <span class="ml-4 text-xs text-muted font-mono" id="level-description"></span>
+          </div>
+          <div class="mb-8">
+            <p class="text-sm text-secondary leading-relaxed">Intent is optional at every complexity level. Add it when your input quality varies or when processing monitor-generated issues.</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 reveal">
+            <a href="intent.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer" style="--phase-card-color: #EC4899">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full" style="background: #EC4899; box-shadow: 0 0 8px rgba(236,72,153,0.4)"></div>
+                <span class="font-mono text-xs text-muted">00</span>
+              </div>
+              <h3 class="font-semibold text-primary mb-1 group-hover:opacity-80 transition-colors duration-200">Intent <span class="text-xs font-normal text-muted">(optional)</span></h3>
+              <p class="text-xs text-muted font-mono mb-3">Requirements Analyst</p>
+              <p class="text-sm text-secondary leading-relaxed">Clarify first, plan second. Takes any-quality input and produces a well-defined intent specification through codebase research and interactive clarification. Skip when the input is already well-defined.</p>
+              <div class="flex gap-1.5 mt-4 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </a>
+            <a href="plan.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-plan">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-plan shadow-[0_0_8px_rgba(139,92,246,0.4)]"></div>
+                <span class="font-mono text-xs text-muted">01</span>
+              </div>
+              <h3 class="font-semibold text-primary mb-1 group-hover:text-plan transition-colors duration-200">Plan</h3>
+              <p class="text-xs text-muted font-mono mb-3">Software Architect</p>
+              <p class="text-sm text-secondary leading-relaxed">Research first, plan second. Issue-type routing gives features, bugs, tasks, and patches each their own template.</p>
+              <div class="flex gap-1.5 mt-4 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </a>
+            <a href="build.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-build">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-build shadow-[0_0_8px_rgba(245,158,11,0.4)]"></div>
+                <span class="font-mono text-xs text-muted">02</span>
+              </div>
+              <h3 class="font-semibold text-primary mb-1 group-hover:text-build transition-colors duration-200">Build</h3>
+              <p class="text-xs text-muted font-mono mb-3">Software Engineer</p>
+              <p class="text-sm text-secondary leading-relaxed">TDD-first. Write tests, then code to pass them. Follow the plan exactly. No scope creep, no improvising.</p>
+              <div class="flex gap-1.5 mt-4 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </a>
+            <a href="test.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-test">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-test shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+                <span class="font-mono text-xs text-muted">03</span>
+              </div>
+              <h3 class="font-semibold text-primary mb-1 group-hover:text-test transition-colors duration-200">Test</h3>
+              <p class="text-xs text-muted font-mono mb-3">QA Engineer</p>
+              <p class="text-sm text-secondary leading-relaxed">Run everything, analyze all failures, fix one at a time. Self-healing retry loop with configurable limits.</p>
+              <div class="flex gap-1.5 mt-4 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </a>
+            <a href="review.html" data-level="intermediate" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-review">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-review shadow-[0_0_8px_rgba(59,130,246,0.4)]"></div>
+                <span class="font-mono text-xs text-muted">04</span>
+              </div>
+              <h3 class="font-semibold text-primary mb-1 group-hover:text-review transition-colors duration-200">Review</h3>
+              <p class="text-xs text-muted font-mono mb-3">Senior Reviewer</p>
+              <p class="text-sm text-secondary leading-relaxed">Read-only analysis. Compare implementation against plan. Classify issues by severity. Patch loop for blockers.</p>
+              <div class="flex gap-1.5 mt-4 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </a>
+            <a href="document.html" data-level="intermediate" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-document">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-document shadow-[0_0_8px_rgba(167,139,250,0.4)]"></div>
+                <span class="font-mono text-xs text-muted">05</span>
+              </div>
+              <h3 class="font-semibold text-primary mb-1 group-hover:text-document transition-colors duration-200">Document</h3>
+              <p class="text-xs text-muted font-mono mb-3">Technical Writer</p>
+              <p class="text-sm text-secondary leading-relaxed">Generate from diffs, not from scratch. Architecture decisions, implementation details, and file-level references.</p>
+              <div class="flex gap-1.5 mt-4 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </a>
+            <a href="deploy.html" data-level="advanced" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-deploy">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-deploy shadow-[0_0_8px_rgba(249,115,22,0.4)]"></div>
+                <span class="font-mono text-xs text-muted">06</span>
+              </div>
+              <h3 class="font-semibold text-primary mb-1 group-hover:text-deploy transition-colors duration-200">Deploy</h3>
+              <p class="text-xs text-muted font-mono mb-3">Release Engineer</p>
+              <p class="text-sm text-secondary leading-relaxed">Atomic commits, structured PRs. Never bulk-add files. The output is a reviewable, auditable change request.</p>
+              <div class="flex gap-1.5 mt-4 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </a>
+            <a href="monitor.html" data-level="advanced" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-monitor">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-monitor shadow-[0_0_8px_rgba(6,182,212,0.4)]"></div>
+                <span class="font-mono text-xs text-muted">07</span>
+              </div>
+              <h3 class="font-semibold text-primary mb-1 group-hover:text-monitor transition-colors duration-200">Monitor</h3>
+              <p class="text-xs text-muted font-mono mb-3">Operations</p>
+              <p class="text-sm text-secondary leading-relaxed">Track production health: error rates, latency, anomalies, drift. Feed production issues back to Plan, closing the loop.</p>
+              <div class="flex gap-1.5 mt-4 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-subtle py-12 lg:pl-64">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" />
+            </svg>
+          </div>
+          <span class="font-mono text-xs text-muted">Agentic Engineering Framework</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+          <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+          <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+          <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+        </div>
+        <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Workflow progressive disclosure
+    (function() {
+      const levels = {
+        beginner: {
+          show: ['beginner'],
+          description: '3 phases \u2014 Plan, Build, Test. The minimum viable workflow.'
+        },
+        intermediate: {
+          show: ['beginner', 'intermediate'],
+          description: '5 phases \u2014 adds Review and Document for quality.'
+        },
+        advanced: {
+          show: ['beginner', 'intermediate', 'advanced'],
+          description: 'All 7 core phases including Deploy and Monitor.'
+        }
+      };
+
+      const tabs = document.querySelectorAll('.level-tab');
+      const cards = document.querySelectorAll('.phase-card[data-level]');
+      const desc = document.getElementById('level-description');
+
+      function setLevel(level) {
+        const config = levels[level];
+        tabs.forEach(tab => {
+          const isActive = tab.dataset.level === level;
+          tab.setAttribute('aria-selected', isActive);
+          tab.classList.toggle('bg-glow', isActive);
+          tab.classList.toggle('text-white', isActive);
+          tab.classList.toggle('border', !isActive);
+          tab.classList.toggle('border-subtle', !isActive);
+          tab.classList.toggle('text-secondary', !isActive);
+        });
+        cards.forEach(card => {
+          const visible = config.show.includes(card.dataset.level);
+          card.style.opacity = visible ? '1' : '0';
+          card.style.transform = visible ? 'translateY(0)' : 'translateY(10px)';
+          card.style.pointerEvents = visible ? 'auto' : 'none';
+          setTimeout(() => {
+            card.style.display = visible ? '' : 'none';
+          }, visible ? 0 : 200);
+        });
+        if (desc) desc.textContent = config.description;
+        try { localStorage.setItem('ase-pipeline-level', level); } catch(e) {}
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => setLevel(tab.dataset.level));
+      });
+
+      const saved = localStorage.getItem('ase-pipeline-level');
+      setLevel(saved && levels[saved] ? saved : 'beginner');
+    })();
+  </script>
+
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

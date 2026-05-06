@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Design Principles | Agentic Engineering Framework</title>
+  <meta name="description" content="8 design principles that govern the Agentic Engineering Framework: opinionated defaults, self-healing workflows, TDD contracts, least privilege, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="bg-void text-primary font-sans antialiased page-framework">
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- ============================================ -->
+  <!-- NAVIGATION                                   -->
+  <!-- ============================================ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3" aria-label="AEF Home">
+          <div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" />
+            </svg>
+          </div>
+          <span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-healing loops</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By team size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <!-- Search button -->
+          <button aria-label="Search" id="search-trigger" class="p-2 text-muted hover:text-primary transition-colors rounded-lg hover:bg-raised">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+          <!-- Get Started CTA -->
+          <a href="../adopt/getting-started.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+            Get Started
+          </a>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary" aria-label="Toggle navigation menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Learn <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../framework/overview.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Overview</a>
+            <a href="../framework/principles.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Principles</a>
+            <a href="../framework/architecture.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Architecture</a>
+            <a href="../concepts/ase.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Autonomous Software Engineering</a>
+            <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Agentic layer</a>
+            <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Self-healing loops</a>
+            <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Artifact chaining</a>
+            <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prompt engineering</a>
+            <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Tool permissions</a>
+            <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Agent patterns</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Build <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../workflow/index.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow overview</a>
+            <a href="../workflow/intent.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Intent</a>
+            <a href="../workflow/plan.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Plan</a>
+            <a href="../workflow/build.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Build</a>
+            <a href="../workflow/test.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Test</a>
+            <a href="../workflow/review.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Review</a>
+            <a href="../workflow/document.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Document</a>
+            <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Deploy</a>
+            <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Monitor</a>
+            <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prompt templates</a>
+            <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Commands &amp; skills</a>
+            <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Tool integrations</a>
+            <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Quality gates</a>
+            <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow config</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Adopt <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Getting started</a>
+            <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">By team size</a>
+            <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Maturity path</a>
+            <a href="../adopt/customization.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Customization</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Reference <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../reference/glossary.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Glossary</a>
+            <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow Schema</a>
+            <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prerequisites</a>
+            <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Troubleshooting</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                 -->
+  <!-- ============================================ -->
+  <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+    <div class="lg:flex lg:gap-12">
+
+      <!-- Sidebar -->
+      <aside class="hidden lg:block lg:w-64 flex-shrink-0">
+        <div class="sticky top-24">
+          <p class="font-mono text-xs uppercase tracking-wider text-muted mb-3">Framework</p>
+          <div class="space-y-2 mb-8">
+            <a href="overview.html" class="sidebar-link block text-sm text-muted hover:text-primary transition-colors">Overview</a>
+            <a href="principles.html" class="sidebar-link active block text-sm text-glow">Principles</a>
+            <a href="architecture.html" class="sidebar-link block text-sm text-muted hover:text-primary transition-colors">Architecture</a>
+          </div>
+          <p class="font-mono text-xs uppercase tracking-wider text-muted mb-3">On This Page</p>
+          <div class="space-y-2" id="toc">
+            <a href="#opinionated" class="block text-sm text-muted hover:text-primary transition-colors">1. Opinionated but Evolvable</a>
+            <a href="#self-healing" class="block text-sm text-muted hover:text-primary transition-colors">2. Self-Healing</a>
+            <a href="#plan-before-execute" class="block text-sm text-muted hover:text-primary transition-colors">3. Plan-Before-Execute</a>
+            <a href="#least-privilege" class="block text-sm text-muted hover:text-primary transition-colors">4. Least Privilege</a>
+            <a href="#tdd-contracts" class="block text-sm text-muted hover:text-primary transition-colors">5. Test-Driven Contracts</a>
+            <a href="#structured-outputs" class="block text-sm text-muted hover:text-primary transition-colors">6. Structured Outputs</a>
+            <a href="#deploy-means-pr" class="block text-sm text-muted hover:text-primary transition-colors">7. Deploy Means PR</a>
+            <a href="#tool-agnostic" class="block text-sm text-muted hover:text-primary transition-colors">8. Tool Agnostic</a>
+            <a href="#summary" class="block text-sm text-muted hover:text-primary transition-colors">Summary</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Article -->
+      <article class="flex-1 min-w-0">
+
+        <!-- ============================== -->
+        <!-- HERO                           -->
+        <!-- ============================== -->
+        <section class="relative pb-16">
+          <div class="absolute inset-0 dot-grid opacity-40 -z-10"></div>
+          <div class="ambient-glow w-[600px] h-[600px] bg-plan/[0.04] -top-40 -right-40 -z-10"></div>
+
+          <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+            <ol class="flex items-center gap-0">
+              <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+              <li><span class="mx-2 text-subtle">/</span></li>
+              <li><a href="../framework/overview.html" class="hover:text-secondary transition-colors">Learn</a></li>
+              <li><span class="mx-2 text-subtle">/</span></li>
+              <li><span class="text-secondary" aria-current="page">Principles</span></li>
+            </ol>
+          </nav>
+
+          <div class="reveal">
+            <p class="text-sm font-mono text-glow mb-3 tracking-wider uppercase">Principles</p>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-6">Design Principles</h1>
+            <p class="text-secondary text-lg max-w-3xl leading-relaxed mb-10">
+              These are the non-negotiable design decisions behind the framework, ordered by importance. Every feature and workflow behavior traces back to one of these 8 principles.
+            </p>
+          </div>
+
+          <!-- Jump-to pills -->
+          <div class="flex flex-wrap gap-2 reveal">
+            <a href="#opinionated" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15 hover:bg-glow/15 transition-colors">1. Opinionated but Evolvable</a>
+            <a href="#self-healing" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15 hover:bg-glow/15 transition-colors">2. Self-Healing</a>
+            <a href="#plan-before-execute" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15 hover:bg-glow/15 transition-colors">3. Plan-Before-Execute</a>
+            <a href="#least-privilege" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15 hover:bg-glow/15 transition-colors">4. Least Privilege</a>
+            <a href="#tdd-contracts" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15 hover:bg-glow/15 transition-colors">5. TDD Contracts</a>
+            <a href="#structured-outputs" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15 hover:bg-glow/15 transition-colors">6. Structured Outputs</a>
+            <a href="#deploy-means-pr" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15 hover:bg-glow/15 transition-colors">7. Deploy Means PR</a>
+            <a href="#tool-agnostic" class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15 hover:bg-glow/15 transition-colors">8. Tool Agnostic</a>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- PRINCIPLE 1                    -->
+        <!-- ============================== -->
+        <section id="opinionated" class="pb-16 border-t border-subtle pt-16 reveal">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="w-10 h-10 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-sm font-mono text-glow">1</div>
+            <div>
+              <h2 class="font-mono text-xl font-bold text-primary">Opinionated but evolvable</h2>
+              <p class="text-secondary text-sm">Strong defaults for every phase. Everything configurable when you need it.</p>
+            </div>
+          </div>
+
+          <!-- Why it matters -->
+          <div class="mt-8 p-6 rounded-xl bg-surface border border-subtle">
+            <div class="flex items-center gap-2 mb-4">
+              <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+              <h3 class="font-semibold text-primary text-sm">Why it matters</h3>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mb-3">AI tooling changes weekly. New models and new tools. A framework that hardcodes opinions becomes tech debt within months. But a framework with no opinions leaves developers re-making the same decisions each time they start a project.</p>
+            <p class="text-sm text-secondary leading-relaxed mb-3">AEF ships opinionated: <a href="#tdd-contracts" class="text-glow hover:text-glow-hover transition-colors">TDD-first builds</a>, structured review loops, <a href="#deploy-means-pr" class="text-glow hover:text-glow-hover transition-colors">PR-based shipping</a>, 3-retry feedback loops. These are the defaults because they work for most teams. But every single opinion is a configuration point in <code class="text-glow-hover text-xs">workflow.yaml</code> or in the prompt templates.</p>
+            <p class="text-sm text-secondary leading-relaxed">The default test retry limit is 3. A team working on a payments system might set it to 5. A team prototyping might set it to 1. The framework does not care; it ships a default, and you override when needed.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <!-- Anti-pattern -->
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-fail">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-fail" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <h3 class="font-semibold text-fail text-sm">Anti-pattern</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">Hardcoding a test framework ("always use Jest"). Requiring a specific CI/CD system. Any opinion that cannot be overridden is a wall, not a guardrail.</p>
+            </div>
+
+            <!-- How to implement -->
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-pass">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-pass" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="font-semibold text-pass text-sm">How to implement</h3>
+              </div>
+              <div class="code-block p-4 text-xs mt-3">
+                <pre class="font-mono"><code><span class="comment"># workflow.yaml</span>
+<span class="keyword">loops:</span>
+  <span class="var">test_retry:</span>
+    <span class="var">max:</span> <span class="string">3</span>               <span class="comment"># Override: set 1-10</span>
+<span class="keyword">gates:</span>
+  <span class="var">test:</span>
+    <span class="var">coverage_min:</span> <span class="string">80</span>     <span class="comment"># Override: set 0-100</span>
+    <span class="var">framework:</span> <span class="string">auto</span>      <span class="comment"># Override: jest | pytest | go test | ...</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- PRINCIPLE 2                    -->
+        <!-- ============================== -->
+        <section id="self-healing" class="pb-16 border-t border-subtle pt-16 reveal">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="w-10 h-10 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-sm font-mono text-glow">2</div>
+            <div>
+              <h2 class="font-mono text-xl font-bold text-primary">Self-healing over failure</h2>
+              <p class="text-secondary text-sm">Workflows diagnose and retry before escalating to a human.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 rounded-xl bg-surface border border-subtle">
+            <div class="flex items-center gap-2 mb-4">
+              <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+              <h3 class="font-semibold text-primary text-sm">Why it matters</h3>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mb-3">A workflow that stops on every routine failure still requires human intervention for issues the system could resolve on its own. The whole point of autonomy is handling routine failures without human involvement.</p>
+            <p class="text-sm text-secondary leading-relaxed mb-3">A test failure is not a crisis. It is a signal. The workflow spawns a builder agent, gives it the failure context, and lets it attempt a fix. Only after exhausting retries does a human get involved.</p>
+            <p class="text-sm text-secondary leading-relaxed">A build produces code that fails 2 of 15 unit tests. Instead of stopping, the workflow: (1) analyzes the failure output, (2) spawns a builder agent with the failure context and the original plan, (3) the builder patches the code, (4) tests re-run. If all pass, the workflow continues. If not, it retries up to 2 more times. Only then does it <a href="architecture.html#when-the-pipeline-needs-a-human" class="text-glow hover:text-glow-hover transition-colors">escalate</a>.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-fail">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-fail" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <h3 class="font-semibold text-fail text-sm">Anti-pattern</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">A workflow that fails and immediately pings a human on Slack. A workflow with no retry logic. A workflow that retries forever without limits, burning tokens in an endless loop.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-pass">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-pass" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="font-semibold text-pass text-sm">How to implement</h3>
+              </div>
+              <div class="code-block p-4 text-xs mt-3">
+                <pre class="font-mono"><code><span class="keyword">loops:</span>
+  <span class="var">test_retry:</span>
+    <span class="var">max:</span> <span class="string">3</span>
+    <span class="var">context_includes:</span> [<span class="string">error_output</span>, <span class="string">original_plan</span>, <span class="string">changed_files</span>]
+  <span class="var">review_patch:</span>
+    <span class="var">max:</span> <span class="string">3</span>
+    <span class="var">context_includes:</span> [<span class="string">review_issues</span>, <span class="string">test_results</span>, <span class="string">changed_files</span>]
+<span class="keyword">escalation:</span>
+  <span class="var">notify:</span> [<span class="string">slack</span>, <span class="string">email</span>]
+  <span class="var">include:</span> [<span class="string">full_workflow_state</span>]</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- PRINCIPLE 3                    -->
+        <!-- ============================== -->
+        <section id="plan-before-execute" class="pb-16 border-t border-subtle pt-16 reveal">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="w-10 h-10 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-sm font-mono text-glow">3</div>
+            <div>
+              <h2 class="font-mono text-xl font-bold text-primary">Plan-before-execute</h2>
+              <p class="text-secondary text-sm">Research and plan are read-only. Never plan and build simultaneously.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 rounded-xl bg-surface border border-subtle">
+            <div class="flex items-center gap-2 mb-4">
+              <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+              <h3 class="font-semibold text-primary text-sm">Why it matters</h3>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mb-3">When agents plan and execute at the same time, they commit to an approach before understanding the problem. You get scope creep, wrong abstractions, and wasted tokens on code that gets thrown away.</p>
+            <p class="text-sm text-secondary leading-relaxed mb-3">The Plan phase is read-only by design. The planner agent can read every file, search the codebase, analyze dependencies, but it cannot modify anything. This forces understanding before code gets written.</p>
+            <p class="text-sm text-secondary leading-relaxed">A feature request asks for "user authentication." Without plan-first, an agent might immediately start writing a JWT module. With plan-first, the planner discovers the codebase already uses session-based auth, finds the files to modify, and writes a plan that extends the existing pattern instead of introducing a conflicting one.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-fail">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-fail" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <h3 class="font-semibold text-fail text-sm">Anti-pattern</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">An agent that begins writing code before completing a structured analysis. An agent that creates placeholder files instead of producing a complete plan. Any workflow where the first file modification happens before a structured plan exists.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-pass">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-pass" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="font-semibold text-pass text-sm">How to implement</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed mb-3">Plan phase prompt template explicitly states: "Read-only. Do not modify any files." Plan phase tool permissions enforce it:</p>
+              <div class="flex gap-1.5 flex-wrap">
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Read</span>
+                <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Search</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Execute</span>
+                <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Write</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- PRINCIPLE 4                    -->
+        <!-- ============================== -->
+        <section id="least-privilege" class="pb-16 border-t border-subtle pt-16 reveal">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="w-10 h-10 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-sm font-mono text-glow">4</div>
+            <div>
+              <h2 class="font-mono text-xl font-bold text-primary">Least privilege</h2>
+              <p class="text-secondary text-sm">Each phase gets only the tools it needs.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 rounded-xl bg-surface border border-subtle">
+            <div class="flex items-center gap-2 mb-4">
+              <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+              <h3 class="font-semibold text-primary text-sm">Why it matters</h3>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mb-3">Giving an agent tools it does not need is both a security risk and a quality risk. A planner with write access might "helpfully" start modifying files. A reviewer with execute access might run tests instead of analyzing code.</p>
+            <p class="text-sm text-secondary leading-relaxed">Constraining tools per phase enforces separation of concerns. The Review phase has Read and Search permissions only. It cannot modify code, run tests, or deploy. It can only analyze. This means review findings are analysis, not influenced by "let me try fixing it."</p>
+          </div>
+
+          <!-- Permission matrix -->
+          <div class="mt-6 overflow-x-auto">
+            <table class="w-full text-sm bg-surface border border-subtle rounded-xl overflow-hidden">
+              <thead>
+                <tr class="border-b border-subtle">
+                  <th class="text-left font-mono text-xs text-muted p-4">Phase</th>
+                  <th class="text-center font-mono text-xs text-muted p-4">Read</th>
+                  <th class="text-center font-mono text-xs text-muted p-4">Search</th>
+                  <th class="text-center font-mono text-xs text-muted p-4">Execute</th>
+                  <th class="text-center font-mono text-xs text-muted p-4">Write</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-subtle">
+                  <td class="p-4 font-mono text-sm text-plan">Plan</td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Denied</span></td>
+                  <td class="p-4 text-center"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Denied</span></td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4 font-mono text-sm text-build">Build</td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4 font-mono text-sm text-test">Test</td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4 font-mono text-sm text-review">Review</td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Denied</span></td>
+                  <td class="p-4 text-center"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Denied</span></td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4 font-mono text-sm text-document">Document</td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Denied</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4 font-mono text-sm text-deploy">Deploy</td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Denied</span></td>
+                </tr>
+                <tr>
+                  <td class="p-4 font-mono text-sm text-monitor">Monitor</td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Allowed</span></td>
+                  <td class="p-4 text-center"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Denied</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-fail">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-fail" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <h3 class="font-semibold text-fail text-sm">Anti-pattern</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">Giving every phase full access to all tools. Agents tend to use every tool available to them. More tools means more surface area for unintended actions.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-pass">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-pass" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="font-semibold text-pass text-sm">How to implement</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed mb-3">Define a permission matrix in <code class="text-glow-hover text-xs">tools/*.yaml</code>. Map each phase to its allowed capabilities. Enforce at the workflow engine level so the agent never sees tools it should not use.</p>
+              <p class="text-sm text-secondary leading-relaxed">Enforcement can be runtime-level (agent cannot access the tool) or prompt-level (agent is instructed not to use the tool). Runtime enforcement is stronger; prompt enforcement is more portable. Use both when your agent runtime supports it.</p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- PRINCIPLE 5                    -->
+        <!-- ============================== -->
+        <section id="tdd-contracts" class="pb-16 border-t border-subtle pt-16 reveal">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="w-10 h-10 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-sm font-mono text-glow">5</div>
+            <div>
+              <h2 class="font-mono text-xl font-bold text-primary">Test-driven contracts</h2>
+              <p class="text-secondary text-sm">Tests are written first. They are the contract every subsequent phase validates against.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 rounded-xl bg-surface border border-subtle">
+            <div class="flex items-center gap-2 mb-4">
+              <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+              <h3 class="font-semibold text-primary text-sm">Why it matters</h3>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mb-3">Without tests-first, the Review phase has no objective baseline. "Does this code work?" becomes a judgment call. With tests-first, every phase has a concrete answer: the code must pass these tests.</p>
+            <p class="text-sm text-secondary leading-relaxed mb-3">Tests written before implementation also prevent scope creep. The builder agent knows what "done" means: all tests pass. It cannot over-build or under-build.</p>
+            <p class="text-sm text-secondary leading-relaxed">The Build phase receives a plan for a new <code class="text-glow-hover text-xs">/users</code> endpoint. Step 1: write tests for GET /users, POST /users, validation errors, auth requirements. Step 2: write code until all tests pass. The test suite is the contract.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-fail">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-fail" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <h3 class="font-semibold text-fail text-sm">Anti-pattern</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">Writing code first, then writing tests to match the code. In an agentic context, this means the tests confirm what was already built rather than defining the success criteria up front. Also: skipping tests entirely "because the agent got it right."</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-pass">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-pass" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="font-semibold text-pass text-sm">How to implement</h3>
+              </div>
+              <div class="code-block p-4 text-xs mt-3">
+                <pre class="font-mono"><code><span class="comment">## Build Order</span>
+<span class="string">1.</span> Write test files first (unit + integration)
+<span class="string">2.</span> Run tests -- confirm they <span class="keyword">FAIL</span> (red)
+<span class="string">3.</span> Write implementation
+<span class="string">4.</span> Run tests -- confirm they <span class="keyword">PASS</span> (green)
+<span class="string">5.</span> Never skip step 1-2</code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- PRINCIPLE 6                    -->
+        <!-- ============================== -->
+        <section id="structured-outputs" class="pb-16 border-t border-subtle pt-16 reveal">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="w-10 h-10 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-sm font-mono text-glow">6</div>
+            <div>
+              <h2 class="font-mono text-xl font-bold text-primary">Structured outputs</h2>
+              <p class="text-secondary text-sm">Machine-readable for agents, human-readable for people.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 rounded-xl bg-surface border border-subtle">
+            <div class="flex items-center gap-2 mb-4">
+              <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+              <h3 class="font-semibold text-primary text-sm">Why it matters</h3>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mb-3">Workflow phases consume each other's outputs. If the Plan phase outputs freeform prose, the Build phase has to interpret it. Interpretation breeds inconsistency.</p>
+            <p class="text-sm text-secondary leading-relaxed mb-3">Structured outputs (JSON, YAML, markdown with fixed headings) can be both machine-parsed and human-read. Template variables like <code class="text-glow-hover text-xs">$plan_artifact</code> only work when the artifact has a predictable shape.</p>
+            <p class="text-sm text-secondary leading-relaxed">The Plan phase outputs a structured spec with consistent sections: Summary, Files to Modify, Files to Create, What We Are NOT Doing, Test Strategy. The Build phase knows exactly where to find file targets. A human reviewing the plan finds the same sections every time.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-fail">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-fail" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <h3 class="font-semibold text-fail text-sm">Anti-pattern</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">A plan that is just a paragraph of text. Review findings as a chat message. Test results as raw console output without structured parsing. Any output that requires a human to interpret before the next phase can use it.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-pass">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-pass" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="font-semibold text-pass text-sm">How to implement</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">Define output format contracts in each prompt template under <code class="text-glow-hover text-xs">## Output Format</code>. Use markdown with required headings for human-readable structure. Use JSON or YAML blocks within the markdown for machine-consumed data. See <a href="architecture.html#artifact-chaining" class="text-glow hover:text-glow-hover transition-colors">Artifact Chaining</a> for how this connects to variable substitution.</p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- PRINCIPLE 7                    -->
+        <!-- ============================== -->
+        <section id="deploy-means-pr" class="pb-16 border-t border-subtle pt-16 reveal">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="w-10 h-10 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-sm font-mono text-glow">7</div>
+            <div>
+              <h2 class="font-mono text-xl font-bold text-primary">Deploy means PR</h2>
+              <p class="text-secondary text-sm">"Done" is a reviewable change request, not a deploy.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 rounded-xl bg-surface border border-subtle">
+            <div class="flex items-center gap-2 mb-4">
+              <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+              <h3 class="font-semibold text-primary text-sm">Why it matters</h3>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mb-3">Deploying autonomously to production is a different risk class than creating a PR. AEF's Deploy phase produces a pull request or change request containing all artifacts: code, test evidence, review summary, documentation.</p>
+            <p class="text-sm text-secondary leading-relaxed">This gives humans an audit trail and a merge decision point. Teams that trust their <a href="architecture.html#passfail-between-phases" class="text-glow hover:text-glow-hover transition-colors">quality gates</a> can auto-merge. Teams that want oversight review the PR. The framework supports both without changing the workflow.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-fail">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-fail" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <h3 class="font-semibold text-fail text-sm">Anti-pattern</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">A workflow that deploys directly to production without a reviewable artifact. A workflow that commits directly to <code class="text-glow-hover text-xs">main</code>. Any workflow where there is no audit trail of what was changed and why.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-pass">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-pass" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="font-semibold text-pass text-sm">How to implement</h3>
+              </div>
+              <div class="code-block p-4 text-xs mt-3">
+                <pre class="font-mono"><code><span class="comment"># PR body structure</span>
+<span class="keyword">## Summary</span>
+<span class="var">${doc_artifact.summary}</span>
+<span class="keyword">## Changes</span>
+<span class="var">${build_artifact.changed_files}</span>
+<span class="keyword">## Test Evidence</span>
+<span class="var">${test_results.summary}</span>
+<span class="keyword">## Review Summary</span>
+<span class="var">${review_artifact.verdict}</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- PRINCIPLE 8                    -->
+        <!-- ============================== -->
+        <section id="tool-agnostic" class="pb-16 border-t border-subtle pt-16 reveal">
+          <div class="flex items-center gap-4 mb-2">
+            <div class="w-10 h-10 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-sm font-mono text-glow">8</div>
+            <div>
+              <h2 class="font-mono text-xl font-bold text-primary">Tool agnostic</h2>
+              <p class="text-secondary text-sm">Patterns transfer to any agent stack. The framework teaches structure, not a vendor. AEF is designed for code-editing agents with file system and shell access. Within that class, patterns are portable across providers.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 rounded-xl bg-surface border border-subtle">
+            <div class="flex items-center gap-2 mb-4">
+              <svg class="w-5 h-5 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+              <h3 class="font-semibold text-primary text-sm">Why it matters</h3>
+            </div>
+            <p class="text-sm text-secondary leading-relaxed mb-3">AI tooling changes monthly. Tying a framework to a specific agent provider, model, or tool means rewriting everything when that provider changes or a better option appears.</p>
+            <p class="text-sm text-secondary leading-relaxed">AEF defines patterns (phases, loops, gates, <a href="architecture.html#artifact-chaining" class="text-glow hover:text-glow-hover transition-colors">artifact chaining</a>) that work whether you use Claude, GPT, Gemini, open-source models, or a mix, as long as the agent can read files, write files, and execute shell commands. The agentic layer is the abstraction boundary. Switch providers tomorrow; your prompt templates, quality gates, and workflow config stay the same. Only the tool integration layer changes.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-fail">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-fail" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <h3 class="font-semibold text-fail text-sm">Anti-pattern</h3>
+              </div>
+              <p class="text-sm text-secondary leading-relaxed">A framework that only works with one agent provider. Prompt templates that use provider-specific syntax. Claiming compatibility with agents that lack file system access or shell execution; AEF's patterns assume these capabilities.</p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-surface border border-subtle border-l-2 border-l-pass">
+              <div class="flex items-center gap-2 mb-3">
+                <svg class="w-5 h-5 text-pass" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="font-semibold text-pass text-sm">How to implement</h3>
+              </div>
+              <div class="code-block p-4 text-xs mt-3">
+                <pre class="font-mono"><code><span class="comment"># tools/file-system.yaml</span>
+<span class="keyword">category:</span> <span class="string">file_system</span>
+<span class="keyword">capabilities:</span>
+  - <span class="string">read_file</span>
+  - <span class="string">write_file</span>
+  - <span class="string">list_directory</span>
+  - <span class="string">search_content</span>
+<span class="comment"># Implementation maps to your</span>
+<span class="comment"># specific agent's tools</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- SUMMARY TABLE                  -->
+        <!-- ============================== -->
+        <section id="summary" class="pb-16 border-t border-subtle pt-16 reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-8">Summary</h2>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm bg-surface border border-subtle rounded-xl overflow-hidden">
+              <thead>
+                <tr class="border-b border-subtle">
+                  <th class="text-left font-mono text-xs text-muted p-4 w-10">#</th>
+                  <th class="text-left font-mono text-xs text-muted p-4">Principle</th>
+                  <th class="text-left font-mono text-xs text-muted p-4">One-Liner</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-subtle">
+                  <td class="p-4"><div class="w-7 h-7 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-xs font-mono text-glow">1</div></td>
+                  <td class="p-4 font-mono text-sm text-primary"><a href="#opinionated" class="hover:text-glow transition-colors">Opinionated but Evolvable</a></td>
+                  <td class="p-4 text-sm text-secondary">Strong defaults, everything configurable</td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4"><div class="w-7 h-7 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-xs font-mono text-glow">2</div></td>
+                  <td class="p-4 font-mono text-sm text-primary"><a href="#self-healing" class="hover:text-glow transition-colors">Self-Healing Over Failure</a></td>
+                  <td class="p-4 text-sm text-secondary">Diagnose and retry before escalating</td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4"><div class="w-7 h-7 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-xs font-mono text-glow">3</div></td>
+                  <td class="p-4 font-mono text-sm text-primary"><a href="#plan-before-execute" class="hover:text-glow transition-colors">Plan-Before-Execute</a></td>
+                  <td class="p-4 text-sm text-secondary">Research is read-only, plan before build</td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4"><div class="w-7 h-7 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-xs font-mono text-glow">4</div></td>
+                  <td class="p-4 font-mono text-sm text-primary"><a href="#least-privilege" class="hover:text-glow transition-colors">Least Privilege</a></td>
+                  <td class="p-4 text-sm text-secondary">Each phase gets only needed tools</td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4"><div class="w-7 h-7 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-xs font-mono text-glow">5</div></td>
+                  <td class="p-4 font-mono text-sm text-primary"><a href="#tdd-contracts" class="hover:text-glow transition-colors">Test-Driven Contracts</a></td>
+                  <td class="p-4 text-sm text-secondary">Tests first, they are the contract</td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4"><div class="w-7 h-7 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-xs font-mono text-glow">6</div></td>
+                  <td class="p-4 font-mono text-sm text-primary"><a href="#structured-outputs" class="hover:text-glow transition-colors">Structured Outputs</a></td>
+                  <td class="p-4 text-sm text-secondary">Machine-readable and human-readable</td>
+                </tr>
+                <tr class="border-b border-subtle">
+                  <td class="p-4"><div class="w-7 h-7 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-xs font-mono text-glow">7</div></td>
+                  <td class="p-4 font-mono text-sm text-primary"><a href="#deploy-means-pr" class="hover:text-glow transition-colors">Deploy Means PR</a></td>
+                  <td class="p-4 text-sm text-secondary">Done = reviewable change request</td>
+                </tr>
+                <tr>
+                  <td class="p-4"><div class="w-7 h-7 rounded-full bg-glow/10 border border-glow/20 flex items-center justify-center text-xs font-mono text-glow">8</div></td>
+                  <td class="p-4 font-mono text-sm text-primary"><a href="#tool-agnostic" class="hover:text-glow transition-colors">Tool Agnostic</a></td>
+                  <td class="p-4 text-sm text-secondary">Patterns transfer to any agent stack</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <!-- ============================== -->
+        <!-- NEXT STEPS                     -->
+        <!-- ============================== -->
+        <section class="pb-16 border-t border-subtle pt-16 reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-8">Go deeper</h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a href="overview.html" class="group p-6 rounded-xl bg-surface border border-subtle hover:border-glow-faint hover:bg-raised hover:-translate-y-1 transition-all duration-250">
+              <h3 class="font-semibold text-primary mb-2 group-hover:text-glow transition-colors">Framework Overview</h3>
+              <p class="text-sm text-secondary leading-relaxed mb-4">what AEF is, the three-layer architecture, and a full execution walkthrough.</p>
+              <div class="flex items-center text-xs font-mono text-muted group-hover:text-glow transition-colors">
+                Read
+                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+              </div>
+            </a>
+
+            <a href="architecture.html" class="group p-6 rounded-xl bg-surface border border-subtle hover:border-glow-faint hover:bg-raised hover:-translate-y-1 transition-all duration-250">
+              <h3 class="font-semibold text-primary mb-2 group-hover:text-glow transition-colors">Architecture</h3>
+              <p class="text-sm text-secondary leading-relaxed mb-4">state machine, artifact chaining, feedback loops, escalation, and quality gates.</p>
+              <div class="flex items-center text-xs font-mono text-muted group-hover:text-glow transition-colors">
+                Read
+                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+              </div>
+            </a>
+
+            <a href="../adopt/getting-started.html" class="group p-6 rounded-xl bg-surface border border-glow/20 hover:border-glow/40 hover:-translate-y-1 transition-all duration-250">
+              <h3 class="font-semibold text-primary mb-2 group-hover:text-glow transition-colors">Get Started</h3>
+              <p class="text-sm text-secondary leading-relaxed mb-4">build your first agentic layer and run your first workflow manually.</p>
+              <div class="flex items-center text-xs font-mono text-glow group-hover:text-glow-hover transition-colors">
+                Start building
+                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+              </div>
+            </a>
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+
+  <!-- ============================================ -->
+  <!-- FOOTER                                       -->
+  <!-- ============================================ -->
+  <footer class="border-t border-subtle py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" />
+            </svg>
+          </div>
+          <span class="font-mono text-xs text-muted">Agentic Engineering Framework</span>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+          <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+          <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+          <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+        </div>
+
+        <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Mobile accordion sections
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Active sidebar link on scroll
+    const tocLinks = document.querySelectorAll('#toc a');
+    const pageSections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      pageSections.forEach(section => {
+        const top = section.offsetTop - 120;
+        if (scrollY >= top) {
+          current = section.getAttribute('id');
+        }
+      });
+      tocLinks.forEach(link => {
+        link.classList.remove('text-glow');
+        link.classList.add('text-muted');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('text-glow');
+          link.classList.remove('text-muted');
+        }
+      });
+    });
+  </script>
+
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

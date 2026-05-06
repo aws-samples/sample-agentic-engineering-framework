@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Deploy Phase | Release Engineer | AEF Workflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-void text-primary font-sans antialiased page-workflow">
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16"><a href="../index.html" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3"/></svg></div><span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span></a><div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <p class="px-4 py-1 mt-2 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic Layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-Healing</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact Chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent Patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <p class="px-4 py-1 mt-2 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; Skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality Gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting Started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By Team Size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity Path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary cursor-pointer" aria-label="Toggle menu"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button></div></div><div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Learn section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Learn
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1">Framework</p>
+          <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+          <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Principles</a>
+          <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Architecture</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1 mt-2">Concepts</p>
+          <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Autonomous Software Engineering</a>
+          <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agentic Layer</a>
+          <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Self-Healing</a>
+          <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Artifact Chaining</a>
+          <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Engineering</a>
+          <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Permissions</a>
+          <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agent Patterns</a>
+        </div>
+        <!-- Build section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-glow font-medium" aria-expanded="false">
+          Build
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1">Workflow</p>
+          <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+          <a href="intent.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Intent</a>
+          <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Plan</a>
+          <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Build</a>
+          <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Test</a>
+          <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Review</a>
+          <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Document</a>
+          <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Deploy</a>
+          <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Monitor</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1 mt-2">Configuration</p>
+          <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Templates</a>
+          <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Commands &amp; Skills</a>
+          <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Integrations</a>
+          <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Quality Gates</a>
+          <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Config</a>
+        </div>
+        <!-- Adopt section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Adopt
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Getting Started</a>
+          <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary">By Team Size</a>
+          <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Maturity Path</a>
+          <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Customization</a>
+        </div>
+        <!-- Reference section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Reference
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Glossary</a>
+          <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Schema</a>
+          <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prerequisites</a>
+          <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Troubleshooting</a>
+        </div>
+      </div>
+    </div></nav>
+
+  <div class="lg:hidden fixed top-16 left-0 right-0 z-40 bg-void/90 backdrop-blur-md border-b border-subtle"><div class="mobile-phase-bar flex items-center gap-4 px-4 py-3"><a href="./" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-glow"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Overview</span></a><a href="intent.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full" style="background: #EC4899"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Intent</span></a><a href="plan.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-plan"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Plan</span></a><a href="build.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-build"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Build</span></a><a href="test.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-test"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Test</span></a><a href="review.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-review"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Review</span></a><a href="document.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-document"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Document</span></a><a href="deploy.html" class="flex items-center gap-2 shrink-0 border-b-2 border-deploy pb-1"><span class="w-2 h-2 rounded-full bg-deploy shadow-[0_0_8px_rgba(249,115,22,0.5)]"></span><span class="font-mono text-xs text-deploy whitespace-nowrap">Deploy</span></a><a href="monitor.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-monitor"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Monitor</span></a></div></div>
+
+  <aside class="hidden lg:block fixed left-0 top-16 bottom-0 w-64 border-r border-subtle bg-void/90 backdrop-blur-md z-40 overflow-y-auto py-8 px-4"><div class="mb-6"><span class="font-mono text-[10px] text-muted uppercase tracking-wider">Workflow</span></div><nav class="space-y-1"><a href="./" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-overview"><span class="phase-dot w-2 h-2 rounded-full bg-glow"></span><div><span class="phase-name font-mono text-xs text-primary">Overview</span></div></a><a href="intent.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50" style="--phase-color: #EC4899"><span class="phase-dot w-2 h-2 rounded-full" style="background: #EC4899"></span><div><span class="phase-name font-mono text-xs text-primary">Intent</span><span class="block text-[10px] text-muted">Requirements Analyst</span></div></a><a href="plan.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-plan"><span class="phase-dot w-2 h-2 rounded-full bg-plan"></span><div><span class="phase-name font-mono text-xs text-primary">Plan</span><span class="block text-[10px] text-muted">Software Architect</span></div></a><a href="build.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-build"><span class="phase-dot w-2 h-2 rounded-full bg-build"></span><div><span class="phase-name font-mono text-xs text-primary">Build</span><span class="block text-[10px] text-muted">Software Engineer</span></div></a><a href="test.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-test"><span class="phase-dot w-2 h-2 rounded-full bg-test"></span><div><span class="phase-name font-mono text-xs text-primary">Test</span><span class="block text-[10px] text-muted">QA Engineer</span></div></a><a href="review.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-review"><span class="phase-dot w-2 h-2 rounded-full bg-review"></span><div><span class="phase-name font-mono text-xs text-primary">Review</span><span class="block text-[10px] text-muted">Senior Reviewer</span></div></a><a href="document.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-document"><span class="phase-dot w-2 h-2 rounded-full bg-document"></span><div><span class="phase-name font-mono text-xs text-primary">Document</span><span class="block text-[10px] text-muted">Technical Writer</span></div></a><a href="deploy.html" class="phase-sidebar-item active flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-deploy"><span class="phase-dot w-2 h-2 rounded-full bg-deploy"></span><div><span class="phase-name font-mono text-xs">Deploy</span><span class="block text-[10px] text-muted">Release Engineer</span></div></a><a href="monitor.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-monitor"><span class="phase-dot w-2 h-2 rounded-full bg-monitor"></span><div><span class="phase-name font-mono text-xs text-primary">Monitor</span><span class="block text-[10px] text-muted">Operations</span></div></a></nav></aside>
+
+  <main id="main-content" class="pt-16 lg:pl-64"><div class="pt-12 lg:pt-0">
+
+    <section class="relative py-16 sm:py-20 overflow-hidden"><div class="ambient-glow w-[500px] h-[500px] bg-deploy/[0.05] -top-40 left-1/2 -translate-x-1/2"></div><div class="absolute inset-0 dot-grid opacity-40"></div><div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8"><ol class="flex items-center gap-0"><li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li><li><span class="mx-2 text-subtle">/</span></li><li><a href="../workflow/index.html" class="hover:text-secondary transition-colors">Build</a></li><li><span class="mx-2 text-subtle">/</span></li><li><span class="text-secondary" aria-current="page">Deploy</span></li></ol></nav><div class="p-8 rounded-xl bg-surface border border-subtle bl-4-deploy"><div class="flex items-center gap-4 mb-4"><div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-deploy shadow-[0_0_12px_rgba(249,115,22,0.5)]"></div><span class="font-mono text-sm text-muted">06</span></div><span class="px-3 py-1 text-xs font-mono rounded-full bg-deploy/10 text-deploy border border-deploy/20">Release Engineer</span></div><h1 class="font-mono text-4xl sm:text-5xl font-bold text-deploy mb-3">Deploy</h1><p class="text-lg text-secondary">Atomic commits. Structured PRs. Never git add -A.</p><div class="flex gap-2 mt-6 flex-wrap"><span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Read</span><span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Search</span><span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Execute</span><span class="perm-denied px-2.5 py-1 text-[11px] font-mono rounded">Write</span></div></div></div></section>
+
+    <section class="py-12 sm:py-16"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-6 bl-3-deploy section-heading-accent">Why this phase exists</h2><div class="space-y-4 text-secondary leading-relaxed"><p>Sloppy commit history and unstructured PRs make rollbacks, bisects, and audits painful. Deploy enforces commit discipline, the packaging step that turns workflow artifacts into a clean, reviewable change request.</p><p>It comes after Document because documentation updates are part of the commit. Code, tests, and docs all get packaged together.</p><p>"Deploy means PR" (Decision 004). The workflow's output is a reviewable change request, not a deployment. Human approval or auto-merge is a team-level configuration, not a framework decision.</p></div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-deploy section-heading-accent">Methodology</h2><div class="space-y-6">
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-deploy/10 border border-deploy/20 flex items-center justify-center font-mono text-xs text-deploy font-bold">1</div><div><h3 class="font-semibold text-primary mb-1">Receive all artifacts</h3><p class="text-sm text-secondary leading-relaxed">Code changes, docs, test evidence, review verdict, and plan artifact. Everything the PR needs to tell its story.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-deploy/10 border border-deploy/20 flex items-center justify-center font-mono text-xs text-deploy font-bold">2</div><div><h3 class="font-semibold text-primary mb-1">Stage changes atomically</h3><p class="text-sm text-secondary leading-relaxed">Group related files into logical commits. Never <span class="font-mono text-xs text-fail">git add -A</span> or <span class="font-mono text-xs text-fail">git add .</span>. Stage specific files by name for each commit.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-deploy/10 border border-deploy/20 flex items-center justify-center font-mono text-xs text-deploy font-bold">3</div><div><h3 class="font-semibold text-primary mb-1">Write conventional commit messages</h3><p class="text-sm text-secondary leading-relaxed">Format: <span class="font-mono text-xs text-deploy">type(scope): description</span>. Types: feat, fix, refactor, test, docs, chore. Each commit message is meaningful and searchable.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-deploy/10 border border-deploy/20 flex items-center justify-center font-mono text-xs text-deploy font-bold">4</div><div><h3 class="font-semibold text-primary mb-1">Create commits</h3><p class="text-sm text-secondary leading-relaxed">One commit per logical change unit. Implementation, tests, and docs may be separate commits. Each commit is a self-contained, buildable state.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-deploy/10 border border-deploy/20 flex items-center justify-center font-mono text-xs text-deploy font-bold">5</div><div><h3 class="font-semibold text-primary mb-1">Push and create PR (or merge locally)</h3><p class="text-sm text-secondary leading-relaxed">Remote flow: push branch and create PR with structured body. Local flow: merge to target branch. Both flows produce a traceable result.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-deploy/10 border border-deploy/20 flex items-center justify-center font-mono text-xs text-deploy font-bold">6</div><div><h3 class="font-semibold text-primary mb-1">Generate deploy report</h3><p class="text-sm text-secondary leading-relaxed">List of commits with hashes and messages, PR URL (remote) or merge hash (local).</p></div></div>
+    </div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-deploy section-heading-accent">Inputs and outputs</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"><div class="p-6 rounded-xl bg-surface border border-subtle bl-3-document"><h3 class="font-mono text-sm font-semibold text-document mb-4">Inputs</h3><ul class="space-y-2 text-sm text-secondary"><li class="flex items-start gap-2"><span class="text-document mt-1">&#8226;</span> All artifacts from previous phases</li><li class="flex items-start gap-2"><span class="text-document mt-1">&#8226;</span> Code changes + documentation updates</li><li class="flex items-start gap-2"><span class="text-document mt-1">&#8226;</span> Test evidence, review verdict</li></ul></div><div class="p-6 rounded-xl bg-surface border border-subtle bl-3-monitor"><h3 class="font-mono text-sm font-semibold text-monitor mb-4">Outputs</h3><ul class="space-y-2 text-sm text-secondary"><li class="flex items-start gap-2"><span class="text-monitor mt-1">&#8226;</span> Atomic commits with conventional messages</li><li class="flex items-start gap-2"><span class="text-monitor mt-1">&#8226;</span> Structured PR (remote) or merge hash (local)</li><li class="flex items-start gap-2"><span class="text-monitor mt-1">&#8226;</span> Deploy report</li></ul><p class="text-xs text-muted mt-4">Consumed by: Monitor phase as <span class="font-mono text-glow-hover">$deploy_report</span></p></div></div>
+    <div class="code-block p-6 overflow-x-auto"><div class="flex items-center justify-between mb-4"><span class="font-mono text-xs text-muted">PR body template</span></div><pre class="font-mono text-sm leading-relaxed"><code><span class="keyword">## Summary</span>
+<span class="var">${plan_summary}</span>
+
+<span class="keyword">## Changes</span>
+- Refactored token validation in auth module
+- Added JWT format pre-validation step
+- Created test suite (47 tests)
+- Updated documentation and ADR
+
+<span class="keyword">## Test Evidence</span>
+- All 47 tests passing
+- Coverage: 94.2% statements, 88.1% branches
+- Self-healing: 1 fix applied during test phase
+
+<span class="keyword">## Review Status</span>
+- 0 blockers, 1 tech debt item logged
+- Review passed on iteration 1
+
+<span class="keyword">## Plan Reference</span>
+<span class="var">${plan_artifact_link}</span></code></pre></div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-deploy section-heading-accent">Agent pattern</h2><div class="mb-6"><span class="px-3 py-1 text-xs font-mono rounded-full bg-deploy/10 text-deploy border border-deploy/20">Single Agent</span></div><p class="text-sm text-secondary leading-relaxed">Deploy is a linear task. Multi-agent coordination would be overkill. A single agent stages files, creates commits, pushes, and creates the PR. The flow is: Stage -> Commit -> Push -> PR Create.</p></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-6 bl-3-deploy section-heading-accent">Tool permissions</h2><div class="flex gap-2 flex-wrap mb-6"><span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Read</span><span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Search</span><span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Execute</span><span class="perm-denied px-3 py-1.5 text-xs font-mono rounded">Write</span></div><p class="text-sm text-secondary leading-relaxed">Execute is needed for git operations (commit, push, PR creation via CLI). Write is denied because no code should change at this point. Everything was finalized in earlier phases. If something still needs editing, it goes back to Build.</p></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-deploy section-heading-accent">Prompt template</h2><div class="code-block p-6 overflow-x-auto bl-4-deploy"><pre class="font-mono text-sm leading-relaxed"><code><span class="comment"># Deploy Phase -- Release Engineer</span>
+
+<span class="keyword">## Role</span>
+You are a <span class="type">Release Engineer</span>. Your job is to create clean,
+atomic commits and a structured PR from the completed
+implementation.
+
+You do <span class="string">NOT</span> modify code. All code changes are finalized.
+You package and ship them with proper commit discipline.
+
+<span class="keyword">## Context</span>
+Plan Artifact:
+<span class="var">${plan_artifact}</span>
+
+Build Report:
+<span class="var">${build_report}</span>
+
+Test Report:
+<span class="var">${test_report}</span>
+
+Review Verdict:
+<span class="var">${review_verdict}</span>
+
+Branch: <span class="var">${branch_name}</span>
+Target Branch: <span class="var">${target_branch}</span>        <span class="comment"># e.g., main, develop</span>
+Remote: <span class="var">${remote_name}</span>                 <span class="comment"># e.g., origin</span>
+PR Workflow: <span class="var">${pr_workflow}</span>            <span class="comment"># remote | local</span>
+
+<span class="keyword">## Commit Strategy</span>
+
+<span class="keyword">### Conventional Commit Prefixes</span>
+- <span class="type">feat</span>: New feature
+- <span class="type">fix</span>: Bug fix
+- <span class="type">refactor</span>: Code restructuring
+- <span class="type">test</span>: Test additions or changes
+- <span class="type">docs</span>: Documentation updates
+- <span class="type">chore</span>: Build process, tooling changes
+
+<span class="keyword">### Atomic Commits</span>
+Each commit represents <span class="string">ONE</span> logical change:
+- Implementation: <span class="string">feat(auth): add JWT pre-validation</span>
+- Tests: <span class="string">test(auth): add token validation test suite</span>
+- Docs: <span class="string">docs(auth): update token flow documentation</span>
+
+<span class="keyword">### NEVER Do This</span>
+- <span class="comment">git add -A</span> (bulk staging)
+- <span class="comment">git add .</span> (bulk staging)
+- Single commit with all changes
+- Commit message without type prefix
+
+<span class="keyword">## Methodology</span>
+1. Review all changed files from the Build Report
+2. Group files into logical commit units
+3. For each commit unit:
+   a. Stage specific files: <span class="type">git add path/to/file1 path/to/file2</span>
+   b. Commit with conventional message
+4. Push to remote (if remote workflow)
+5. Create PR with structured body
+6. Report commit list and PR URL
+
+<span class="keyword">## Remote/Local Fallback</span>
+<span class="keyword">### If</span> <span class="var">${pr_workflow}</span> == <span class="string">"remote"</span>:
+1. git push -u <span class="var">${remote_name}</span> <span class="var">${branch_name}</span>
+2. Create PR via gh pr create or equivalent
+3. PR body references plan artifact
+
+<span class="keyword">### If</span> <span class="var">${pr_workflow}</span> == <span class="string">"local"</span>:
+1. git checkout <span class="var">${target_branch}</span>
+2. git merge <span class="var">${branch_name}</span>
+3. Report merge commit hash
+
+<span class="keyword">## Constraints</span>
+- <span class="string">Never</span> git add -A or git add .
+- Every commit is atomic and meaningful.
+- Conventional commit prefixes required.
+- PR body must reference the plan artifact.
+- Do not modify any files.
+
+<span class="keyword">## Output Format</span>
+<span class="keyword">### Remote:</span>
+- Commit list: hash, message, files for each commit
+- PR URL: <span class="var">${pr_url}</span>
+
+<span class="keyword">### Local:</span>
+- Commit list: hash, message, files for each commit
+- Merge hash: <span class="var">${merge_hash}</span></code></pre></div><div class="mt-4 flex flex-wrap gap-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-deploy/8 text-deploy border border-deploy/15">Role Assignment</span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15">Template Variables</span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-build/8 text-build border border-build/15">Conventional Commits</span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-fail/8 text-fail border border-fail/15">Atomic Staging</span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-monitor/8 text-monitor border border-monitor/15">Remote/Local Fallback</span></div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-deploy section-heading-accent">Best practices</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="p-6 rounded-xl bg-surface border border-subtle bl-3-pass"><h3 class="font-mono text-sm font-semibold text-pass mb-4">Do</h3><ul class="space-y-2 text-sm text-secondary"><li>Stage files individually by name</li><li>Use conventional commit prefixes</li><li>Reference the plan in the PR body</li><li>Include test evidence in the PR</li><li>Make each commit self-contained and buildable</li></ul></div><div class="p-6 rounded-xl bg-surface border border-subtle bl-3-fail"><h3 class="font-mono text-sm font-semibold text-fail mb-4">Don't</h3><ul class="space-y-2 text-sm text-secondary"><li>Never <span class="font-mono text-xs">git add -A</span></li><li>Never <span class="font-mono text-xs">git add .</span></li><li>Never create a single monolithic commit</li><li>Never skip the PR body</li><li>Never modify files at this stage</li></ul></div></div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-deploy section-heading-accent">Nuances</h2><div class="space-y-6">
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">"Never bulk-add files" is the single most important constraint</h3><p class="text-sm text-secondary leading-relaxed">Bulk staging picks up debug files, unrelated changes, and sensitive files (.env, credentials). Stage each file deliberately, by name.</p></div>
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Each commit is atomic and meaningful</h3><p class="text-sm text-secondary leading-relaxed">If someone runs <span class="font-mono text-xs">git bisect</span>, each commit should be a self-contained, buildable state. This means implementation commits include the code that makes tests pass, not code that breaks them.</p></div>
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">PR body references plan artifact</h3><p class="text-sm text-secondary leading-relaxed">This gives you traceability from original task, through the plan, to the final PR. Anyone can trace a change back to why it was made.</p></div>
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Remote/local fallback</h3><p class="text-sm text-secondary leading-relaxed">Not all teams use GitHub or GitLab. The Deploy phase supports local-only workflows where the output is a merge commit rather than a PR. The template variable <span class="font-mono text-glow-hover text-xs">${pr_workflow}</span> controls the routing.</p></div>
+    </div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center"><a href="document.html" class="inline-flex items-center gap-2 text-sm text-document hover:text-primary transition-colors"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Document Phase</a><a href="monitor.html" class="inline-flex items-center gap-2 text-sm text-monitor hover:text-primary transition-colors">Monitor Phase<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a></div></div></section>
+
+  </div></main>
+
+  <footer class="border-t border-subtle py-12 lg:pl-64"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3"/></svg></div><span class="font-mono text-xs text-muted">Agentic Engineering Framework</span></div><div class="flex items-center gap-6"><a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a><a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a><a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a><a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a></div><p class="text-xs text-muted">The code is output. The agentic layer is the product.</p></div></div></footer>
+
+  <script>document.getElementById('mobile-menu-btn').addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('hidden'));document.querySelectorAll('#mobile-menu a').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobile-menu').classList.add('hidden')));
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });const reveals=document.querySelectorAll('.reveal');const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});reveals.forEach(el=>ro.observe(el));</script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

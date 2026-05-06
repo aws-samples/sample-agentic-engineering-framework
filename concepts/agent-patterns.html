@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Agent Orchestration Patterns - AEF Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="bg-void text-primary font-sans antialiased page-concepts">
+
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg>
+          </div>
+          <span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-healing loops</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Build<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Adopt<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By team size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Reference<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary" aria-label="Toggle navigation menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+        </button>
+      </div>
+    </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Learn section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Learn
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-1 pb-1">Framework</p>
+          <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Overview</a>
+          <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Principles</a>
+          <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Architecture</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-2 pb-1">Concepts</p>
+          <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Autonomous Software Engineering</a>
+          <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Agentic layer</a>
+          <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Self-healing loops</a>
+          <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Artifact chaining</a>
+          <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prompt engineering</a>
+          <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Tool permissions</a>
+          <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Agent patterns</a>
+        </div>
+        <!-- Build section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Build
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-1 pb-1">Workflow</p>
+          <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow overview</a>
+          <a href="../workflow/intent.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Intent</a>
+          <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Plan</a>
+          <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Build</a>
+          <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Test</a>
+          <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Review</a>
+          <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Document</a>
+          <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Deploy</a>
+          <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Monitor</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-2 pb-1">Configuration</p>
+          <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prompt templates</a>
+          <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Commands &amp; skills</a>
+          <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Tool integrations</a>
+          <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Quality gates</a>
+          <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow config</a>
+        </div>
+        <!-- Adopt section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Adopt
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Getting started</a>
+          <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">By team size</a>
+          <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Maturity path</a>
+          <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Customization</a>
+        </div>
+        <!-- Reference section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Reference
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Glossary</a>
+          <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow Schema</a>
+          <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prerequisites</a>
+          <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Troubleshooting</a>
+        </div>
+        <div class="pt-2 border-t border-subtle">
+          <a href="../adopt/getting-started.html" class="block py-2 text-sm font-medium text-glow hover:text-glow-hover transition-colors">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pt-16 flex">
+    <!-- Sidebar -->
+    <aside class="hidden lg:block w-64 flex-shrink-0">
+      <div class="fixed top-16 w-64 h-[calc(100vh-4rem)] overflow-y-auto border-r border-subtle py-8 px-4">
+        <p class="text-xs font-mono text-muted uppercase tracking-wider mb-4">Concepts</p>
+        <nav class="space-y-1 mb-6">
+          <a href="agentic-layer.html" class="sidebar-link">The Agentic Layer</a>
+          <a href="agent-patterns.html" class="sidebar-link active">Agent Patterns</a>
+          <a href="self-healing.html" class="sidebar-link">Self-Healing Loops</a>
+          <a href="artifact-chaining.html" class="sidebar-link">Artifact Chaining</a>
+          <a href="prompt-engineering.html" class="sidebar-link">Prompt Engineering</a>
+          <a href="tool-permissions.html" class="sidebar-link">Tool Permissions</a>
+          <a href="ase.html" class="sidebar-link">Autonomous Software Engineering</a>
+        </nav>
+        <p class="text-xs font-mono text-muted uppercase tracking-wider mb-4">On This Page</p>
+        <nav class="space-y-1" id="page-toc">
+          <a href="#when-one" class="sidebar-link">When One Agent Is Enough</a>
+          <a href="#when-many" class="sidebar-link">When You Need Multiple</a>
+          <a href="#three-parallelism" class="sidebar-link">Three Types of Parallelism</a>
+          <a href="#four-patterns" class="sidebar-link">The Four Patterns</a>
+          <a href="#decision-tree" class="sidebar-link">Decision Tree</a>
+          <a href="#context-protection" class="sidebar-link">Context Window Protection</a>
+          <a href="#phase-mapping" class="sidebar-link">Phase-to-Pattern Mapping</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main id="main-content" class="flex-1 min-w-0">
+      <!-- Breadcrumb -->
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+          <ol class="flex items-center gap-0">
+            <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><a href="../framework/overview.html" class="hover:text-secondary transition-colors">Learn</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><span class="text-secondary" aria-current="page">Agent Patterns</span></li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Hero -->
+      <section class="relative py-16 sm:py-24 overflow-hidden">
+        <div class="absolute inset-0 dot-grid opacity-40"></div>
+        <div class="ambient-glow w-[500px] h-[500px] bg-glow/[0.04] -top-40 -right-40"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="reveal">
+            <p class="text-sm font-mono text-glow mb-4 tracking-wider uppercase">Concept 02</p>
+            <h1 class="text-4xl sm:text-5xl font-bold text-primary mb-6">Agent Orchestration Patterns</h1>
+            <p class="text-lg text-secondary max-w-2xl leading-relaxed">When one agent is enough, when you need a team, and how to coordinate them. Four patterns for every orchestration need.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Insight -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="reveal bg-glow-faint border border-glow/20 rounded-xl p-6 sm:p-8">
+          <p class="text-lg sm:text-xl font-medium text-primary leading-relaxed">"Single agent is the default. Multi-agent is an upgrade you earn when the task demands it."</p>
+          <p class="text-sm text-secondary mt-2">Adding agents adds overhead. Use the simplest orchestration that produces the quality you need.</p>
+        </div>
+      </section>
+
+      <!-- When One Agent Is Enough -->
+      <section id="when-one" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">When one agent is enough</h2>
+          <p class="text-secondary leading-relaxed mb-6">Most tasks do not need multi-agent orchestration. Simple, well-scoped tasks (classification, commit message generation, small patches under 200 lines, single-file changes) work fine with a single agent. Rule of thumb: if the task fits in one context window with room to spare, one agent is enough.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+            <div class="p-4 rounded-lg bg-surface border border-subtle text-center">
+              <p class="font-mono text-2xl text-pass mb-1">1x</p>
+              <p class="text-xs text-secondary">simpler orchestration</p>
+            </div>
+            <div class="p-4 rounded-lg bg-surface border border-subtle text-center">
+              <p class="font-mono text-2xl text-pass mb-1">$</p>
+              <p class="text-xs text-secondary">lower cost per task</p>
+            </div>
+            <div class="p-4 rounded-lg bg-surface border border-subtle text-center">
+              <p class="font-mono text-2xl text-pass mb-1">Fast</p>
+              <p class="text-xs text-secondary">no coordination overhead</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- When You Need Multiple Agents -->
+      <section id="when-many" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">When you need multiple agents</h2>
+          <p class="text-secondary leading-relaxed mb-6">Multi-agent orchestration earns its overhead when the task exceeds what one agent can handle well. Watch for these signals:</p>
+          <ul class="space-y-3 text-secondary text-sm mb-6">
+            <li class="flex items-start gap-3"><span class="text-warning font-mono text-xs bg-warning/10 px-1.5 py-0.5 rounded">Signal</span> The task requires more context than one window can hold</li>
+            <li class="flex items-start gap-3"><span class="text-warning font-mono text-xs bg-warning/10 px-1.5 py-0.5 rounded">Signal</span> The task crosses multiple domains (backend + frontend + infra)</li>
+            <li class="flex items-start gap-3"><span class="text-warning font-mono text-xs bg-warning/10 px-1.5 py-0.5 rounded">Signal</span> Quality matters enough to justify cross-validation</li>
+            <li class="flex items-start gap-3"><span class="text-warning font-mono text-xs bg-warning/10 px-1.5 py-0.5 rounded">Signal</span> Research phase produces too much information for one agent to synthesize</li>
+          </ul>
+          <p class="text-secondary leading-relaxed">Multi-agent adds overhead: coordination cost, potential for conflicting outputs, harder debugging. Use it when the quality or capability gain justifies the complexity.</p>
+        </div>
+      </section>
+
+      <!-- Three Types of Parallelism -->
+      <section id="three-parallelism" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Three types of parallelism</h2>
+          <p class="text-secondary leading-relaxed mb-8">Parallelism in agentic workflows operates at three distinct levels. Conflating them leads to over-engineering at one level and missing opportunities at another.</p>
+
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold text-primary mb-3">Instance-level parallelism</h3>
+            <p class="text-secondary text-sm leading-relaxed mb-4">Multiple workflow runs execute simultaneously on different tasks. Each gets its own isolated environment (worktree, ports, state). This is the highest-leverage parallelism; it multiplies throughput without changing workflow complexity.</p>
+            <p class="text-secondary text-sm leading-relaxed">Instance-level parallelism is an infrastructure concern, not an agent concern. It requires isolation mechanisms (git worktrees, containers, port allocation) but no changes to prompt templates or phase logic.</p>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold text-primary mb-3">Phase-level parallelism</h3>
+            <p class="text-secondary text-sm leading-relaxed mb-4">Multiple phases run concurrently within a single workflow. For example, running Document and Deploy in parallel after Review completes.</p>
+            <p class="text-secondary text-sm leading-relaxed">Phase-level parallelism is rarely useful because most phases have sequential dependencies (Build depends on Plan, Test depends on Build). The only common case is Document and Deploy running in parallel, since Document's output doesn't affect the PR.</p>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold text-primary mb-3">Agent-level parallelism</h3>
+            <p class="text-secondary text-sm leading-relaxed mb-4">Multiple agents (or subagents) work simultaneously within a single phase. For example, three research subagents investigating different parts of the codebase during Plan, or backend/frontend/test specialist reviewers running in parallel during Review.</p>
+            <p class="text-secondary text-sm leading-relaxed">Agent-level parallelism is handled by the agent runtime, not the workflow engine. Modern agent runtimes support spawning parallel subagents natively. The prompt template triggers this by instructing the agent to delegate work.</p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-primary mb-3">Which level matters most?</h3>
+            <p class="text-secondary text-sm leading-relaxed">For most teams: <strong class="text-primary">instance-level</strong> (run more workflows concurrently) delivers the most throughput gain with the least complexity. Agent-level parallelism is second, since it's free when your agent runtime supports it. Phase-level parallelism is last because the dependency chain between phases limits the opportunity.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Four Orchestration Patterns -->
+      <section id="four-patterns" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-10">The four orchestration patterns</h2>
+
+          <!-- Pattern 1: Sequential Handoff -->
+          <div class="mb-16">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-glow/10 text-glow border border-glow/20">Pattern 1</span>
+              <h3 class="text-xl font-semibold text-primary">Sequential handoff</h3>
+            </div>
+            <p class="text-secondary leading-relaxed mb-6">An assembly line. Agent A produces output. Agent B takes that output and validates, refines, or extends it. A linear chain where each step adds quality.</p>
+
+            <!-- SVG Diagram -->
+            <div class="mb-6">
+              <svg viewBox="0 0 500 100" class="w-full max-w-md mx-auto" role="img" aria-label="Sequential handoff: Agent A output flows to Agent B">
+                <rect x="30" y="25" width="130" height="50" rx="10" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+                <text x="95" y="47" text-anchor="middle" fill="#6366F1" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Agent A</text>
+                <text x="95" y="63" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Produces</text>
+                <line x1="165" y1="50" x2="300" y2="50" stroke="#6366F1" stroke-width="1.5" class="flow-line" />
+                <polygon points="297,44 310,50 297,56" fill="#6366F1" opacity="0.7" />
+                <text x="232" y="42" text-anchor="middle" fill="#52525B" font-size="9" font-family="JetBrains Mono, monospace">artifact</text>
+                <rect x="315" y="25" width="130" height="50" rx="10" fill="#111113" stroke="#818CF8" stroke-width="1.5" />
+                <text x="380" y="47" text-anchor="middle" fill="#818CF8" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Agent B</text>
+                <text x="380" y="63" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Validates</text>
+              </svg>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div>
+                <p class="text-xs font-mono text-pass mb-2">Pros</p>
+                <ul class="space-y-1 text-sm text-secondary">
+                  <li>Simple to implement and debug</li>
+                  <li>Clear accountability per step</li>
+                  <li>Easy to reason about data flow</li>
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs font-mono text-warning mb-2">Cons</p>
+                <ul class="space-y-1 text-sm text-secondary">
+                  <li>No parallelism; bottleneck at slowest agent</li>
+                  <li>Single point of failure per step</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-xs text-muted font-mono">Used by: <span class="text-plan">Plan</span> (planner + validator), <span class="text-build">Build</span> (builder + self-reviewer)</p>
+          </div>
+
+          <!-- Pattern 2: Parallel Fan-Out -->
+          <div class="mb-16">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-glow/10 text-glow border border-glow/20">Pattern 2</span>
+              <h3 class="text-xl font-semibold text-primary">Parallel fan-out / merge</h3>
+            </div>
+            <p class="text-secondary leading-relaxed mb-6">Multiple inspectors checking a car at the same time: one checks the engine, another the brakes, another the electronics. A coordinator merges their reports. Multiple agents work on the same task (or sub-parts) in parallel, then a merge step synthesizes results.</p>
+
+            <div class="mb-6">
+              <svg viewBox="0 0 500 180" class="w-full max-w-lg mx-auto" role="img" aria-label="Parallel fan-out: dispatch to three agents, merge results">
+                <!-- Dispatch -->
+                <rect x="10" y="65" width="100" height="50" rx="10" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+                <text x="60" y="93" text-anchor="middle" fill="#6366F1" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Dispatch</text>
+                <!-- Fan out lines -->
+                <line x1="115" y1="78" x2="185" y2="30" stroke="#6366F1" stroke-width="1" class="flow-line" />
+                <line x1="115" y1="90" x2="185" y2="90" stroke="#6366F1" stroke-width="1" class="flow-line anim-delay-500" />
+                <line x1="115" y1="102" x2="185" y2="150" stroke="#6366F1" stroke-width="1" class="flow-line anim-delay-1000" />
+                <!-- Parallel agents -->
+                <rect x="190" y="5" width="110" height="50" rx="10" fill="#111113" stroke="#10B981" stroke-width="1.5" />
+                <text x="245" y="33" text-anchor="middle" fill="#10B981" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Security</text>
+                <rect x="190" y="65" width="110" height="50" rx="10" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
+                <text x="245" y="93" text-anchor="middle" fill="#F59E0B" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Performance</text>
+                <rect x="190" y="125" width="110" height="50" rx="10" fill="#111113" stroke="#A78BFA" stroke-width="1.5" />
+                <text x="245" y="153" text-anchor="middle" fill="#A78BFA" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Style</text>
+                <!-- Merge lines -->
+                <line x1="305" y1="30" x2="375" y2="78" stroke="#818CF8" stroke-width="1" class="flow-line anim-delay-1500" />
+                <line x1="305" y1="90" x2="375" y2="90" stroke="#818CF8" stroke-width="1" class="flow-line anim-delay-2000" />
+                <line x1="305" y1="150" x2="375" y2="102" stroke="#818CF8" stroke-width="1" class="flow-line anim-delay-2500" />
+                <!-- Merge -->
+                <rect x="380" y="65" width="100" height="50" rx="10" fill="#111113" stroke="#818CF8" stroke-width="1.5" />
+                <text x="430" y="93" text-anchor="middle" fill="#818CF8" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Merge</text>
+              </svg>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div>
+                <p class="text-xs font-mono text-pass mb-2">Pros</p>
+                <ul class="space-y-1 text-sm text-secondary">
+                  <li>Faster for independent subtasks</li>
+                  <li>Diverse perspectives on the same problem</li>
+                  <li>Scales well horizontally</li>
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs font-mono text-warning mb-2">Cons</p>
+                <ul class="space-y-1 text-sm text-secondary">
+                  <li>Merge step is hard (conflicts, redundancy)</li>
+                  <li>Coordinator needs strong instructions</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-xs text-muted font-mono">Used by: <span class="text-review">Review</span> (parallel specialist reviewers), <span class="text-plan">Plan</span> (parallel research agents)</p>
+          </div>
+
+          <!-- Pattern 3: Hierarchical Delegation -->
+          <div class="mb-16">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-glow/10 text-glow border border-glow/20">Pattern 3</span>
+              <h3 class="text-xl font-semibold text-primary">Hierarchical delegation</h3>
+            </div>
+            <p class="text-secondary leading-relaxed mb-6">A general directing lieutenants. A lead agent decomposes the task and dispatches subtasks to worker agents. Workers report back. The lead synthesizes their outputs into a unified result. This protects the lead agent's context window: workers hold subtask context, the lead holds only summaries.</p>
+
+            <div class="mb-6">
+              <svg viewBox="0 0 500 200" class="w-full max-w-lg mx-auto" role="img" aria-label="Hierarchical: lead delegates to three workers">
+                <!-- Lead -->
+                <rect x="175" y="10" width="150" height="50" rx="10" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+                <text x="250" y="33" text-anchor="middle" fill="#6366F1" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Lead</text>
+                <text x="250" y="48" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Decomposes & Synthesizes</text>
+                <!-- Down arrows -->
+                <line x1="200" y1="65" x2="100" y2="115" stroke="#6366F1" stroke-width="1" opacity="0.5" />
+                <line x1="250" y1="65" x2="250" y2="115" stroke="#6366F1" stroke-width="1" opacity="0.5" />
+                <line x1="300" y1="65" x2="400" y2="115" stroke="#6366F1" stroke-width="1" opacity="0.5" />
+                <!-- Workers -->
+                <rect x="30" y="120" width="140" height="50" rx="10" fill="#111113" stroke="#818CF8" stroke-width="1" />
+                <text x="100" y="143" text-anchor="middle" fill="#818CF8" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Backend</text>
+                <text x="100" y="158" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Worker</text>
+                <rect x="180" y="120" width="140" height="50" rx="10" fill="#111113" stroke="#818CF8" stroke-width="1" />
+                <text x="250" y="143" text-anchor="middle" fill="#818CF8" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Frontend</text>
+                <text x="250" y="158" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Worker</text>
+                <rect x="330" y="120" width="140" height="50" rx="10" fill="#111113" stroke="#818CF8" stroke-width="1" />
+                <text x="400" y="143" text-anchor="middle" fill="#818CF8" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Database</text>
+                <text x="400" y="158" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Worker</text>
+                <!-- Up arrows (dashed) -->
+                <line x1="100" y1="118" x2="200" y2="63" stroke="#818CF8" stroke-width="1" stroke-dasharray="4 3" opacity="0.4" />
+                <line x1="250" y1="118" x2="250" y2="63" stroke="#818CF8" stroke-width="1" stroke-dasharray="4 3" opacity="0.4" />
+                <line x1="400" y1="118" x2="300" y2="63" stroke="#818CF8" stroke-width="1" stroke-dasharray="4 3" opacity="0.4" />
+              </svg>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div>
+                <p class="text-xs font-mono text-pass mb-2">Pros</p>
+                <ul class="space-y-1 text-sm text-secondary">
+                  <li>Scales to complex, decomposable tasks</li>
+                  <li>Protects lead agent's context window</li>
+                  <li>Workers can be specialized</li>
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs font-mono text-warning mb-2">Cons</p>
+                <ul class="space-y-1 text-sm text-secondary">
+                  <li>Lead must decompose well</li>
+                  <li>Communication overhead between levels</li>
+                  <li>Workers may produce inconsistent outputs</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-xs text-muted font-mono">Used by: <span class="text-build">Build</span> (for large features), <span class="text-review">Review</span> (main reviewer delegates)</p>
+          </div>
+
+          <!-- Pattern 4: Adversarial / Debate -->
+          <div class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-glow/10 text-glow border border-glow/20">Pattern 4</span>
+              <h3 class="text-xl font-semibold text-primary">Adversarial / debate</h3>
+            </div>
+            <p class="text-secondary leading-relaxed mb-6">A courtroom debate. Two agents argue opposing positions or propose competing solutions. A judge agent evaluates and decides. This surfaces hidden risks and reduces confirmation bias. Expensive, but valuable for high-stakes decisions.</p>
+
+            <div class="mb-6">
+              <svg viewBox="0 0 500 180" class="w-full max-w-lg mx-auto" role="img" aria-label="Adversarial: two advocates debate before a judge">
+                <!-- Advocate A -->
+                <rect x="30" y="10" width="140" height="50" rx="10" fill="#111113" stroke="#10B981" stroke-width="1.5" />
+                <text x="100" y="33" text-anchor="middle" fill="#10B981" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Advocate A</text>
+                <text x="100" y="48" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Proposes approach</text>
+                <!-- Advocate B -->
+                <rect x="330" y="10" width="140" height="50" rx="10" fill="#111113" stroke="#EF4444" stroke-width="1.5" />
+                <text x="400" y="33" text-anchor="middle" fill="#EF4444" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Advocate B</text>
+                <text x="400" y="48" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Counter-proposes</text>
+                <!-- Bidirectional dashed -->
+                <line x1="175" y1="35" x2="325" y2="35" stroke="#52525B" stroke-width="1" stroke-dasharray="4 3" />
+                <text x="250" y="28" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">debate</text>
+                <!-- Down to Judge -->
+                <line x1="100" y1="65" x2="220" y2="115" stroke="#6366F1" stroke-width="1" opacity="0.5" />
+                <line x1="400" y1="65" x2="280" y2="115" stroke="#6366F1" stroke-width="1" opacity="0.5" />
+                <!-- Judge -->
+                <rect x="175" y="120" width="150" height="50" rx="10" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+                <text x="250" y="143" text-anchor="middle" fill="#6366F1" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Judge</text>
+                <text x="250" y="158" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Evaluates & Decides</text>
+              </svg>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div>
+                <p class="text-xs font-mono text-pass mb-2">Pros</p>
+                <ul class="space-y-1 text-sm text-secondary">
+                  <li>Surfaces hidden risks and edge cases</li>
+                  <li>Reduces confirmation bias</li>
+                  <li>Produces more thorough analysis</li>
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs font-mono text-warning mb-2">Cons</p>
+                <ul class="space-y-1 text-sm text-secondary">
+                  <li>Expensive (3+ agents minimum)</li>
+                  <li>Slower than other patterns</li>
+                  <li>Judge must be well-calibrated</li>
+                </ul>
+              </div>
+            </div>
+            <p class="text-xs text-muted font-mono">Used by: <span class="text-plan">Plan</span> (major architecture decisions), <span class="text-review">Review</span> (controversial trade-offs)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Decision Tree -->
+      <section id="decision-tree" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Decision Tree: Which Pattern Do I Use?</h2>
+          <p class="text-secondary leading-relaxed mb-8">Click any question to follow the path to a recommendation.</p>
+
+          <div class="bg-surface border border-subtle rounded-xl p-6 sm:p-8 overflow-x-auto">
+            <svg id="decision-svg" viewBox="0 0 720 480" class="w-full min-w-[600px]" role="img" aria-label="Interactive decision tree for choosing an orchestration pattern">
+              <defs>
+                <marker id="dtArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6366F1" opacity="0.5" /></marker>
+                <marker id="dtArrowHi" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6366F1" opacity="1" /></marker>
+              </defs>
+
+              <!-- Q1: Simple & single-domain? -->
+              <g class="decision-node" data-node="q1" onclick="selectPath('single')">
+                <polygon points="360,10 500,50 360,90 220,50" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+                <text x="360" y="46" text-anchor="middle" fill="#F4F4F5" font-size="10" font-family="IBM Plex Sans, sans-serif">Simple & single-domain?</text>
+                <text x="360" y="60" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Fits in one context window?</text>
+              </g>
+              <!-- YES -> Single Agent -->
+              <line x1="500" y1="50" x2="600" y2="50" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#dtArrow)" class="decision-path" data-path="single" />
+              <text x="545" y="43" fill="#10B981" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
+              <g class="decision-node" data-node="single" onclick="selectPath('single')">
+                <rect x="610" y="30" width="100" height="40" rx="8" fill="#111113" stroke="#10B981" stroke-width="1.5" />
+                <text x="660" y="54" text-anchor="middle" fill="#10B981" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Single Agent</text>
+              </g>
+
+              <!-- NO -> Q2 -->
+              <line x1="360" y1="90" x2="360" y2="130" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#dtArrow)" class="decision-path" data-path="q2 sequential parallel hierarchical adversarial" />
+              <text x="375" y="113" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">NO</text>
+
+              <!-- Q2: Needs cross-validation? -->
+              <g class="decision-node" data-node="q2" onclick="selectPath('sequential')">
+                <polygon points="360,130 500,170 360,210 220,170" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+                <text x="360" y="166" text-anchor="middle" fill="#F4F4F5" font-size="10" font-family="IBM Plex Sans, sans-serif">Needs cross-validation?</text>
+                <text x="360" y="180" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">One builds, another checks?</text>
+              </g>
+              <!-- YES -> Sequential -->
+              <line x1="500" y1="170" x2="600" y2="170" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#dtArrow)" class="decision-path" data-path="sequential" />
+              <text x="545" y="163" fill="#10B981" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
+              <g class="decision-node" data-node="sequential" onclick="selectPath('sequential')">
+                <rect x="610" y="150" width="100" height="40" rx="8" fill="#111113" stroke="#818CF8" stroke-width="1.5" />
+                <text x="660" y="167" text-anchor="middle" fill="#818CF8" font-size="9" font-weight="600" font-family="JetBrains Mono, monospace">Sequential</text>
+                <text x="660" y="180" text-anchor="middle" fill="#818CF8" font-size="9" font-family="JetBrains Mono, monospace">Handoff</text>
+              </g>
+
+              <!-- NO -> Q3 -->
+              <line x1="360" y1="210" x2="360" y2="250" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#dtArrow)" class="decision-path" data-path="q3 parallel hierarchical adversarial" />
+              <text x="375" y="233" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">NO</text>
+
+              <!-- Q3: Can subtasks run independently? -->
+              <g class="decision-node" data-node="q3" onclick="selectPath('parallel')">
+                <polygon points="360,250 510,290 360,330 210,290" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+                <text x="360" y="286" text-anchor="middle" fill="#F4F4F5" font-size="10" font-family="IBM Plex Sans, sans-serif">Can subtasks run independently?</text>
+                <text x="360" y="300" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">No dependencies between them?</text>
+              </g>
+              <!-- YES -> Parallel -->
+              <line x1="510" y1="290" x2="600" y2="290" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#dtArrow)" class="decision-path" data-path="parallel" />
+              <text x="550" y="283" fill="#10B981" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
+              <g class="decision-node" data-node="parallel" onclick="selectPath('parallel')">
+                <rect x="610" y="270" width="100" height="40" rx="8" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
+                <text x="660" y="287" text-anchor="middle" fill="#F59E0B" font-size="9" font-weight="600" font-family="JetBrains Mono, monospace">Parallel</text>
+                <text x="660" y="300" text-anchor="middle" fill="#F59E0B" font-size="9" font-family="JetBrains Mono, monospace">Fan-Out</text>
+              </g>
+
+              <!-- NO -> Q4 -->
+              <line x1="360" y1="330" x2="360" y2="360" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#dtArrow)" class="decision-path" data-path="q4 hierarchical adversarial" />
+              <text x="375" y="348" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">NO</text>
+
+              <!-- Q4: Decomposable into parts? -->
+              <g class="decision-node" data-node="q4" onclick="selectPath('hierarchical')">
+                <polygon points="360,360 520,400 360,440 200,400" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+                <text x="360" y="396" text-anchor="middle" fill="#F4F4F5" font-size="10" font-family="IBM Plex Sans, sans-serif">Decomposable into expert parts?</text>
+                <text x="360" y="410" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Different expertise needed?</text>
+              </g>
+              <!-- YES -> Hierarchical -->
+              <line x1="520" y1="400" x2="600" y2="400" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#dtArrow)" class="decision-path" data-path="hierarchical" />
+              <text x="555" y="393" fill="#10B981" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
+              <g class="decision-node" data-node="hierarchical" onclick="selectPath('hierarchical')">
+                <rect x="610" y="380" width="100" height="40" rx="8" fill="#111113" stroke="#A78BFA" stroke-width="1.5" />
+                <text x="660" y="397" text-anchor="middle" fill="#A78BFA" font-size="9" font-weight="600" font-family="JetBrains Mono, monospace">Hierarchical</text>
+                <text x="660" y="410" text-anchor="middle" fill="#A78BFA" font-size="9" font-family="JetBrains Mono, monospace">Delegation</text>
+              </g>
+
+              <!-- NO -> Adversarial -->
+              <line x1="200" y1="400" x2="100" y2="400" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#dtArrow)" class="decision-path" data-path="adversarial" />
+              <text x="155" y="393" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">NO</text>
+              <g class="decision-node" data-node="adversarial" onclick="selectPath('adversarial')">
+                <rect x="0" y="380" width="100" height="40" rx="8" fill="#111113" stroke="#EF4444" stroke-width="1.5" />
+                <text x="50" y="397" text-anchor="middle" fill="#EF4444" font-size="9" font-weight="600" font-family="JetBrains Mono, monospace">Adversarial</text>
+                <text x="50" y="410" text-anchor="middle" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">Debate</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Context Window Protection -->
+      <section id="context-protection" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Context window protection</h2>
+          <p class="text-secondary leading-relaxed mb-6">Every agent has a finite context window. In practice, performance tends to degrade as context utilization increases. The agent starts missing details, contradicting itself, losing track of the task. As a guideline, consider delegating to subagents when context exceeds roughly 40% of the model's window. The exact threshold varies by model and task complexity, so monitor output quality and adjust based on your observations. This is why subagent delegation matters.</p>
+
+          <!-- Context meter -->
+          <div class="bg-surface border border-subtle rounded-xl p-6 mb-6">
+            <p class="text-xs font-mono text-muted mb-3">Context Window Usage</p>
+            <div class="relative h-8 bg-void rounded-full overflow-hidden mb-2">
+              <div class="absolute inset-y-0 left-0 w-[40%] bg-gradient-to-r from-glow/30 to-glow/10 rounded-full"></div>
+              <div class="absolute inset-y-0 left-[40%] right-0 bg-fail/10 rounded-r-full"></div>
+              <div class="absolute left-[40%] top-0 bottom-0 w-px bg-warning"></div>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-secondary">0%</span>
+              <span class="text-warning font-mono">40%: delegate beyond this</span>
+              <span class="text-secondary">100%</span>
+            </div>
+          </div>
+
+          <p class="text-secondary leading-relaxed">The main agent holds the high-level plan and summaries. Worker agents hold only their subtask context. Hierarchical delegation is not just about parallelism. It keeps each agent focused and within its effective capacity. When your workflow artifacts grow large, delegation stops being optional. It becomes a requirement for quality.</p>
+        </div>
+      </section>
+
+      <!-- Phase-to-Pattern Mapping -->
+      <section id="phase-mapping" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Phase-to-pattern mapping</h2>
+          <p class="text-secondary leading-relaxed mb-8">Each workflow phase has a natural fit with one or two orchestration patterns. These are defaults. Your task complexity determines the actual choice.</p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-subtle">
+                  <th class="text-left py-3 px-4 text-xs font-mono text-muted uppercase">Phase</th>
+                  <th class="text-left py-3 px-4 text-xs font-mono text-muted uppercase">Pattern</th>
+                  <th class="text-left py-3 px-4 text-xs font-mono text-muted uppercase">Why</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-plan"></span>Plan</span></td>
+                  <td class="py-3 px-4 text-secondary">Sequential or Adversarial</td>
+                  <td class="py-3 px-4 text-secondary">Planner + validator, or competing approaches for complex features</td>
+                </tr>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-build"></span>Build</span></td>
+                  <td class="py-3 px-4 text-secondary">Hierarchical Delegation</td>
+                  <td class="py-3 px-4 text-secondary">Lead architect + specialist builders for large diffs</td>
+                </tr>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-test"></span>Test</span></td>
+                  <td class="py-3 px-4 text-secondary">Single or Sequential</td>
+                  <td class="py-3 px-4 text-secondary">One agent runs tests; handoff to fixer on failure</td>
+                </tr>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-review"></span>Review</span></td>
+                  <td class="py-3 px-4 text-secondary">Parallel Fan-Out</td>
+                  <td class="py-3 px-4 text-secondary">Security, performance, style reviewers in parallel</td>
+                </tr>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-document"></span>Document</span></td>
+                  <td class="py-3 px-4 text-secondary">Single Agent</td>
+                  <td class="py-3 px-4 text-secondary">Usually simple enough for one agent</td>
+                </tr>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-deploy"></span>Deploy</span></td>
+                  <td class="py-3 px-4 text-secondary">Single Agent</td>
+                  <td class="py-3 px-4 text-secondary">Mechanical: commits, PR creation</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-monitor"></span>Monitor</span></td>
+                  <td class="py-3 px-4 text-secondary">Single Agent</td>
+                  <td class="py-3 px-4 text-secondary">Metric collection and threshold checking</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Code Example -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-lg font-semibold text-primary mb-4">Example: Hierarchical Delegation in a Build Prompt</h2>
+          <div class="code-block p-6">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="comment"># Build Phase -- Lead Architect</span>
+
+<span class="keyword">## Role</span>
+You are the <span class="type">Lead Software Engineer</span>. You will decompose
+the implementation plan into subtasks and delegate each
+to a specialist builder agent.
+
+<span class="keyword">## Subtask Delegation</span>
+For each subtask:
+<span class="string">1.</span> Create a focused brief (context, files, acceptance criteria)
+<span class="string">2.</span> Spawn a subagent with the brief
+<span class="string">3.</span> Collect the subagent's output
+<span class="string">4.</span> Validate consistency across all subtask outputs
+<span class="string">5.</span> Merge into a unified changeset
+
+<span class="keyword">## Constraints</span>
+- Each subagent gets <span class="var">ONLY</span> the files relevant to its subtask
+- Never pass the full plan to a subagent -- summarize
+- If a subagent's output conflicts with another, <span class="var">YOU</span> resolve it</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cross-links -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-lg font-semibold text-primary mb-6">Related concepts</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="self-healing.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Self-Healing Loops</p>
+              <p class="text-xs text-muted mt-1">loops use sequential handoff between test and build agents</p>
+            </a>
+            <a href="tool-permissions.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Tool Permission Design</p>
+              <p class="text-xs text-muted mt-1">each agent in a pattern inherits its phase's permissions</p>
+            </a>
+            <a href="agentic-layer.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">The Agentic Layer</p>
+              <p class="text-xs text-muted mt-1">orchestration patterns are configured in the layer</p>
+            </a>
+            <a href="artifact-chaining.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Artifact Chaining</p>
+              <p class="text-xs text-muted mt-1">how artifacts flow between agents in multi-agent patterns</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prev/Next -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-subtle">
+        <div class="flex justify-between items-center">
+          <a href="agentic-layer.html" class="group flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors">
+            <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            The Agentic Layer
+          </a>
+          <a href="self-healing.html" class="group flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors">
+            Self-Healing Loops
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-subtle py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg>
+          </div>
+          <span class="font-mono text-xs text-muted">Agentic Engineering Framework</span>
+        </div>
+                <div class="flex items-center gap-6">
+          <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+          <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+          <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+          <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+        </div>
+        <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.add('hidden')); });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    const tocLinks = document.querySelectorAll('#page-toc .sidebar-link');
+    const tocSections = Array.from(tocLinks).map(l => document.getElementById(l.getAttribute('href').slice(1))).filter(Boolean);
+    window.addEventListener('scroll', () => {
+      let current = '';
+      tocSections.forEach(s => { if (scrollY >= s.offsetTop - 120) current = s.id; });
+      tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+    });
+
+    // Interactive decision tree
+    function selectPath(pattern) {
+      document.querySelectorAll('.decision-path').forEach(p => {
+        p.classList.remove('highlight');
+        p.style.opacity = '0.15';
+        p.style.strokeWidth = '1';
+      });
+      document.querySelectorAll('.decision-node rect, .decision-node polygon').forEach(el => {
+        el.style.opacity = '0.3';
+      });
+
+      // Highlight paths that include this pattern
+      document.querySelectorAll(`.decision-path[data-path*="${pattern}"]`).forEach(p => {
+        p.classList.add('highlight');
+        p.style.opacity = '1';
+        p.style.strokeWidth = '2';
+      });
+
+      // Highlight the selected result node
+      const resultNode = document.querySelector(`[data-node="${pattern}"]`);
+      if (resultNode) {
+        resultNode.querySelectorAll('rect, polygon').forEach(el => {
+          el.style.opacity = '1';
+        });
+      }
+
+      // Keep question nodes in the path visible
+      const pathNodes = ['q1'];
+      if (pattern !== 'single') pathNodes.push('q2');
+      if (['parallel', 'hierarchical', 'adversarial'].includes(pattern)) pathNodes.push('q3');
+      if (['hierarchical', 'adversarial'].includes(pattern)) pathNodes.push('q4');
+      pathNodes.push(pattern);
+
+      pathNodes.forEach(n => {
+        const node = document.querySelector(`[data-node="${n}"]`);
+        if (node) node.querySelectorAll('rect, polygon').forEach(el => { el.style.opacity = '1'; });
+      });
+    }
+  </script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

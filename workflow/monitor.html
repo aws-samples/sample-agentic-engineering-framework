@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Monitor Phase | Operations | AEF Workflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-void text-primary font-sans antialiased page-workflow">
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16"><a href="../index.html" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3"/></svg></div><span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span></a><div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <p class="px-4 py-1 mt-2 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic Layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-Healing</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact Chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent Patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <p class="px-4 py-1 mt-2 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; Skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality Gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting Started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By Team Size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity Path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary cursor-pointer" aria-label="Toggle menu"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button></div></div><div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Learn section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Learn
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1">Framework</p>
+          <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+          <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Principles</a>
+          <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Architecture</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1 mt-2">Concepts</p>
+          <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Autonomous Software Engineering</a>
+          <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agentic Layer</a>
+          <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Self-Healing</a>
+          <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Artifact Chaining</a>
+          <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Engineering</a>
+          <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Permissions</a>
+          <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agent Patterns</a>
+        </div>
+        <!-- Build section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-glow font-medium" aria-expanded="false">
+          Build
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1">Workflow</p>
+          <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+          <a href="intent.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Intent</a>
+          <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Plan</a>
+          <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Build</a>
+          <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Test</a>
+          <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Review</a>
+          <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Document</a>
+          <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Deploy</a>
+          <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Monitor</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1 mt-2">Configuration</p>
+          <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Templates</a>
+          <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Commands &amp; Skills</a>
+          <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Integrations</a>
+          <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Quality Gates</a>
+          <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Config</a>
+        </div>
+        <!-- Adopt section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Adopt
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Getting Started</a>
+          <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary">By Team Size</a>
+          <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Maturity Path</a>
+          <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Customization</a>
+        </div>
+        <!-- Reference section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Reference
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Glossary</a>
+          <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Schema</a>
+          <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prerequisites</a>
+          <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Troubleshooting</a>
+        </div>
+      </div>
+    </div></nav>
+
+  <div class="lg:hidden fixed top-16 left-0 right-0 z-40 bg-void/90 backdrop-blur-md border-b border-subtle"><div class="mobile-phase-bar flex items-center gap-4 px-4 py-3"><a href="./" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-glow"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Overview</span></a><a href="intent.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full" style="background: #EC4899"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Intent</span></a><a href="plan.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-plan"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Plan</span></a><a href="build.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-build"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Build</span></a><a href="test.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-test"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Test</span></a><a href="review.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-review"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Review</span></a><a href="document.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-document"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Document</span></a><a href="deploy.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100"><span class="w-2 h-2 rounded-full bg-deploy"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Deploy</span></a><a href="monitor.html" class="flex items-center gap-2 shrink-0 border-b-2 border-monitor pb-1"><span class="w-2 h-2 rounded-full bg-monitor shadow-[0_0_8px_rgba(6,182,212,0.5)]"></span><span class="font-mono text-xs text-monitor whitespace-nowrap">Monitor</span></a></div></div>
+
+  <aside class="hidden lg:block fixed left-0 top-16 bottom-0 w-64 border-r border-subtle bg-void/90 backdrop-blur-md z-40 overflow-y-auto py-8 px-4"><div class="mb-6"><span class="font-mono text-[10px] text-muted uppercase tracking-wider">Workflow</span></div><nav class="space-y-1"><a href="./" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-overview"><span class="phase-dot w-2 h-2 rounded-full bg-glow"></span><div><span class="phase-name font-mono text-xs text-primary">Overview</span></div></a><a href="intent.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50" style="--phase-color: #EC4899"><span class="phase-dot w-2 h-2 rounded-full" style="background: #EC4899"></span><div><span class="phase-name font-mono text-xs text-primary">Intent</span><span class="block text-[10px] text-muted">Requirements Analyst</span></div></a><a href="plan.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-plan"><span class="phase-dot w-2 h-2 rounded-full bg-plan"></span><div><span class="phase-name font-mono text-xs text-primary">Plan</span><span class="block text-[10px] text-muted">Software Architect</span></div></a><a href="build.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-build"><span class="phase-dot w-2 h-2 rounded-full bg-build"></span><div><span class="phase-name font-mono text-xs text-primary">Build</span><span class="block text-[10px] text-muted">Software Engineer</span></div></a><a href="test.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-test"><span class="phase-dot w-2 h-2 rounded-full bg-test"></span><div><span class="phase-name font-mono text-xs text-primary">Test</span><span class="block text-[10px] text-muted">QA Engineer</span></div></a><a href="review.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-review"><span class="phase-dot w-2 h-2 rounded-full bg-review"></span><div><span class="phase-name font-mono text-xs text-primary">Review</span><span class="block text-[10px] text-muted">Senior Reviewer</span></div></a><a href="document.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-document"><span class="phase-dot w-2 h-2 rounded-full bg-document"></span><div><span class="phase-name font-mono text-xs text-primary">Document</span><span class="block text-[10px] text-muted">Technical Writer</span></div></a><a href="deploy.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-deploy"><span class="phase-dot w-2 h-2 rounded-full bg-deploy"></span><div><span class="phase-name font-mono text-xs text-primary">Deploy</span><span class="block text-[10px] text-muted">Release Engineer</span></div></a><a href="monitor.html" class="phase-sidebar-item active flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-monitor"><span class="phase-dot w-2 h-2 rounded-full bg-monitor"></span><div><span class="phase-name font-mono text-xs">Monitor</span><span class="block text-[10px] text-muted">Operations</span></div></a></nav></aside>
+
+  <main id="main-content" class="pt-16 lg:pl-64"><div class="pt-12 lg:pt-0">
+
+    <section class="relative py-16 sm:py-20 overflow-hidden"><div class="ambient-glow w-[500px] h-[500px] bg-monitor/[0.05] -top-40 left-1/2 -translate-x-1/2"></div><div class="absolute inset-0 dot-grid opacity-40"></div><div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8"><ol class="flex items-center gap-0"><li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li><li><span class="mx-2 text-subtle">/</span></li><li><a href="../workflow/index.html" class="hover:text-secondary transition-colors">Build</a></li><li><span class="mx-2 text-subtle">/</span></li><li><span class="text-secondary" aria-current="page">Monitor</span></li></ol></nav><div class="p-8 rounded-xl bg-surface border border-subtle bl-4-monitor"><div class="flex items-center gap-4 mb-4"><div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-monitor shadow-[0_0_12px_rgba(6,182,212,0.5)]"></div><span class="font-mono text-sm text-muted">07</span></div><span class="px-3 py-1 text-xs font-mono rounded-full bg-monitor/10 text-monitor border border-monitor/20">Operations</span></div><h1 class="font-mono text-4xl sm:text-5xl font-bold text-monitor mb-3">Monitor</h1><p class="text-lg text-secondary">Track production health. Close the loop. Feed issues back to Plan.</p><div class="flex gap-2 mt-6 flex-wrap"><span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Read</span><span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Search</span><span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Execute</span><span class="perm-denied px-2.5 py-1 text-[11px] font-mono rounded">Write</span></div></div></div></section>
+
+    <section class="py-12 sm:py-16"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-6 bl-3-monitor section-heading-accent">Why This Phase Exists</h2><div class="space-y-4 text-secondary leading-relaxed"><p>Without metrics, you cannot tell if your agentic layer is improving or degrading. Monitor tracks workflow health across workflows: success rates, iteration counts, cost, and drift.</p><p>It sits last because it observes the completed workflow run. It also closes the lifecycle loop: issues found in production or patterns detected in metrics feed back to Plan, starting a new workflow run.</p><p>The Monitor-to-Plan feedback arc is what turns the workflow from a one-shot tool into a continuous improvement system. It learns from its own history.</p></div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-monitor section-heading-accent">Methodology</h2><div class="space-y-6">
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-monitor/10 border border-monitor/20 flex items-center justify-center font-mono text-xs text-monitor font-bold">1</div><div><h3 class="font-semibold text-primary mb-1">Collect workflow metadata</h3><p class="text-sm text-secondary leading-relaxed">duration, cost, turns, and tokens consumed across the entire workflow run.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-monitor/10 border border-monitor/20 flex items-center justify-center font-mono text-xs text-monitor font-bold">2</div><div><h3 class="font-semibold text-primary mb-1">Collect workflow metrics</h3><p class="text-sm text-secondary leading-relaxed">Plan size (files targeted), diff stats (lines added/removed), patch iterations (Test and Review loops), success/failure status.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-monitor/10 border border-monitor/20 flex items-center justify-center font-mono text-xs text-monitor font-bold">3</div><div><h3 class="font-semibold text-primary mb-1">Calculate derived metrics</h3><p class="text-sm text-secondary leading-relaxed">Success streak (consecutive successful workflows), average patch iterations (rolling 10), cost per workflow (rolling 10), failure rate (rolling 30 days).</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-monitor/10 border border-monitor/20 flex items-center justify-center font-mono text-xs text-monitor font-bold">4</div><div><h3 class="font-semibold text-primary mb-1">Store health data</h3><p class="text-sm text-secondary leading-relaxed">Append to the project's metrics file or database. Historical data enables trends and rolling averages.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-monitor/10 border border-monitor/20 flex items-center justify-center font-mono text-xs text-monitor font-bold">5</div><div><h3 class="font-semibold text-primary mb-1">Identify issues for feedback</h3><p class="text-sm text-secondary leading-relaxed">If the workflow failed, required excessive patching, or exceeded cost thresholds, generate an issue description to feed back to the Plan phase.</p></div></div>
+      <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-monitor/10 border border-monitor/20 flex items-center justify-center font-mono text-xs text-monitor font-bold">6</div><div><h3 class="font-semibold text-primary mb-1">Generate Production Health Report</h3><p class="text-sm text-secondary leading-relaxed">Summary tables, per-phase breakdown, rolling metrics, and feedback issues (if any).</p></div></div>
+    </div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-monitor section-heading-accent">Inputs &amp; Outputs</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"><div class="p-6 rounded-xl bg-surface border border-subtle bl-3-deploy"><h3 class="font-mono text-sm font-semibold text-deploy mb-4">Inputs</h3><ul class="space-y-2 text-sm text-secondary"><li class="flex items-start gap-2"><span class="text-deploy mt-1">&#8226;</span> All workflow artifacts</li><li class="flex items-start gap-2"><span class="text-deploy mt-1">&#8226;</span> Workflow execution metadata (timing, cost)</li><li class="flex items-start gap-2"><span class="text-deploy mt-1">&#8226;</span> Deploy report (<span class="font-mono text-glow-hover text-xs">$deploy_report</span>)</li><li class="flex items-start gap-2"><span class="text-deploy mt-1">&#8226;</span> Previous health history</li></ul></div><div class="p-6 rounded-xl bg-surface border border-subtle bl-3-plan"><h3 class="font-mono text-sm font-semibold text-plan mb-4">Outputs</h3><ul class="space-y-2 text-sm text-secondary"><li class="flex items-start gap-2"><span class="text-plan mt-1">&#8226;</span> Production Health Report</li><li class="flex items-start gap-2"><span class="text-plan mt-1">&#8226;</span> Updated metrics store</li><li class="flex items-start gap-2"><span class="text-plan mt-1">&#8226;</span> Feedback issues (if thresholds exceeded)</li></ul><p class="text-xs text-muted mt-4">Feedback loops back to: Plan phase (new workflow)</p></div></div>
+    <div class="code-block p-6 overflow-x-auto"><div class="flex items-center justify-between mb-4"><span class="font-mono text-xs text-muted">Production Health Report template</span></div><pre class="font-mono text-sm leading-relaxed"><code><span class="comment"># Production Health Report -- Workflow </span><span class="var">${workflow_id}</span>
+
+<span class="keyword">## Summary</span>
+| Metric | Value |
+|--------|-------|
+| Status | <span class="string">Success</span> |
+| Duration | 4m 32s |
+| Total Turns | 23 |
+| Cost | $0.47 |
+| Plan Size | 4 files |
+| Diff Stats | +187 / -42 lines |
+| Test Iterations | 2 |
+| Review Iterations | 1 |
+| Success Streak | <span class="string">7</span> |
+
+<span class="keyword">## Per-Phase Breakdown</span>
+| Phase | Duration | Turns | Cost |
+|-------|----------|-------|------|
+| Plan | 45s | 4 | $0.08 |
+| Build | 1m 52s | 8 | $0.18 |
+| Test | 1m 05s | 6 | $0.12 |
+| Review | 32s | 3 | $0.06 |
+| Document | 12s | 1 | $0.02 |
+| Deploy | 6s | 1 | $0.01 |
+
+<span class="keyword">## Feedback Issues</span>
+- None <span class="comment">(clean run)</span></code></pre></div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-monitor section-heading-accent">Agent pattern</h2><div class="mb-6"><span class="px-3 py-1 text-xs font-mono rounded-full bg-monitor/10 text-monitor border border-monitor/20">Single agent</span></div><p class="text-sm text-secondary leading-relaxed">Monitor is a data collection and reporting task. A single agent reads all workflow artifacts, calculates metrics, and generates the report. No multi-agent coordination needed.</p></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-6 bl-3-monitor section-heading-accent">Tool Permissions</h2><div class="flex gap-2 flex-wrap mb-6"><span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Read</span><span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Search</span><span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Execute</span><span class="perm-denied px-3 py-1.5 text-xs font-mono rounded">Write</span></div><p class="text-sm text-secondary leading-relaxed">Execute is needed to run metric collection scripts or API calls. Write (file editing) is denied because Monitor should not modify source code or workflow configuration. Its data output goes through Execute (appending to metrics store via scripts).</p></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-monitor section-heading-accent">Prompt Template</h2><div class="code-block p-6 overflow-x-auto bl-4-monitor"><pre class="font-mono text-sm leading-relaxed"><code><span class="comment"># Monitor Phase -- Operations</span>
+
+<span class="keyword">## Role</span>
+You are an <span class="type">Operations</span> agent. Your job is to collect metrics
+from the completed workflow run, calculate production health metrics, and
+identify any issues that should feed back to the Plan phase.
+
+You do <span class="string">NOT</span> modify code or workflow configuration. You
+observe, measure, and report.
+
+<span class="keyword">## Context</span>
+Workflow ID: <span class="var">${workflow_id}</span>
+Workflow Start Time: <span class="var">${workflow_start_time}</span>
+Workflow End Time: <span class="var">${workflow_end_time}</span>
+
+Plan Artifact:
+<span class="var">${plan_artifact}</span>
+
+Build Report:
+<span class="var">${build_report}</span>
+
+Test Report:
+<span class="var">${test_report}</span>
+
+Review Verdict:
+<span class="var">${review_verdict}</span>
+
+Deploy Report:
+<span class="var">${deploy_report}</span>
+
+Previous Health Data: <span class="var">${kpi_history_path}</span>   <span class="comment"># path to metrics file</span>
+
+<span class="keyword">## Metrics to Collect</span>
+
+<span class="keyword">### Per-Workflow Metrics</span>
+- Status: <span class="string">success</span> | <span class="string">failure</span> | <span class="string">escalated</span>
+- Duration: end_time - start_time
+- Total turns across all phases
+- Estimated cost (based on token usage)
+- Plan size: number of files targeted
+- Diff stats: lines added, lines removed
+- Test iterations: how many retry loops
+- Review iterations: how many patch loops
+
+<span class="keyword">### Derived Metrics</span>
+- Success streak: consecutive successful workflows
+- Average test iterations (rolling 10 workflows)
+- Average cost per workflow (rolling 10 workflows)
+- Failure rate (rolling 30 days)
+
+<span class="keyword">### Feedback Detection</span>
+If any of these conditions are true, generate a feedback
+issue to feed back to Plan:
+- Workflow failed after max retries
+- Test iterations >= 3 (maxed out retry loop)
+- Review iterations >= 3 (maxed out patch loop)
+- Cost exceeded <span class="var">${cost_threshold}</span> (configurable)
+
+<span class="keyword">## Methodology</span>
+1. Read all workflow artifacts to extract metrics
+2. Calculate per-phase breakdowns
+3. Read previous production health data for streak/rolling calculations
+4. Identify feedback issues (if any)
+5. Generate Production Health Report
+6. Append data to metrics store
+
+<span class="keyword">## Constraints</span>
+- <span class="string">Best-effort recording</span>. If a metric is unavailable, skip
+  it and note it as "N/A". Never fail the workflow because
+  of a missing metric.
+- Do not modify source code or workflow configuration.
+- Feedback issues are suggestions, not commands.
+- <span class="string">Non-fatal on failure</span>. If Monitor itself errors, the
+  workflow still succeeded.
+
+<span class="keyword">## Output Format</span>
+Produce a Production Health Report with:
+1. <span class="type">Summary Table</span> -- Key metrics for this workflow
+2. <span class="type">Per-Phase Breakdown</span> -- Duration, turns, cost per phase
+3. <span class="type">Rolling Metrics</span> -- Streaks, averages (if history available)
+4. <span class="type">Feedback Issues</span> -- Issues to feed back to Plan (if any)</code></pre></div><div class="mt-4 flex flex-wrap gap-3"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-monitor/8 text-monitor border border-monitor/15">Role Assignment</span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15">Template Variables</span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-build/8 text-build border border-build/15">Metrics Collection</span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-fail/8 text-fail border border-fail/15">Feedback Detection</span><span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-test/8 text-test border border-test/15">Best-Effort Pattern</span></div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-monitor section-heading-accent">Best practices</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="p-6 rounded-xl bg-surface border border-subtle bl-3-pass"><h3 class="font-mono text-sm font-semibold text-pass mb-4">Do</h3><ul class="space-y-2 text-sm text-secondary"><li>Collect every available metric</li><li>Calculate streaks and rolling averages</li><li>Generate feedback issues when thresholds are exceeded</li><li>Treat monitoring as non-fatal</li><li>Track cost per workflow for ROI analysis</li></ul></div><div class="p-6 rounded-xl bg-surface border border-subtle bl-3-fail"><h3 class="font-mono text-sm font-semibold text-fail mb-4">Don't</h3><ul class="space-y-2 text-sm text-secondary"><li>Fail the workflow if monitoring fails</li><li>Modify code or configuration</li><li>Generate feedback issues for minor violations</li><li>Block on missing metrics; use N/A</li><li>Skip the per-phase breakdown</li></ul></div></div></div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal"><h2 class="text-2xl font-bold text-primary mb-8 bl-3-monitor section-heading-accent">Nuances</h2><div class="space-y-6">
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Best-effort recording is critical</h3><p class="text-sm text-secondary leading-relaxed">If the Monitor phase cannot access a particular metric (e.g., cost data is unavailable), it should skip that metric and note it as "N/A" rather than failing. The workflow succeeded; monitoring is observational.</p></div>
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Streak calculations motivate teams</h3><p class="text-sm text-secondary leading-relaxed">Seeing "Success Streak: 15" builds confidence. A broken streak tells you something changed: a prompt template was modified, a dependency updated, or tasks got harder.</p></div>
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">The Monitor-to-Plan feedback arc closes the lifecycle loop</h3><div class="space-y-3 text-sm text-secondary leading-relaxed"><p>The Monitor phase can feed issues back into the Plan phase, creating a continuous improvement cycle. This arc operates in two modes:</p><p>Human-mediated (default): Monitor produces a Production Health Report. A human reads it, identifies patterns (e.g., "the test retry loop fires on 60% of runs because our test suite is flaky"), and creates issues manually. The human provides judgment that automation cannot: distinguishing intentional changes from regressions, prioritizing improvements, and avoiding self-referential loops.</p><p>Automated: Monitor detects anomalies and auto-generates issues that feed into Plan. This is powerful but dangerous. Without safeguards, the workflow can create infinite loops of self-generated work. An agent detects a problem, creates an issue, the workflow processes the issue, creates new problems, the agent detects those problems, creates more issues.</p><h4 class="font-semibold text-primary mt-4 mb-2">Safeguards for automated Monitor-to-Plan</h4><p>If you enable automated feedback, implement all of these:</p><ul class="space-y-2"><li class="flex items-start gap-2"><span class="text-monitor mt-1">&#8226;</span> Rate limiting: maximum N auto-generated issues per time window (e.g., 3 per day)</li><li class="flex items-start gap-2"><span class="text-monitor mt-1">&#8226;</span> Scope bounding: auto-generated issues can only target the agentic layer (prompt templates, gate configs), never the application codebase</li><li class="flex items-start gap-2"><span class="text-monitor mt-1">&#8226;</span> Human approval: auto-generated issues are created as drafts requiring human approval before workflow processes them</li><li class="flex items-start gap-2"><span class="text-monitor mt-1">&#8226;</span> Loop detection: if an auto-generated issue triggers Monitor feedback that would generate another issue, halt and escalate</li><li class="flex items-start gap-2"><span class="text-monitor mt-1">&#8226;</span> Cooldown period: after processing an auto-generated issue, wait before generating new ones to observe the effect</li></ul><p>Most teams should start with human-mediated feedback and only automate after 50+ workflow runs have established baseline health patterns.</p></div></div>
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Cost tracking is essential</h3><p class="text-sm text-secondary leading-relaxed">With API-based AI agents, cost-per-workflow is a metric you cannot ignore. You need to know the ROI of your agentic layer. Tracking cost per phase shows you where to optimize.</p></div>
+      <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Non-fatal failure</h3><p class="text-sm text-secondary leading-relaxed">Monitor is the only phase where failure does not affect the workflow outcome. If Deploy succeeded, the PR is ready regardless of whether metrics were collected. Monitor errors are logged, not escalated.</p></div>
+    </div></div></section>
+
+    <!-- Lifecycle loop visualization -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-8 bl-3-monitor section-heading-accent">Lifecycle loop</h2>
+      <div class="flex justify-center mb-6">
+        <svg viewBox="0 0 300 120" class="w-full max-w-sm" role="img" aria-label="Monitor feeds issues back to Plan, closing the lifecycle loop">
+          <rect x="10" y="40" width="80" height="40" rx="8" fill="#111113" stroke="#06B6D4" stroke-width="1.5"/>
+          <text x="50" y="65" text-anchor="middle" fill="#06B6D4" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Monitor</text>
+          <rect x="210" y="40" width="80" height="40" rx="8" fill="#111113" stroke="#8B5CF6" stroke-width="1.5"/>
+          <text x="250" y="65" text-anchor="middle" fill="#8B5CF6" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Plan</text>
+          <path d="M 90 60 C 150 20 190 20 210 60" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="6 4" class="issues-arc" opacity="0.6"/>
+          <text x="150" y="25" text-anchor="middle" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.7">feedback issues</text>
+          <path d="M 210 60 C 190 100 150 100 90 60" fill="none" stroke="#52525B" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
+          <text x="150" y="108" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">new workflow</text>
+        </svg>
+      </div>
+      <p class="text-sm text-secondary text-center leading-relaxed">When Monitor detects problems (failed workflows, excessive retries, cost overruns), it generates structured feedback that feeds into Plan as a new task. The workflow becomes a continuous improvement loop.</p>
+    </div></section>
+
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center"><a href="deploy.html" class="inline-flex items-center gap-2 text-sm text-deploy hover:text-primary transition-colors"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Deploy Phase</a><a href="plan.html" class="inline-flex items-center gap-2 text-sm text-plan hover:text-primary transition-colors">Back to Plan (full loop)<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a></div></div></section>
+
+  </div></main>
+
+  <footer class="border-t border-subtle py-12 lg:pl-64"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3"/></svg></div><span class="font-mono text-xs text-muted">Agentic Engineering Framework</span></div><div class="flex items-center gap-6"><a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a><a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a><a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a><a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a></div><p class="text-xs text-muted">The code is output. The agentic layer is the product.</p></div></div></footer>
+
+  <script>document.getElementById('mobile-menu-btn').addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('hidden'));document.querySelectorAll('#mobile-menu a').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobile-menu').classList.add('hidden')));
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });const reveals=document.querySelectorAll('.reveal');const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});reveals.forEach(el=>ro.observe(el));</script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

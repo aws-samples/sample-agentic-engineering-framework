@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Autonomous Software Engineering - AEF Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-void text-primary font-sans antialiased page-concepts">
+
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg></div><span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span></a>
+        <div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-healing loops</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Build<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Adopt<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By team size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Reference<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary" aria-label="Toggle navigation"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg></button>
+      </div>
+    </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Learn section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Learn
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-1 pb-1">Framework</p>
+          <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Overview</a>
+          <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Principles</a>
+          <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Architecture</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-2 pb-1">Concepts</p>
+          <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Autonomous Software Engineering</a>
+          <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Agentic layer</a>
+          <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Self-healing loops</a>
+          <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Artifact chaining</a>
+          <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prompt engineering</a>
+          <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Tool permissions</a>
+          <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Agent patterns</a>
+        </div>
+        <!-- Build section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Build
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-1 pb-1">Workflow</p>
+          <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow overview</a>
+          <a href="../workflow/intent.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Intent</a>
+          <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Plan</a>
+          <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Build</a>
+          <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Test</a>
+          <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Review</a>
+          <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Document</a>
+          <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Deploy</a>
+          <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Monitor</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-2 pb-1">Configuration</p>
+          <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prompt templates</a>
+          <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Commands &amp; skills</a>
+          <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Tool integrations</a>
+          <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Quality gates</a>
+          <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow config</a>
+        </div>
+        <!-- Adopt section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Adopt
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Getting started</a>
+          <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">By team size</a>
+          <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Maturity path</a>
+          <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Customization</a>
+        </div>
+        <!-- Reference section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Reference
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Glossary</a>
+          <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow Schema</a>
+          <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prerequisites</a>
+          <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Troubleshooting</a>
+        </div>
+        <div class="pt-2 border-t border-subtle">
+          <a href="../adopt/getting-started.html" class="block py-2 text-sm font-medium text-glow hover:text-glow-hover transition-colors">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pt-16 flex">
+    <aside class="hidden lg:block w-64 flex-shrink-0">
+      <div class="fixed top-16 w-64 h-[calc(100vh-4rem)] overflow-y-auto border-r border-subtle py-8 px-4">
+        <p class="text-xs font-mono text-muted uppercase tracking-wider mb-4">Concepts</p>
+        <nav class="space-y-1 mb-6">
+          <a href="agentic-layer.html" class="sidebar-link">The Agentic Layer</a>
+          <a href="agent-patterns.html" class="sidebar-link">Agent Patterns</a>
+          <a href="self-healing.html" class="sidebar-link">Self-Healing Loops</a>
+          <a href="artifact-chaining.html" class="sidebar-link">Artifact Chaining</a>
+          <a href="prompt-engineering.html" class="sidebar-link">Prompt Engineering</a>
+          <a href="tool-permissions.html" class="sidebar-link">Tool Permissions</a>
+          <a href="ase.html" class="sidebar-link active">Autonomous Software Engineering</a>
+        </nav>
+        <p class="text-xs font-mono text-muted uppercase tracking-wider mb-4">On This Page</p>
+        <nav class="space-y-1" id="page-toc">
+          <a href="#the-path" class="sidebar-link">The Path</a>
+          <a href="#level-1" class="sidebar-link">L1: Assisted</a>
+          <a href="#level-2" class="sidebar-link">L2: Supervised</a>
+          <a href="#level-3" class="sidebar-link">L3: Autonomous</a>
+          <a href="#level-4" class="sidebar-link">L4: ASE</a>
+          <a href="#readiness" class="sidebar-link">Measuring Readiness</a>
+          <a href="#stay-level-2-3" class="sidebar-link">Why Stay at L2-3</a>
+          <a href="#monitor-safety" class="sidebar-link">Monitor as Safety Valve</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main id="main-content" class="flex-1 min-w-0">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+          <ol class="flex items-center gap-0">
+            <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><a href="../framework/overview.html" class="hover:text-secondary transition-colors">Learn</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><span class="text-secondary" aria-current="page">ASE</span></li>
+          </ol>
+        </nav>
+      </div>
+
+      <section class="relative py-16 sm:py-24 overflow-hidden">
+        <div class="absolute inset-0 dot-grid opacity-40"></div>
+        <div class="ambient-glow w-[500px] h-[500px] bg-glow/[0.04] -top-40 -right-40"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="reveal">
+            <p class="text-sm font-mono text-glow mb-4 tracking-wider uppercase">Concept 07</p>
+            <h1 class="text-4xl sm:text-5xl font-bold text-primary mb-6">Autonomous Software Engineering</h1>
+            <p class="text-lg text-secondary max-w-2xl leading-relaxed">The graduation path from assisted to fully autonomous. Four levels of maturity, each earned through gate quality, not ambition.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="reveal bg-glow-faint border border-glow/20 rounded-xl p-6 sm:p-8">
+          <p class="text-lg sm:text-xl font-medium text-primary leading-relaxed">"You cannot skip levels by just turning on auto-merge. The autonomy level must match the gate quality."</p>
+          <p class="text-sm text-secondary mt-2">Think of self-driving cars. L1 is cruise control. L2 is lane assist. L3 is highway autopilot. L4 is fully autonomous. The conditions matter, and so does the engineering that got you there.</p>
+        </div>
+      </section>
+
+      <!-- The Path -->
+      <section id="the-path" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">The Path from Manual to Autonomous</h2>
+          <p class="text-secondary leading-relaxed mb-8">Most teams start by running prompts manually and reviewing every output. This is fine. The goal is to graduate, not to skip levels. Each level adds autonomy while maintaining or increasing safety through better gates, templates, and monitoring.</p>
+
+          <!-- Maturity Pyramid SVG -->
+          <div class="mb-10">
+            <svg viewBox="0 0 600 300" class="w-full max-w-lg mx-auto" role="img" aria-label="Maturity pyramid from L1 Assisted at base to L4 ASE at top">
+              <!-- L1 - widest -->
+              <rect x="50" y="220" width="500" height="60" rx="8" fill="#111113" stroke="#52525B" stroke-width="1" />
+              <text x="300" y="248" text-anchor="middle" fill="#A1A1AA" font-size="13" font-weight="600" font-family="JetBrains Mono, monospace">L1 Assisted</text>
+              <text x="300" y="268" text-anchor="middle" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">Human drives every phase</text>
+
+              <!-- L2 -->
+              <rect x="100" y="150" width="400" height="60" rx="8" fill="#111113" stroke="rgba(99, 102, 241, 0.3)" stroke-width="1" />
+              <text x="300" y="178" text-anchor="middle" fill="#818CF8" font-size="13" font-weight="600" font-family="JetBrains Mono, monospace">L2 Supervised</text>
+              <text x="300" y="198" text-anchor="middle" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">Human approves at checkpoints</text>
+
+              <!-- L3 -->
+              <rect x="150" y="80" width="300" height="60" rx="8" fill="#111113" stroke="rgba(99, 102, 241, 0.5)" stroke-width="1.5" />
+              <text x="300" y="108" text-anchor="middle" fill="#818CF8" font-size="13" font-weight="600" font-family="JetBrains Mono, monospace">L3 Autonomous</text>
+              <text x="300" y="128" text-anchor="middle" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">Human reviews the PR</text>
+
+              <!-- L4 -->
+              <rect x="200" y="10" width="200" height="60" rx="8" fill="rgba(99, 102, 241, 0.1)" stroke="#6366F1" stroke-width="2" />
+              <text x="300" y="38" text-anchor="middle" fill="#6366F1" font-size="13" font-weight="700" font-family="JetBrains Mono, monospace">L4 ASE</text>
+              <text x="300" y="58" text-anchor="middle" fill="#52525B" font-size="10" font-family="IBM Plex Sans, sans-serif">Zero human intervention</text>
+
+              <!-- Side labels -->
+              <text x="25" y="155" fill="#52525B" font-size="9" font-family="JetBrains Mono, monospace" transform="rotate(-90, 25, 155)">Increasing Autonomy</text>
+              <text x="580" y="155" fill="#52525B" font-size="9" font-family="JetBrains Mono, monospace" transform="rotate(90, 580, 155)">Increasing Gate Quality</text>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-semibold text-primary mb-4">Autonomy is gate authority</h3>
+          <p class="text-secondary leading-relaxed mb-4">The four levels don't describe different workflows. They describe different answers to the question: <strong class="text-primary">when a gate says "fail," who decides what happens next?</strong></p>
+          <p class="text-secondary leading-relaxed mb-4">At Level 1, the human decides. Gates are informational. At Level 2, gates decide within phases (self-healing loops run), but humans decide between phases (checkpoints). At Level 3, gates decide everything except the final merge. At Level 4, gates decide everything including the merge.</p>
+          <p class="text-secondary leading-relaxed mb-4">The workflow phases, prompt templates, <a href="../agentic-layer/quality-gates.html#classification-gates" class="concept-link">classification gates</a>, and <a href="../agentic-layer/quality-gates.html#healing-gates" class="concept-link">healing gates</a> stay the same across levels. What changes is the <a href="../agentic-layer/quality-gates.html#disposition-gates" class="concept-link">disposition gate</a> configuration: which phase failures are fatal, which are warnings, and whether a human checkpoint exists.</p>
+          <p class="text-secondary leading-relaxed">This is why you can't skip levels by configuration alone. You need to observe your gates making accurate decisions at lower authority before granting them higher authority. See <a href="../agentic-layer/quality-gates.html#the-three-concerns-inside-every-gate" class="concept-link">Quality Gates: The three concerns inside every gate</a> for the full gate taxonomy.</p>
+        </div>
+      </section>
+
+      <!-- Level 1 -->
+      <section id="level-1" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex gap-6">
+            <div class="flex flex-col items-center">
+              <div class="w-12 h-12 rounded-full bg-surface border-2 border-muted flex items-center justify-center text-sm font-mono text-muted">L1</div>
+              <div class="step-connector flex-1 my-2"></div>
+            </div>
+            <div class="flex-1 pb-4">
+              <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">Level 1: Assisted</h2>
+              <p class="text-secondary leading-relaxed mb-4">The agent helps. The human drives. You run each phase manually, inspect every output, decide whether to proceed. Write an issue, run the Plan prompt, read the plan, run Build, read the code, run tests, review, ship. All manual.</p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-pass mb-1">Risk</p>
+                  <p class="text-xs text-secondary">low. Human in full control at every step.</p>
+                </div>
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-glow-hover mb-1">Use when</p>
+                  <p class="text-xs text-secondary">Learning the framework. High-risk projects. New workflows.</p>
+                </div>
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-secondary mb-1">You need</p>
+                  <p class="text-xs text-secondary">Prompt templates. Basic tool config. You are the gate.</p>
+                </div>
+              </div>
+
+              <h4 class="text-sm font-semibold text-primary mt-6 mb-3">Disposition profile</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead><tr class="border-b border-subtle"><th class="text-left py-2 px-3 text-xs font-mono text-muted uppercase">Phase</th><th class="text-left py-2 px-3 text-xs font-mono text-muted uppercase">Disposition</th></tr></thead>
+                  <tbody><tr><td class="py-2 px-3 text-secondary">All phases</td><td class="py-2 px-3 text-secondary">Human decides after each phase</td></tr></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Level 2 -->
+      <section id="level-2" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex gap-6">
+            <div class="flex flex-col items-center">
+              <div class="w-12 h-12 rounded-full bg-surface border-2 border-glow/40 flex items-center justify-center text-sm font-mono text-glow">L2</div>
+              <div class="step-connector flex-1 my-2"></div>
+            </div>
+            <div class="flex-1 pb-4">
+              <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">Level 2: Supervised</h2>
+              <p class="text-secondary leading-relaxed mb-4">The agent runs phases on its own. The human approves at checkpoints. Agent runs Plan and pauses. Human reviews, approves. Agent runs Build + Test (including <a href="self-healing.html" class="concept-link">retry loops</a>). Human reviews test results. Agent runs Review. Human reviews findings. Agent runs Document + Deploy.</p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-warning mb-1">Risk</p>
+                  <p class="text-xs text-secondary">medium. Human validates at strategic checkpoints.</p>
+                </div>
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-glow-hover mb-1">Use when</p>
+                  <p class="text-xs text-secondary">Established templates. Moderate confidence. Non-critical projects.</p>
+                </div>
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-secondary mb-1">You need</p>
+                  <p class="text-xs text-secondary">Reliable templates. Quality gates. Checkpoint mechanism.</p>
+                </div>
+              </div>
+
+              <div class="code-block p-4">
+                <pre class="font-mono text-xs leading-relaxed"><code><span class="comment"># workflow.yaml -- Level 2</span>
+<span class="keyword">autonomy:</span> <span class="string">supervised</span>
+<span class="keyword">checkpoints:</span>
+  <span class="var">after_plan:</span> { <span class="var">require:</span> <span class="string">human_approval</span>, <span class="var">timeout:</span> <span class="string">24h</span> }
+  <span class="var">after_test:</span> { <span class="var">require:</span> <span class="string">human_approval</span>, <span class="var">timeout:</span> <span class="string">24h</span> }
+  <span class="var">after_review:</span> { <span class="var">require:</span> <span class="string">human_approval</span>, <span class="var">timeout:</span> <span class="string">24h</span> }</code></pre>
+              </div>
+
+              <h4 class="text-sm font-semibold text-primary mt-6 mb-3">Disposition profile</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead><tr class="border-b border-subtle"><th class="text-left py-2 px-3 text-xs font-mono text-muted uppercase">Phase</th><th class="text-left py-2 px-3 text-xs font-mono text-muted uppercase">Disposition</th></tr></thead>
+                  <tbody>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Plan</td><td class="py-2 px-3 text-secondary">Checkpoint: human approves</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Build</td><td class="py-2 px-3 text-secondary">Continue (healing loops run autonomously)</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Test</td><td class="py-2 px-3 text-secondary">Checkpoint: human reviews failures</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Review</td><td class="py-2 px-3 text-secondary">Checkpoint: human reviews verdict</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Document</td><td class="py-2 px-3 text-secondary">Continue</td></tr>
+                    <tr><td class="py-2 px-3 text-secondary">Deploy</td><td class="py-2 px-3 text-secondary">Human merges PR</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Level 3 -->
+      <section id="level-3" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex gap-6">
+            <div class="flex flex-col items-center">
+              <div class="w-12 h-12 rounded-full bg-surface border-2 border-glow flex items-center justify-center text-sm font-mono text-glow shadow-[0_0_12px_rgba(99,102,241,0.2)]">L3</div>
+              <div class="step-connector flex-1 my-2"></div>
+            </div>
+            <div class="flex-1 pb-4">
+              <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">Level 3: Autonomous</h2>
+              <p class="text-secondary leading-relaxed mb-4">The agent runs the entire workflow end-to-end. The human reviews only the final output, the PR. Issue goes in, PR comes out. Quality gates and <a href="self-healing.html" class="concept-link">self-healing loops</a> are the safety net. The human reviews the PR like any code review.</p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-deploy mb-1">Risk</p>
+                  <p class="text-xs text-secondary">medium-high. PR review catches issues if gates miss them.</p>
+                </div>
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-glow-hover mb-1">Use when</p>
+                  <p class="text-xs text-secondary">mature workflow. Well-tuned gates. Strong test coverage.</p>
+                </div>
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-secondary mb-1">You need</p>
+                  <p class="text-xs text-secondary">Strong gates. Coverage thresholds. Reliable loops. Monitoring.</p>
+                </div>
+              </div>
+
+              <h4 class="text-sm font-semibold text-primary mt-6 mb-3">Disposition profile</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead><tr class="border-b border-subtle"><th class="text-left py-2 px-3 text-xs font-mono text-muted uppercase">Phase</th><th class="text-left py-2 px-3 text-xs font-mono text-muted uppercase">Disposition</th></tr></thead>
+                  <tbody>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Plan</td><td class="py-2 px-3 text-secondary">Required: abort on failure</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Build</td><td class="py-2 px-3 text-secondary">Required: abort on failure</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Test</td><td class="py-2 px-3 text-secondary">Optional: warn on failure, continue</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Review</td><td class="py-2 px-3 text-secondary">Required: abort on failure</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Document</td><td class="py-2 px-3 text-secondary">Required: abort on failure</td></tr>
+                    <tr><td class="py-2 px-3 text-secondary">Deploy</td><td class="py-2 px-3 text-secondary">Creates PR, human merges</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Level 4 -->
+      <section id="level-4" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <div class="flex gap-6">
+            <div class="flex flex-col items-center">
+              <div class="w-12 h-12 rounded-full bg-glow border-2 border-glow flex items-center justify-center text-sm font-mono text-white shadow-[0_0_20px_rgba(99,102,241,0.3)]">L4</div>
+            </div>
+            <div class="flex-1">
+              <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4">Level 4: Autonomous Software Engineering (ASE)</h2>
+              <p class="text-secondary leading-relaxed mb-4">The agent runs. The gates pass. The PR auto-merges. No human in the loop. Issue goes in, code goes to production. The Monitor phase watches for anomalies. If something breaks, a new issue is created automatically, and the workflow runs again.</p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                <div class="p-3 rounded-lg bg-surface border border-fail/20">
+                  <p class="text-xs font-mono text-fail mb-1">Risk</p>
+                  <p class="text-xs text-secondary">high. Requires excellent gates, monitoring, and automated rollback.</p>
+                </div>
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-glow-hover mb-1">Use when</p>
+                  <p class="text-xs text-secondary">proven workflow (95%+ success over 50+ runs). Low-risk changes.</p>
+                </div>
+                <div class="p-3 rounded-lg bg-surface border border-subtle">
+                  <p class="text-xs font-mono text-secondary mb-1">You need</p>
+                  <p class="text-xs text-secondary">everything from L3 + auto-merge, monitoring, rollback, anomaly detection.</p>
+                </div>
+              </div>
+
+              <div class="code-block p-4">
+                <pre class="font-mono text-xs leading-relaxed"><code><span class="comment"># workflow.yaml -- Level 4: ASE</span>
+<span class="keyword">autonomy:</span> <span class="string">ase</span>
+<span class="keyword">checkpoints:</span> <span class="comment">none</span>
+<span class="keyword">gates:</span>
+  <span class="type">test:</span>
+    <span class="var">coverage_min:</span> <span class="type">90</span>
+    <span class="var">all_pass:</span> <span class="string">true</span>
+  <span class="type">review:</span>
+    <span class="var">max_blockers:</span> <span class="type">0</span>
+    <span class="var">max_critical:</span> <span class="type">0</span>
+    <span class="var">tech_debt_logged:</span> <span class="string">true</span>
+  <span class="type">deploy:</span>
+    <span class="var">max_files_changed:</span> <span class="type">20</span>
+<span class="keyword">auto_merge:</span>
+  <span class="var">enabled:</span> <span class="string">true</span>
+  <span class="var">delay:</span> <span class="string">5m</span>
+<span class="keyword">monitor:</span>
+  <span class="var">anomaly_detection:</span> <span class="string">true</span>
+  <span class="var">rollback_on:</span> [<span class="string">error_rate_spike</span>, <span class="string">latency_increase</span>]
+  <span class="var">auto_create_issue:</span> <span class="string">true</span></code></pre>
+              </div>
+
+              <h4 class="text-sm font-semibold text-primary mt-6 mb-3">Disposition profile</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead><tr class="border-b border-subtle"><th class="text-left py-2 px-3 text-xs font-mono text-muted uppercase">Phase</th><th class="text-left py-2 px-3 text-xs font-mono text-muted uppercase">Disposition</th></tr></thead>
+                  <tbody>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Plan</td><td class="py-2 px-3 text-secondary">Required: abort on failure</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Build</td><td class="py-2 px-3 text-secondary">Required: abort on failure</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Test</td><td class="py-2 px-3 text-secondary">Required: abort on failure</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Review</td><td class="py-2 px-3 text-secondary">Required: abort on failure</td></tr>
+                    <tr class="border-b border-subtle/50"><td class="py-2 px-3 text-secondary">Document</td><td class="py-2 px-3 text-secondary">Optional: warn on failure, continue</td></tr>
+                    <tr><td class="py-2 px-3 text-secondary">Deploy</td><td class="py-2 px-3 text-secondary">Auto-merge</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Measuring Readiness -->
+      <section id="readiness" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Measuring readiness</h2>
+          <p class="text-secondary leading-relaxed mb-4">Moving between levels is not about changing what the workflow does. It's about changing how much authority you grant to gate decisions. The readiness criteria below measure whether your gates have earned that authority.</p>
+          <p class="text-secondary leading-relaxed mb-6">You earn the right to remove humans from the loop by building gates that catch what humans would catch. These metrics tell you when you are ready to move up:</p>
+
+          <h3 class="text-lg font-semibold text-primary mb-4">Readiness criteria</h3>
+          <div class="overflow-x-auto mb-8">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-subtle">
+                  <th class="text-left py-3 px-4 text-xs font-mono text-muted uppercase">Metric</th>
+                  <th class="text-center py-3 px-4 text-xs font-mono text-muted uppercase">L1 -> L2</th>
+                  <th class="text-center py-3 px-4 text-xs font-mono text-muted uppercase">L2 -> L3</th>
+                  <th class="text-center py-3 px-4 text-xs font-mono text-muted uppercase">L3 -> L4</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4 text-secondary">Successful runs</td>
+                  <td class="py-3 px-4 text-center"><span class="text-muted">10+</span></td>
+                  <td class="py-3 px-4 text-center"><span class="text-warning">50+</span></td>
+                  <td class="py-3 px-4 text-center"><span class="text-fail">100+</span></td>
+                </tr>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4 text-secondary">Gate accuracy</td>
+                  <td class="py-3 px-4 text-center"><span class="text-muted">Any</span></td>
+                  <td class="py-3 px-4 text-center"><span class="text-warning">>90%</span></td>
+                  <td class="py-3 px-4 text-center"><span class="text-fail">>98%</span></td>
+                </tr>
+                <tr class="border-b border-subtle/50">
+                  <td class="py-3 px-4 text-secondary">Human override rate</td>
+                  <td class="py-3 px-4 text-center"><span class="text-muted">Any</span></td>
+                  <td class="py-3 px-4 text-center"><span class="text-warning">&lt;20%</span></td>
+                  <td class="py-3 px-4 text-center"><span class="text-fail">&lt;5%</span></td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 text-secondary">Average retries</td>
+                  <td class="py-3 px-4 text-center"><span class="text-muted">Any</span></td>
+                  <td class="py-3 px-4 text-center"><span class="text-warning">&lt;2</span></td>
+                  <td class="py-3 px-4 text-center"><span class="text-fail">&lt;1.5</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-secondary text-sm leading-relaxed"><strong class="text-primary">Gate quality and autonomy are coupled.</strong> If your gates catch 70% of issues, Level 2 is a good fit. Better gates earn you more autonomy. Each improvement in gate accuracy is a checkpoint where the team can confidently let the workflow proceed on its own.</p>
+        </div>
+      </section>
+
+      <!-- Why Stay at L2-3 -->
+      <section id="stay-level-2-3" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Why most teams should stay at level 2-3</h2>
+          <p class="text-secondary leading-relaxed mb-6">For critical systems (payments, authentication, infrastructure), Level 2-3 with human oversight is the responsible choice. Level 4 is appropriate for low-risk changes, proven workflows, and projects with solid monitoring and rollback.</p>
+          <p class="text-secondary leading-relaxed">The framework does not push teams toward Level 4. It supports whatever level matches the team's risk tolerance and gate maturity. The destination is not always the top of the pyramid. It is the level where your quality and your comfort intersect.</p>
+        </div>
+      </section>
+
+      <!-- Monitor as Safety Valve -->
+      <section id="monitor-safety" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">The monitor phase as safety valve</h2>
+          <p class="text-secondary leading-relaxed mb-8">At Level 3-4, the Monitor phase becomes critical. It closes the outer loop. Production anomalies (error rate spikes, performance degradation) automatically generate new issues that feed back into Plan. The workflow is self-correcting at the production level, not just the code level.</p>
+
+          <!-- Monitor Safety Loop SVG -->
+          <div class="mb-6">
+            <svg viewBox="0 0 500 200" class="w-full max-w-md mx-auto" role="img" aria-label="Monitor safety loop: Workflow to Production to Monitor, anomaly feeds back to Workflow">
+              <defs>
+                <marker id="monArr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#06B6D4" opacity="0.7" /></marker>
+                <marker id="failArr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#EF4444" opacity="0.7" /></marker>
+              </defs>
+
+              <!-- Workflow -->
+              <rect x="20" y="70" width="110" height="50" rx="10" fill="#111113" stroke="#6366F1" stroke-width="1.5" />
+              <text x="75" y="99" text-anchor="middle" fill="#6366F1" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Workflow</text>
+
+              <!-- Arrow to Production -->
+              <line x1="135" y1="95" x2="190" y2="95" stroke="#6366F1" stroke-width="1" opacity="0.5" marker-end="url(#monArr)" />
+
+              <!-- Production -->
+              <rect x="195" y="70" width="110" height="50" rx="10" fill="#111113" stroke="#22C55E" stroke-width="1.5" />
+              <text x="250" y="99" text-anchor="middle" fill="#22C55E" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Production</text>
+
+              <!-- Arrow to Monitor -->
+              <line x1="310" y1="95" x2="365" y2="95" stroke="#22C55E" stroke-width="1" opacity="0.5" marker-end="url(#monArr)" />
+
+              <!-- Monitor -->
+              <rect x="370" y="70" width="110" height="50" rx="10" fill="#111113" stroke="#06B6D4" stroke-width="1.5" />
+              <text x="425" y="99" text-anchor="middle" fill="#06B6D4" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Monitor</text>
+
+              <!-- Anomaly feedback loop -->
+              <path d="M 425 125 C 425 170 75 170 75 125" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="6 4" class="issues-arc" marker-end="url(#failArr)" />
+              <text x="250" y="175" text-anchor="middle" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">anomaly -> new issue</text>
+
+              <!-- Green check (no anomaly) -->
+              <text x="425" y="60" text-anchor="middle" fill="#22C55E" font-size="14" font-family="JetBrains Mono, monospace">ok</text>
+            </svg>
+          </div>
+
+          <p class="text-secondary text-sm leading-relaxed">If Monitor detects a regression caused by a recent workflow run, it can trigger a revert, a hotfix workflow run, or a human alert, depending on configuration. This is what makes Level 4 viable: the workflow can fix its own mistakes in production, not just in development.</p>
+        </div>
+      </section>
+
+      <!-- Cross-links -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-lg font-semibold text-primary mb-6">Related concepts</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="self-healing.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group"><p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Self-Healing Loops</p><p class="text-xs text-muted mt-1">Loops are the mechanism that makes L3-L4 possible</p></a>
+            <a href="tool-permissions.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group"><p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Tool Permissions</p><p class="text-xs text-muted mt-1">Permissions are the safety control at all levels</p></a>
+            <a href="agentic-layer.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group"><p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">The Agentic Layer</p><p class="text-xs text-muted mt-1">Layer quality determines the achievable autonomy level</p></a>
+            <a href="artifact-chaining.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group"><p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Artifact Chaining</p><p class="text-xs text-muted mt-1">Reliable chaining is required for unattended workflow runs</p></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prev/Next -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-subtle">
+        <div class="flex justify-between items-center">
+          <a href="tool-permissions.html" class="group flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors"><svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>Tool Permissions</a>
+          <a href="../adopt/getting-started.html" class="group flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors">Get Started<svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="border-t border-subtle py-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg></div><span class="font-mono text-xs text-muted">Agentic Engineering Framework</span></div>        <div class="flex items-center gap-6">
+          <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+          <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+          <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+          <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+        </div><p class="text-xs text-muted">The code is output. The agentic layer is the product.</p></div></div></footer>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => ro.observe(el));
+    const tocLinks = document.querySelectorAll('#page-toc .sidebar-link');
+    const tocSections = Array.from(tocLinks).map(l => document.getElementById(l.getAttribute('href').slice(1))).filter(Boolean);
+    window.addEventListener('scroll', () => { let c = ''; tocSections.forEach(s => { if (scrollY >= s.offsetTop - 120) c = s.id; }); tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + c); }); });
+  </script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

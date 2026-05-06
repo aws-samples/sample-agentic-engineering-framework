@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Architecture | Agentic Engineering Framework</title>
+  <meta name="description" content="How the AEF workflow works as a system: state machine, artifact chaining, self-healing feedback loops, escalation, quality gates, and a complete end-to-end walkthrough.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="bg-void text-primary font-sans antialiased page-framework">
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3" aria-label="AEF Home">
+          <div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" />
+            </svg>
+          </div>
+          <span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-healing loops</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By team size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <!-- Search button -->
+          <button aria-label="Search" id="search-trigger" class="p-2 text-muted hover:text-primary transition-colors rounded-lg hover:bg-raised">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+          <!-- Get Started CTA -->
+          <a href="../adopt/getting-started.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+            Get Started
+          </a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary" aria-label="Toggle navigation menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Learn <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../framework/overview.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Overview</a>
+            <a href="../framework/principles.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Principles</a>
+            <a href="../framework/architecture.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Architecture</a>
+            <a href="../concepts/ase.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Autonomous Software Engineering</a>
+            <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Agentic layer</a>
+            <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Self-healing loops</a>
+            <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Artifact chaining</a>
+            <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prompt engineering</a>
+            <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Tool permissions</a>
+            <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Agent patterns</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Build <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../workflow/index.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow overview</a>
+            <a href="../workflow/intent.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Intent</a>
+            <a href="../workflow/plan.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Plan</a>
+            <a href="../workflow/build.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Build</a>
+            <a href="../workflow/test.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Test</a>
+            <a href="../workflow/review.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Review</a>
+            <a href="../workflow/document.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Document</a>
+            <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Deploy</a>
+            <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Monitor</a>
+            <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prompt templates</a>
+            <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Commands &amp; skills</a>
+            <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Tool integrations</a>
+            <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Quality gates</a>
+            <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow config</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Adopt <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Getting started</a>
+            <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">By team size</a>
+            <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Maturity path</a>
+            <a href="../adopt/customization.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Customization</a>
+          </div>
+        </div>
+        <div class="mobile-section">
+          <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary transition-colors" aria-expanded="false">Reference <svg class="w-3 h-3 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mobile-section-content hidden pl-4 pb-2 space-y-1">
+            <a href="../reference/glossary.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Glossary</a>
+            <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Workflow Schema</a>
+            <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Prerequisites</a>
+            <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Troubleshooting</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+    <div class="lg:flex lg:gap-12">
+
+      <!-- Sidebar -->
+      <aside class="hidden lg:block lg:w-64 flex-shrink-0">
+        <div class="sticky top-24">
+          <p class="font-mono text-xs uppercase tracking-wider text-muted mb-3">Framework</p>
+          <div class="space-y-2 mb-8">
+            <a href="overview.html" class="sidebar-link block text-sm text-muted hover:text-primary transition-colors">Overview</a>
+            <a href="principles.html" class="sidebar-link block text-sm text-muted hover:text-primary transition-colors">Principles</a>
+            <a href="architecture.html" class="sidebar-link active block text-sm text-glow">Architecture</a>
+          </div>
+          <p class="font-mono text-xs uppercase tracking-wider text-muted mb-3">On This Page</p>
+          <div class="space-y-2">
+            <a href="#state-machine" class="block text-xs text-muted hover:text-secondary transition-colors">State Machine</a>
+            <a href="#artifact-chaining" class="block text-xs text-muted hover:text-secondary transition-colors">Artifact Chaining</a>
+            <a href="#feedback-loops" class="block text-xs text-muted hover:text-secondary transition-colors">Feedback Loops</a>
+            <a href="#escalation" class="block text-xs text-muted hover:text-secondary transition-colors">Escalation</a>
+            <a href="#execution-model" class="block text-xs text-muted hover:text-secondary transition-colors">Execution Model</a>
+            <a href="#quality-gates" class="block text-xs text-muted hover:text-secondary transition-colors">Quality Gates</a>
+            <a href="#full-example" class="block text-xs text-muted hover:text-secondary transition-colors">Full Example</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <div class="flex-1 min-w-0">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+          <ol class="flex items-center gap-0">
+            <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><a href="../framework/overview.html" class="hover:text-secondary transition-colors">Learn</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><span class="text-secondary" aria-current="page">Architecture</span></li>
+          </ol>
+        </nav>
+
+        <!-- Hero -->
+        <section class="relative mb-16">
+          <div class="ambient-glow w-[400px] h-[400px] bg-glow/[0.03] -top-20 -right-20"></div>
+          <p class="text-sm font-mono text-glow tracking-wider uppercase mb-3">Framework / Architecture</p>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4">How the Workflow Works</h1>
+          <p class="text-secondary text-lg max-w-2xl leading-relaxed mb-6">The workflow is a state machine where phases produce artifacts that chain forward. Loops self-heal, and gates enforce quality. This page covers the internals.</p>
+
+          <!-- Framework positioning banner -->
+          <div class="max-w-2xl">
+            <div class="p-4 rounded-lg border border-glow/20 bg-glow/[0.03]">
+              <p class="text-sm text-secondary leading-relaxed">
+                <strong class="text-primary">This is the spec, not the implementation.</strong> The state machine, artifact chaining, and loops below describe <em>what</em> your workflow should do. <em>How</em> you build it depends on your agent stack. The <a href="../link-to-repo" class="text-glow hover:text-glow-hover transition-colors underline decoration-glow/30">reference example</a> is one approach.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- STATE MACHINE -->
+        <section id="state-machine" class="mb-20 reveal">
+          <p class="text-sm font-mono text-glow tracking-wider uppercase mb-3">State Machine</p>
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">Workflow as a state machine</h2>
+          <p class="text-secondary leading-relaxed mb-6">Every workflow run is a sequence of state transitions. The current state determines what happens next. Failures do not crash the workflow; they trigger transitions to retry or escalation states.</p>
+
+          <!-- State Diagram SVG -->
+          <div class="rounded-xl bg-surface border border-subtle p-6 mb-8 overflow-x-auto">
+            <svg viewBox="0 0 940 340" class="w-full min-w-[700px]" role="img" aria-label="Pipeline state machine diagram">
+              <defs>
+                <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#52525B" /></marker>
+                <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10B981" opacity="0.6" /></marker>
+                <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3B82F6" opacity="0.6" /></marker>
+                <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#EF4444" opacity="0.6" /></marker>
+              </defs>
+
+              <!-- Main flow arrows -->
+              <line x1="115" y1="50" x2="135" y2="50" stroke="#52525B" stroke-width="1" marker-end="url(#arrow)" />
+              <line x1="235" y1="50" x2="285" y2="50" stroke="#52525B" stroke-width="1" marker-end="url(#arrow)" />
+              <line x1="385" y1="50" x2="435" y2="50" stroke="#52525B" stroke-width="1" marker-end="url(#arrow)" />
+              <line x1="535" y1="50" x2="585" y2="50" stroke="#52525B" stroke-width="1" marker-end="url(#arrow)" />
+              <line x1="685" y1="50" x2="735" y2="50" stroke="#52525B" stroke-width="1" marker-end="url(#arrow)" />
+              <line x1="835" y1="50" x2="885" y2="50" stroke="#52525B" stroke-width="1" marker-end="url(#arrow)" />
+
+              <!-- Phase nodes - main row -->
+              <rect x="15" y="30" width="100" height="40" rx="6" fill="#111113" stroke="#EC4899" stroke-width="1.5" stroke-dasharray="6 3" />
+              <text x="65" y="55" text-anchor="middle" fill="#EC4899" font-size="11" font-weight="600" font-family="JetBrains Mono">INTENT</text>
+
+              <rect x="135" y="30" width="100" height="40" rx="6" fill="#111113" stroke="#8B5CF6" stroke-width="1.5" />
+              <text x="185" y="55" text-anchor="middle" fill="#8B5CF6" font-size="11" font-weight="600" font-family="JetBrains Mono">PLANNING</text>
+
+              <rect x="285" y="30" width="100" height="40" rx="6" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
+              <text x="335" y="55" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="600" font-family="JetBrains Mono">BUILDING</text>
+
+              <rect x="435" y="30" width="100" height="40" rx="6" fill="#111113" stroke="#10B981" stroke-width="1.5" />
+              <text x="485" y="55" text-anchor="middle" fill="#10B981" font-size="11" font-weight="600" font-family="JetBrains Mono">TESTING</text>
+
+              <rect x="585" y="30" width="100" height="40" rx="6" fill="#111113" stroke="#3B82F6" stroke-width="1.5" />
+              <text x="635" y="55" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="600" font-family="JetBrains Mono">REVIEWING</text>
+
+              <rect x="735" y="30" width="100" height="40" rx="6" fill="#111113" stroke="#A78BFA" stroke-width="1.5" />
+              <text x="785" y="55" text-anchor="middle" fill="#A78BFA" font-size="10" font-weight="600" font-family="JetBrains Mono">DOCUMENTING</text>
+
+              <rect x="885" y="30" width="50" height="40" rx="6" fill="#111113" stroke="#F97316" stroke-width="1.5" />
+              <text x="910" y="55" text-anchor="middle" fill="#F97316" font-size="9" font-weight="600" font-family="JetBrains Mono">DEPLOY</text>
+
+              <!-- Retry states -->
+              <rect x="410" y="140" width="105" height="36" rx="6" fill="#111113" stroke="#10B981" stroke-width="1" stroke-dasharray="4 2" />
+              <text x="462" y="163" text-anchor="middle" fill="#10B981" font-size="10" font-family="JetBrains Mono">TEST_RETRY</text>
+
+              <rect x="560" y="140" width="115" height="36" rx="6" fill="#111113" stroke="#3B82F6" stroke-width="1" stroke-dasharray="4 2" />
+              <text x="617" y="163" text-anchor="middle" fill="#3B82F6" font-size="10" font-family="JetBrains Mono">REVIEW_PATCH</text>
+
+              <!-- Escalation -->
+              <rect x="490" y="240" width="100" height="36" rx="6" fill="#111113" stroke="#EF4444" stroke-width="1.5" />
+              <text x="540" y="263" text-anchor="middle" fill="#EF4444" font-size="11" font-weight="600" font-family="JetBrains Mono">ESCALATED</text>
+
+              <!-- Test retry connections -->
+              <line x1="485" y1="70" x2="462" y2="140" stroke="#10B981" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowGreen)" />
+              <text x="460" y="105" fill="#10B981" font-size="8" font-family="JetBrains Mono">fail</text>
+              <path d="M 410 158 C 370 158 370 55 385 55" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="4 3" class="loop-arc" marker-end="url(#arrowGreen)" />
+              <text x="365" y="120" fill="#10B981" font-size="8" font-family="JetBrains Mono">fix &amp; retest</text>
+
+              <!-- Review patch connections -->
+              <line x1="635" y1="70" x2="617" y2="140" stroke="#3B82F6" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowBlue)" />
+              <text x="620" y="105" fill="#3B82F6" font-size="8" font-family="JetBrains Mono">blockers</text>
+              <path d="M 560 158 C 400 170 380 55 435 55" fill="none" stroke="#3B82F6" stroke-width="1" stroke-dasharray="4 3" class="loop-arc" marker-end="url(#arrowBlue)" />
+              <text x="430" y="190" fill="#3B82F6" font-size="8" font-family="JetBrains Mono">patch &amp; rebuild</text>
+
+              <!-- Escalation connections -->
+              <line x1="462" y1="176" x2="520" y2="240" stroke="#EF4444" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arrowRed)" />
+              <text x="470" y="218" fill="#EF4444" font-size="8" font-family="JetBrains Mono">exhausted</text>
+              <line x1="617" y1="176" x2="560" y2="240" stroke="#EF4444" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arrowRed)" />
+              <text x="595" y="218" fill="#EF4444" font-size="8" font-family="JetBrains Mono">exhausted</text>
+
+              <!-- Complete state -->
+              <rect x="885" y="140" width="50" height="36" rx="6" fill="#111113" stroke="#22C55E" stroke-width="1.5" />
+              <text x="910" y="163" text-anchor="middle" fill="#22C55E" font-size="9" font-weight="600" font-family="JetBrains Mono">DONE</text>
+              <line x1="910" y1="70" x2="910" y2="140" stroke="#52525B" stroke-width="1" marker-end="url(#arrow)" />
+            </svg>
+          </div>
+
+          <!-- Manifest -->
+          <h3 class="text-lg font-semibold text-primary mb-3">Workflow manifest</h3>
+          <p class="text-secondary leading-relaxed mb-4">Each run maintains a manifest that tracks state, history, artifacts, and cost. The manifest is how the workflow remembers what happened across phases.</p>
+          <div class="code-block p-5 mb-6 overflow-x-auto">
+            <pre class="font-mono text-sm leading-relaxed"><code>{
+  <span class="var">"workflow_id"</span>: <span class="string">"run_2026-03-10_001"</span>,
+  <span class="var">"state"</span>: <span class="string">"REVIEWING"</span>,
+  <span class="var">"phase_history"</span>: [
+    { <span class="var">"phase"</span>: <span class="string">"intent"</span>, <span class="var">"status"</span>: <span class="string">"complete"</span>, <span class="var">"iterations"</span>: <span class="type">1</span> },
+    { <span class="var">"phase"</span>: <span class="string">"plan"</span>, <span class="var">"status"</span>: <span class="string">"complete"</span>, <span class="var">"iterations"</span>: <span class="type">1</span> },
+    { <span class="var">"phase"</span>: <span class="string">"build"</span>, <span class="var">"status"</span>: <span class="string">"complete"</span>, <span class="var">"iterations"</span>: <span class="type">1</span> },
+    { <span class="var">"phase"</span>: <span class="string">"test"</span>, <span class="var">"status"</span>: <span class="string">"complete"</span>, <span class="var">"iterations"</span>: <span class="type">2</span> }
+  ],
+  <span class="var">"artifacts"</span>: {
+    <span class="var">"intent"</span>: <span class="string">"specs/intent-run_001.md"</span>,
+    <span class="var">"plan"</span>: <span class="string">"specs/plan-run_001.md"</span>,
+    <span class="var">"build"</span>: <span class="string">"specs/build-run_001.md"</span>,
+    <span class="var">"test_results"</span>: <span class="string">"specs/test-run_001.json"</span>
+  },
+  <span class="var">"total_retries"</span>: <span class="type">1</span>,
+  <span class="var">"escalated"</span>: <span class="keyword">false</span>
+}</code></pre>
+          </div>
+        </section>
+
+
+        <!-- ARTIFACT CHAINING -->
+        <section id="artifact-chaining" class="mb-20 border-t border-subtle pt-16 reveal">
+          <p class="text-sm font-mono text-glow tracking-wider uppercase mb-3">Artifacts</p>
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">Artifact chaining</h2>
+          <p class="text-secondary leading-relaxed mb-6">Agents are stateless; every invocation starts from scratch. Artifact chaining solves this. Each phase produces a structured output, and the next phase's prompt template gets populated with that output via template variables.</p>
+
+          <!-- Chain table -->
+          <div class="rounded-xl bg-surface border border-subtle overflow-hidden mb-8">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-subtle">
+                  <th class="text-left px-4 py-3 font-mono text-xs text-muted uppercase tracking-wider">Phase</th>
+                  <th class="text-left px-4 py-3 font-mono text-xs text-muted uppercase tracking-wider">Produces</th>
+                  <th class="text-left px-4 py-3 font-mono text-xs text-glow uppercase tracking-wider">Variable</th>
+                  <th class="text-left px-4 py-3 font-mono text-xs text-muted uppercase tracking-wider">Consumed By</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-subtle">
+                <tr><td class="px-4 py-3 font-mono font-medium" style="color: #EC4899">Intent (optional)</td><td class="px-4 py-3 text-secondary">Intent spec</td><td class="px-4 py-3 font-mono text-glow-hover text-xs">$intent_artifact</td><td class="px-4 py-3 text-secondary">Plan</td></tr>
+                <tr><td class="px-4 py-3 text-plan font-mono font-medium">Plan</td><td class="px-4 py-3 text-secondary">Implementation spec</td><td class="px-4 py-3 font-mono text-glow-hover text-xs">$plan_artifact</td><td class="px-4 py-3 text-secondary">Build</td></tr>
+                <tr><td class="px-4 py-3 text-build font-mono font-medium">Build</td><td class="px-4 py-3 text-secondary">Code changes + tests</td><td class="px-4 py-3 font-mono text-glow-hover text-xs">$build_artifact</td><td class="px-4 py-3 text-secondary">Test</td></tr>
+                <tr><td class="px-4 py-3 text-test font-mono font-medium">Test</td><td class="px-4 py-3 text-secondary">Results + coverage</td><td class="px-4 py-3 font-mono text-glow-hover text-xs">$test_results</td><td class="px-4 py-3 text-secondary">Review</td></tr>
+                <tr><td class="px-4 py-3 text-review font-mono font-medium">Review</td><td class="px-4 py-3 text-secondary">Verdict + issues</td><td class="px-4 py-3 font-mono text-glow-hover text-xs">$review_artifact</td><td class="px-4 py-3 text-secondary">Document, Deploy</td></tr>
+                <tr><td class="px-4 py-3 text-document font-mono font-medium">Document</td><td class="px-4 py-3 text-secondary">Docs + changelog</td><td class="px-4 py-3 font-mono text-glow-hover text-xs">$doc_artifact</td><td class="px-4 py-3 text-secondary">Deploy</td></tr>
+                <tr><td class="px-4 py-3 text-deploy font-mono font-medium">Deploy</td><td class="px-4 py-3 text-secondary">PR reference</td><td class="px-4 py-3 font-mono text-glow-hover text-xs">$deploy_artifact</td><td class="px-4 py-3 text-secondary">Monitor</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Variable substitution example -->
+          <h3 class="text-lg font-semibold text-primary mb-3">How substitution works</h3>
+          <p class="text-secondary leading-relaxed mb-4">When Build starts, the workflow replaces <span class="font-mono text-glow-hover text-sm">${plan_artifact}</span> in the Build template with the actual Plan output. The agent sees the resolved content, not the variable.</p>
+          <div class="code-block p-5 overflow-x-auto">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="comment"># build.md template (before substitution)</span>
+<span class="keyword">## Context</span>
+Plan: <span class="var">${plan_artifact}</span>
+
+<span class="comment"># What the agent actually receives:</span>
+<span class="keyword">## Context</span>
+Plan: <span class="string">Summary: Add GET /users endpoint
+Files to modify: [src/routes.ts:45, src/controllers/user.ts]
+Test strategy: Unit tests for controller, integration for route</span></code></pre>
+          </div>
+        </section>
+
+
+        <!-- FEEDBACK LOOPS -->
+        <section id="feedback-loops" class="mb-20 border-t border-subtle pt-16 reveal">
+          <p class="text-sm font-mono text-glow tracking-wider uppercase mb-3">Feedback Loops</p>
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">Self-healing feedback loops</h2>
+          <p class="text-secondary leading-relaxed mb-8">Two loop types handle two failure modes: Test Retry fixes broken code and Review-Patch fixes quality issues. Both exhaust their retries before escalating.</p>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Test Retry Loop -->
+            <div class="rounded-xl bg-surface border border-subtle p-6">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-test"></div>
+                <h3 class="font-mono text-sm font-semibold text-test">Test retry loop</h3>
+              </div>
+              <ol class="text-sm text-secondary space-y-2 mb-4 list-decimal list-inside">
+                <li>Test phase runs all tests</li>
+                <li>Tests fail; analyze failure output</li>
+                <li>Spawn builder agent with failure context</li>
+                <li>Builder applies fix</li>
+                <li>Re-run tests</li>
+                <li>Pass --&gt; continue. Fail --&gt; repeat (max 3x)</li>
+                <li>Exhausted --&gt; <span class="text-fail font-mono text-xs">ESCALATE</span></li>
+              </ol>
+              <div class="code-block p-4">
+                <pre class="font-mono text-xs leading-relaxed"><code><span class="comment"># Loop config</span>
+<span class="keyword">loops</span>:
+  <span class="keyword">test_retry</span>:
+    <span class="var">max</span>: <span class="type">3</span>
+    <span class="var">on_exhaust</span>: <span class="string">escalate</span></code></pre>
+              </div>
+            </div>
+
+            <!-- Review-Patch Loop -->
+            <div class="rounded-xl bg-surface border border-subtle p-6">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-review"></div>
+                <h3 class="font-mono text-sm font-semibold text-review">Review-patch loop</h3>
+              </div>
+              <ol class="text-sm text-secondary space-y-2 mb-4 list-decimal list-inside">
+                <li>Review finds blocker-severity issues</li>
+                <li>Produce structured issue list</li>
+                <li>Spawn builder with review context</li>
+                <li>Builder applies patches</li>
+                <li>Re-run tests (patches must not break tests)</li>
+                <li>Re-submit to Review</li>
+                <li>Pass --&gt; continue. Blockers --&gt; repeat (max 3x)</li>
+                <li>Exhausted --&gt; <span class="text-fail font-mono text-xs">ESCALATE</span></li>
+              </ol>
+              <div class="code-block p-4">
+                <pre class="font-mono text-xs leading-relaxed"><code><span class="comment"># Loop config</span>
+<span class="keyword">loops</span>:
+  <span class="keyword">review_patch</span>:
+    <span class="var">max</span>: <span class="type">3</span>
+    <span class="var">on_exhaust</span>: <span class="string">escalate</span></code></pre>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-sm text-muted">The key distinction: Test Retry fixes <em>broken code</em> (it doesn't work). Review-Patch fixes <em>quality issues</em> (it works but has problems). Both re-test after patching, and patches must never break tests.</p>
+        </section>
+
+
+        <!-- ESCALATION -->
+        <section id="escalation" class="mb-20 border-t border-subtle pt-16 reveal">
+          <p class="text-sm font-mono text-glow tracking-wider uppercase mb-3">Escalation</p>
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">When the workflow needs a human</h2>
+          <p class="text-secondary leading-relaxed mb-6">Escalation is a feature, not a failure. The workflow tried what it could and is handing you full context. You never start from zero.</p>
+
+          <!-- Context package -->
+          <div class="rounded-xl bg-surface border-l-4 border-warning p-6 mb-6">
+            <h3 class="font-mono text-sm font-semibold text-warning mb-4">What you get on escalation</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div><span class="text-muted">Original task:</span> <span class="text-secondary">the issue that started the workflow</span></div>
+              <div><span class="text-muted">Plan produced:</span> <span class="text-secondary">the implementation spec</span></div>
+              <div><span class="text-muted">Code built:</span> <span class="text-secondary">all changes made by the builder</span></div>
+              <div><span class="text-muted">Test results:</span> <span class="text-secondary">all attempts, including retries</span></div>
+              <div><span class="text-muted">Review findings:</span> <span class="text-secondary">all issues across iterations</span></div>
+              <div><span class="text-muted">Blocker summary:</span> <span class="text-secondary">what specifically could not be resolved</span></div>
+            </div>
+          </div>
+
+          <!-- Human options -->
+          <h3 class="text-lg font-semibold text-primary mb-4">Your options</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="p-4 rounded-xl bg-surface border border-subtle">
+              <h4 class="font-mono text-xs font-semibold text-primary mb-2">Give guidance</h4>
+              <p class="text-xs text-secondary">point the agent in the right direction and resume from the current phase.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-surface border border-subtle">
+              <h4 class="font-mono text-xs font-semibold text-primary mb-2">Override gate</h4>
+              <p class="text-xs text-secondary">accept the current output and let the workflow continue.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-surface border border-subtle">
+              <h4 class="font-mono text-xs font-semibold text-primary mb-2">Update layer</h4>
+              <p class="text-xs text-secondary">modify a prompt or gate, then re-run the workflow.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-surface border border-subtle">
+              <h4 class="font-mono text-xs font-semibold text-primary mb-2">Abort</h4>
+              <p class="text-xs text-secondary">stop the workflow. All artifacts are preserved.</p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- EXECUTION MODEL -->
+        <section id="execution-model" class="mb-20 border-t border-subtle pt-16 reveal">
+          <p class="text-sm font-mono text-glow tracking-wider uppercase mb-3">Execution</p>
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">Phase execution model</h2>
+          <p class="text-secondary leading-relaxed mb-6">Sequential by default. Each phase must complete before the next begins. Parallelization is something you opt into after the basics work, not a starting point.</p>
+
+          <!-- Issue-type routing table -->
+          <h3 class="text-lg font-semibold text-primary mb-4">Phase skipping by issue type</h3>
+          <div class="rounded-xl bg-surface border border-subtle overflow-hidden mb-6">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-subtle">
+                  <th class="text-left px-4 py-3 font-mono text-xs text-muted">Type</th>
+                  <th class="text-center px-3 py-3 font-mono text-xs" style="color: #EC4899">Intent</th>
+                  <th class="text-center px-3 py-3 font-mono text-xs text-plan">Plan</th>
+                  <th class="text-center px-3 py-3 font-mono text-xs text-build">Build</th>
+                  <th class="text-center px-3 py-3 font-mono text-xs text-test">Test</th>
+                  <th class="text-center px-3 py-3 font-mono text-xs text-review">Review</th>
+                  <th class="text-center px-3 py-3 font-mono text-xs text-document">Doc</th>
+                  <th class="text-center px-3 py-3 font-mono text-xs text-deploy">Deploy</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-subtle">
+                <tr><td class="px-4 py-3 text-primary font-medium">Feature</td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Recommended</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td></tr>
+                <tr><td class="px-4 py-3 text-primary font-medium">Bug</td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Optional</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Targeted</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Targeted</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Min</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td></tr>
+                <tr><td class="px-4 py-3 text-primary font-medium">Hotfix</td><td class="text-center px-3 py-3"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Skip</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Min</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Targeted</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Min</span></td><td class="text-center px-3 py-3"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Skip</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td></tr>
+                <tr><td class="px-4 py-3 text-primary font-medium">Docs-only</td><td class="text-center px-3 py-3"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Skip</span></td><td class="text-center px-3 py-3"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Skip</span></td><td class="text-center px-3 py-3"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Skip</span></td><td class="text-center px-3 py-3"><span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">Skip</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td><td class="text-center px-3 py-3"><span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">Full</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-muted">Notice: Review always runs, even on hotfixes. You do not get to skip it.</p>
+        </section>
+
+
+        <!-- QUALITY GATES -->
+        <section id="quality-gates" class="mb-20 border-t border-subtle pt-16 reveal">
+          <p class="text-sm font-mono text-glow tracking-wider uppercase mb-3">Quality Gates</p>
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">Pass/fail between phases</h2>
+          <p class="text-secondary leading-relaxed mb-6">A phase cannot hand off to the next until its gate passes. Gates enforce the principles: TDD via coverage gates, quality via review gates, structure via PR gates. All thresholds are configurable.</p>
+
+          <div class="space-y-4 mb-8">
+            <!-- Test coverage gate -->
+            <div class="rounded-xl bg-surface border-l-4 border-test p-5">
+              <h4 class="font-mono text-sm font-semibold text-test mb-3">Test coverage gate</h4>
+              <div class="code-block p-4">
+                <pre class="font-mono text-xs leading-relaxed"><code><span class="keyword">gates</span>:
+  <span class="keyword">test</span>:
+    <span class="var">coverage_min</span>: <span class="type">80</span>
+    <span class="var">all_pass</span>: <span class="type">true</span>
+    <span class="var">new_code_covered</span>: <span class="type">true</span>
+    <span class="var">on_fail</span>: <span class="string">trigger_test_retry</span>
+    <span class="var">on_exhaust</span>: <span class="string">escalate</span></code></pre>
+              </div>
+            </div>
+
+            <!-- Review severity gate -->
+            <div class="rounded-xl bg-surface border-l-4 border-review p-5">
+              <h4 class="font-mono text-sm font-semibold text-review mb-3">Review severity gate</h4>
+              <div class="code-block p-4">
+                <pre class="font-mono text-xs leading-relaxed"><code><span class="keyword">gates</span>:
+  <span class="keyword">review</span>:
+    <span class="var">max_blockers</span>: <span class="type">0</span>
+    <span class="var">max_critical</span>: <span class="type">2</span>
+    <span class="var">tech_debt_logged</span>: <span class="type">true</span>
+    <span class="var">on_fail</span>: <span class="string">trigger_review_patch</span>
+    <span class="var">on_exhaust</span>: <span class="string">escalate</span></code></pre>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-sm text-secondary">Gates connect to loops: a failed gate triggers the matching feedback loop, and when the loop exhausts, the gate triggers escalation. This is how quality requirements connect to self-healing behavior. <a href="../concepts/self-healing.html" class="text-glow hover:text-glow-hover transition-colors">Learn more about self-healing loops</a></p>
+        </section>
+
+
+        <!-- FULL EXAMPLE -->
+        <section id="full-example" class="mb-20 border-t border-subtle pt-16 reveal">
+          <p class="text-sm font-mono text-glow tracking-wider uppercase mb-3">Full Example</p>
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4">A complete workflow run (illustrative)</h2>
+          <p class="text-secondary leading-relaxed mb-8">"Add GET /users endpoint," through every state, artifact, gate check, and one retry.</p>
+
+          <div class="space-y-0">
+            <!-- Step 0: Intent -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-surface border-2 flex items-center justify-center text-[10px] font-mono" style="border-color: #EC4899; color: #EC4899">0</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold" style="color: #EC4899">INTENT (optional)</span>
+                  <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">PASS</span>
+                </div>
+                <p class="text-sm text-secondary mb-2">Raw request: "Add GET /users endpoint with pagination and auth." Requirements Analyst researches the codebase, finds the existing route structure and cursor-based pagination in /orders. Produces intent spec with EARS user stories, acceptance criteria, and explicit scope (GET only, no create/update/delete).</p>
+              </div>
+            </div>
+
+            <!-- Step 1: Planning -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-surface border-2 border-plan flex items-center justify-center text-[10px] font-mono text-plan">1</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-plan">PLANNING</span>
+                  <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">PASS</span>
+                </div>
+                <p class="text-sm text-secondary mb-2">Architect agent reads the codebase. Produces a plan with file:line references, test strategy, and what's explicitly out of scope.</p>
+                <div class="code-block p-3"><pre class="font-mono text-xs text-muted"><code>Files: src/routes.ts:45, src/controllers/user.ts
+Tests: unit + integration for GET /users</code></pre></div>
+              </div>
+            </div>
+
+            <!-- Step 2: Building -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-surface border-2 border-build flex items-center justify-center text-[10px] font-mono text-build">2</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-build">BUILDING</span>
+                  <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">PASS</span>
+                </div>
+                <p class="text-sm text-secondary mb-2">Engineer agent writes tests first, then implements the controller and route. Follows plan exactly.</p>
+                <div class="code-block p-3"><pre class="font-mono text-xs text-muted"><code>Created: tests/user.test.ts (15 tests)
+Modified: src/routes.ts, src/controllers/user.ts</code></pre></div>
+              </div>
+            </div>
+
+            <!-- Step 3: Testing (FAIL) -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-surface border-2 border-test flex items-center justify-center text-[10px] font-mono text-test">3</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-test">TESTING</span>
+                  <span class="perm-denied px-2 py-0.5 text-[10px] font-mono rounded">FAIL</span>
+                </div>
+                <p class="text-sm text-secondary">14 pass, 1 fails. Route handler returns 404 instead of 200 for valid request.</p>
+              </div>
+            </div>
+
+            <!-- Step 3a: Test Retry -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-raised border-2 border-build/50 flex items-center justify-center text-[10px] font-mono text-build/70">3a</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-build/70">TEST_RETRY</span>
+                  <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-build/10 text-build border border-build/20">iteration 1</span>
+                </div>
+                <p class="text-sm text-secondary">Builder agent receives failure context. Patches route handler to register the endpoint correctly.</p>
+              </div>
+            </div>
+
+            <!-- Step 3b: Re-test (PASS) -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-surface border-2 border-test flex items-center justify-center text-[10px] font-mono text-test">3b</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-test">TESTING</span>
+                  <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">PASS</span>
+                </div>
+                <p class="text-sm text-secondary">All 15 tests pass. Coverage: 87%. Gate passes.</p>
+              </div>
+            </div>
+
+            <!-- Step 4: Reviewing -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-surface border-2 border-review flex items-center justify-center text-[10px] font-mono text-review">4</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-review">REVIEWING</span>
+                  <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">PASS</span>
+                </div>
+                <p class="text-sm text-secondary">No blockers. 1 tech-debt item logged (input validation could be stricter). Gate: 0 blockers. Pass.</p>
+              </div>
+            </div>
+
+            <!-- Step 5: Documenting -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-surface border-2 border-document flex items-center justify-center text-[10px] font-mono text-document">5</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-document">DOCUMENTING</span>
+                  <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">PASS</span>
+                </div>
+                <p class="text-sm text-secondary">Writer generates docs from actual diffs. Changelog entry, API reference, architecture decision recorded.</p>
+              </div>
+            </div>
+
+            <!-- Step 6: Deploying -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-surface border-2 border-deploy flex items-center justify-center text-[10px] font-mono text-deploy">6</div>
+                <div class="step-connector flex-1 my-1"></div>
+              </div>
+              <div class="pb-8 flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-deploy">DEPLOYING</span>
+                  <span class="perm-allowed px-2 py-0.5 text-[10px] font-mono rounded">PASS</span>
+                </div>
+                <p class="text-sm text-secondary">Atomic commits created. PR opened with plan reference, test evidence, review summary. Gate: structure valid.</p>
+              </div>
+            </div>
+
+            <!-- Step 7: Complete -->
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="w-9 h-9 rounded-full bg-pass border-2 border-pass flex items-center justify-center text-[10px] font-mono text-white shadow-[0_0_12px_rgba(34,197,94,0.3)]">7</div>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-mono text-sm font-semibold text-pass">COMPLETE</span>
+                </div>
+                <p class="text-sm text-secondary">Workflow done. 1 retry, 7 steps (with 1 retry sub-step), all gates passed.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary box -->
+          <div class="mt-8 rounded-xl bg-surface border border-subtle p-6">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+              <div>
+                <p class="font-mono text-2xl font-bold text-primary">8</p>
+                <p class="text-xs text-muted">Phase executions (including retry)</p>
+              </div>
+              <div>
+                <p class="font-mono text-2xl font-bold text-build">1</p>
+                <p class="text-xs text-muted">Retries needed</p>
+              </div>
+              <div>
+                <p class="font-mono text-2xl font-bold text-pass">6</p>
+                <p class="text-xs text-muted">Gates passed</p>
+              </div>
+              <div>
+                <p class="font-mono text-2xl font-bold text-primary">0</p>
+                <p class="text-xs text-muted">Escalations</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- NEXT STEPS -->
+        <section class="border-t border-subtle pt-16 reveal">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a href="overview.html" class="p-5 rounded-xl bg-surface border border-subtle hover:border-glow-faint transition-all duration-250 cursor-pointer">
+              <p class="text-xs font-mono text-muted mb-1">Previous</p>
+              <p class="font-semibold text-primary">Overview</p>
+            </a>
+            <a href="principles.html" class="p-5 rounded-xl bg-surface border border-subtle hover:border-glow-faint transition-all duration-250 cursor-pointer">
+              <p class="text-xs font-mono text-muted mb-1">Related</p>
+              <p class="font-semibold text-primary">Principles</p>
+            </a>
+            <a href="../adopt/getting-started.html" class="p-5 rounded-xl bg-surface border border-subtle hover:border-glow-faint transition-all duration-250 cursor-pointer">
+              <p class="text-xs font-mono text-muted mb-1">Next</p>
+              <p class="font-semibold text-primary">Get Started</p>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="border-t border-subtle py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center">
+            <svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" />
+            </svg>
+          </div>
+          <span class="font-mono text-xs text-muted">Agentic Engineering Framework</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+          <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+          <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+          <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+        </div>
+        <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile menu
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Mobile accordion sections
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Test Phase | QA Engineer | AEF Workflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-void text-primary font-sans antialiased page-workflow">
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex items-center justify-between h-16"><a href="../index.html" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3"/></svg></div><span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span></a><div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <p class="px-4 py-1 mt-2 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic Layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-Healing</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact Chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent Patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Build
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <p class="px-4 py-1 mt-2 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt Templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; Skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool Integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality Gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Adopt
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting Started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By Team Size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity Path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Reference
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary cursor-pointer" aria-label="Toggle menu"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button></div></div><div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Learn section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Learn
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1">Framework</p>
+          <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+          <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Principles</a>
+          <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Architecture</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1 mt-2">Concepts</p>
+          <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Autonomous Software Engineering</a>
+          <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agentic Layer</a>
+          <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Self-Healing</a>
+          <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Artifact Chaining</a>
+          <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Engineering</a>
+          <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Permissions</a>
+          <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Agent Patterns</a>
+        </div>
+        <!-- Build section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-glow font-medium" aria-expanded="false">
+          Build
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1">Workflow</p>
+          <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Overview</a>
+          <a href="intent.html" class="block py-1.5 text-sm text-muted hover:text-primary transition-colors">Intent</a>
+          <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Plan</a>
+          <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Build</a>
+          <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Test</a>
+          <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Review</a>
+          <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Document</a>
+          <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Deploy</a>
+          <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Monitor</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider py-1 mt-2">Configuration</p>
+          <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prompt Templates</a>
+          <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Commands &amp; Skills</a>
+          <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Tool Integrations</a>
+          <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Quality Gates</a>
+          <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Config</a>
+        </div>
+        <!-- Adopt section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Adopt
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Getting Started</a>
+          <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary">By Team Size</a>
+          <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Maturity Path</a>
+          <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Customization</a>
+        </div>
+        <!-- Reference section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm text-secondary hover:text-primary" aria-expanded="false">
+          Reference
+          <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-4 space-y-1">
+          <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Glossary</a>
+          <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Workflow Schema</a>
+          <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Prerequisites</a>
+          <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary">Troubleshooting</a>
+        </div>
+      </div>
+    </div></nav>
+
+  <!-- MOBILE PHASE SELECTOR -->
+  <div class="lg:hidden fixed top-16 left-0 right-0 z-40 bg-void/90 backdrop-blur-md border-b border-subtle"><div class="mobile-phase-bar flex items-center gap-4 px-4 py-3"><a href="./" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full bg-glow"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Overview</span></a><a href="intent.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full" style="background: #EC4899"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Intent</span></a><a href="plan.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full bg-plan"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Plan</span></a><a href="build.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full bg-build"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Build</span></a><a href="test.html" class="flex items-center gap-2 shrink-0 border-b-2 border-test pb-1"><span class="w-2 h-2 rounded-full bg-test shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span><span class="font-mono text-xs text-test whitespace-nowrap">Test</span></a><a href="review.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full bg-review"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Review</span></a><a href="document.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full bg-document"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Document</span></a><a href="deploy.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full bg-deploy"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Deploy</span></a><a href="monitor.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full bg-monitor"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Monitor</span></a></div></div>
+
+  <!-- DESKTOP SIDEBAR -->
+  <aside class="hidden lg:block fixed left-0 top-16 bottom-0 w-64 border-r border-subtle bg-void/90 backdrop-blur-md z-40 overflow-y-auto py-8 px-4"><div class="mb-6"><span class="font-mono text-[10px] text-muted uppercase tracking-wider">Workflow</span></div><nav class="space-y-1"><a href="./" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-overview"><span class="phase-dot w-2 h-2 rounded-full bg-glow"></span><div><span class="phase-name font-mono text-xs text-primary">Overview</span></div></a><a href="intent.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50" style="--phase-color: #EC4899"><span class="phase-dot w-2 h-2 rounded-full" style="background: #EC4899"></span><div><span class="phase-name font-mono text-xs text-primary">Intent</span><span class="block text-[10px] text-muted">Requirements Analyst</span></div></a><a href="plan.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-plan"><span class="phase-dot w-2 h-2 rounded-full bg-plan"></span><div><span class="phase-name font-mono text-xs text-primary">Plan</span><span class="block text-[10px] text-muted">Software Architect</span></div></a><a href="build.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-build"><span class="phase-dot w-2 h-2 rounded-full bg-build"></span><div><span class="phase-name font-mono text-xs text-primary">Build</span><span class="block text-[10px] text-muted">Software Engineer</span></div></a><a href="test.html" class="phase-sidebar-item active flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-test"><span class="phase-dot w-2 h-2 rounded-full bg-test"></span><div><span class="phase-name font-mono text-xs">Test</span><span class="block text-[10px] text-muted">QA Engineer</span></div></a><a href="review.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-review"><span class="phase-dot w-2 h-2 rounded-full bg-review"></span><div><span class="phase-name font-mono text-xs text-primary">Review</span><span class="block text-[10px] text-muted">Senior Reviewer</span></div></a><a href="document.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-document"><span class="phase-dot w-2 h-2 rounded-full bg-document"></span><div><span class="phase-name font-mono text-xs text-primary">Document</span><span class="block text-[10px] text-muted">Technical Writer</span></div></a><a href="deploy.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-deploy"><span class="phase-dot w-2 h-2 rounded-full bg-deploy"></span><div><span class="phase-name font-mono text-xs text-primary">Deploy</span><span class="block text-[10px] text-muted">Release Engineer</span></div></a><a href="monitor.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 phase-color-monitor"><span class="phase-dot w-2 h-2 rounded-full bg-monitor"></span><div><span class="phase-name font-mono text-xs text-primary">Monitor</span><span class="block text-[10px] text-muted">Operations</span></div></a></nav></aside>
+
+  <!-- MAIN -->
+  <main id="main-content" class="pt-16 lg:pl-64"><div class="pt-12 lg:pt-0">
+
+    <!-- PHASE HEADER -->
+    <section class="relative py-16 sm:py-20 overflow-hidden">
+      <div class="ambient-glow w-[500px] h-[500px] bg-test/[0.05] -top-40 left-1/2 -translate-x-1/2"></div>
+      <div class="absolute inset-0 dot-grid opacity-40"></div>
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+          <ol class="flex items-center gap-0">
+            <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><a href="../workflow/index.html" class="hover:text-secondary transition-colors">Build</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><span class="text-secondary" aria-current="page">Test</span></li>
+          </ol>
+        </nav>
+        <div class="p-8 rounded-xl bg-surface border border-subtle bl-4-test">
+          <div class="flex items-center gap-4 mb-4"><div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-test shadow-[0_0_12px_rgba(16,185,129,0.5)]"></div><span class="font-mono text-sm text-muted">03</span></div><span class="px-3 py-1 text-xs font-mono rounded-full bg-test/10 text-test border border-test/20">QA Engineer</span></div>
+          <h1 class="font-mono text-4xl sm:text-5xl font-bold text-test mb-3">Test</h1>
+          <p class="text-lg text-secondary">Run everything. Analyze all failures. Fix one at a time.</p>
+          <div class="flex gap-2 mt-6 flex-wrap">
+            <span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Read</span>
+            <span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Search</span>
+            <span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Execute</span>
+            <span class="perm-allowed px-2.5 py-1 text-[11px] font-mono rounded">Write</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="py-12 sm:py-16"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-6 bl-3-test section-heading-accent">Why this phase exists</h2>
+      <div class="space-y-4 text-secondary leading-relaxed">
+        <p>Agents produce code that often passes their own narrow tests but breaks integration points. Test is an independent validation gate. A second pair of eyes that trusts nothing and verifies everything.</p>
+        <p>It comes after Build to validate the entire implementation as a unit, not just individual files. The Build agent may have passed its own checks, but Test runs the full suite, including tests from other modules that the change might have broken.</p>
+        <p>The self-healing loop means most test failures never reach a human. The workflow diagnoses, fixes, and re-validates on its own. This is what makes it autonomous rather than just automated.</p>
+      </div>
+    </div></section>
+
+    <!-- METHODOLOGY -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-8 bl-3-test section-heading-accent">Methodology</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-test/10 border border-test/20 flex items-center justify-center font-mono text-xs text-test font-bold">1</div><div><h3 class="font-semibold text-primary mb-1">Receive build artifacts</h3><p class="text-sm text-secondary leading-relaxed">Code changes, new tests, build report, and test commands from the Build phase.</p></div></div>
+        <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-test/10 border border-test/20 flex items-center justify-center font-mono text-xs text-test font-bold">2</div><div><h3 class="font-semibold text-primary mb-1">Run full test suite</h3><p class="text-sm text-secondary leading-relaxed">Execute ALL tests, not just new ones. Capture complete output. Do not stop at the first failure.</p></div></div>
+        <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-test/10 border border-test/20 flex items-center justify-center font-mono text-xs text-test font-bold">3</div><div><h3 class="font-semibold text-primary mb-1">Analyze ALL failures at once</h3><p class="text-sm text-secondary leading-relaxed">Do not fix the first failure and re-run. Read every failure first. Often, 5 test failures share one root cause. Categorize each failure before fixing any.</p></div></div>
+        <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-test/10 border border-test/20 flex items-center justify-center font-mono text-xs text-test font-bold">4</div><div><h3 class="font-semibold text-primary mb-1">Categorize failures</h3><p class="text-sm text-secondary leading-relaxed"><span class="font-mono text-xs text-test">Test bug</span>: the test itself is wrong. <span class="font-mono text-xs text-build">Implementation bug</span>: the code does not match the plan's intent. <span class="font-mono text-xs text-fail">Integration issue</span>: the change broke something in an adjacent module.</p></div></div>
+        <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-test/10 border border-test/20 flex items-center justify-center font-mono text-xs text-test font-bold">5</div><div><h3 class="font-semibold text-primary mb-1">Fix one issue at a time</h3><p class="text-sm text-secondary leading-relaxed">Starting with the most fundamental. Re-run the full suite after each fix to verify no regressions were introduced.</p></div></div>
+        <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-test/10 border border-test/20 flex items-center justify-center font-mono text-xs text-test font-bold">6</div><div><h3 class="font-semibold text-primary mb-1">Re-validate</h3><p class="text-sm text-secondary leading-relaxed">After all fixes, run the full suite again to confirm no regressions. Generate the dual-format test report.</p></div></div>
+        <div class="flex gap-4"><div class="flex-shrink-0 w-8 h-8 rounded-full bg-test/10 border border-test/20 flex items-center justify-center font-mono text-xs text-test font-bold">7</div><div><h3 class="font-semibold text-primary mb-1">Generate test report</h3><p class="text-sm text-secondary leading-relaxed">Dual format: JSON for machine consumption by downstream phases, Markdown for human review. Both formats contain the same data.</p></div></div>
+      </div>
+    </div></section>
+
+    <!-- INPUTS & OUTPUTS -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-8 bl-3-test section-heading-accent">Inputs and outputs</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="p-6 rounded-xl bg-surface border border-subtle bl-3-build">
+          <h3 class="font-mono text-sm font-semibold text-build mb-4">Inputs</h3>
+          <ul class="space-y-2 text-sm text-secondary">
+            <li class="flex items-start gap-2"><span class="text-build mt-1">&#8226;</span> Code changes from Build</li>
+            <li class="flex items-start gap-2"><span class="text-build mt-1">&#8226;</span> Test suite (new + existing)</li>
+            <li class="flex items-start gap-2"><span class="text-build mt-1">&#8226;</span> Build report (<span class="font-mono text-glow-hover text-xs">$build_report</span>)</li>
+            <li class="flex items-start gap-2"><span class="text-build mt-1">&#8226;</span> Test commands</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-xl bg-surface border border-subtle bl-3-review">
+          <h3 class="font-mono text-sm font-semibold text-review mb-4">Outputs</h3>
+          <ul class="space-y-2 text-sm text-secondary">
+            <li class="flex items-start gap-2"><span class="text-review mt-1">&#8226;</span> Test Report (JSON + Markdown)</li>
+            <li class="flex items-start gap-2"><span class="text-review mt-1">&#8226;</span> Coverage metrics</li>
+            <li class="flex items-start gap-2"><span class="text-review mt-1">&#8226;</span> Fixes applied log</li>
+          </ul>
+          <p class="text-xs text-muted mt-4">Consumed by: Review phase as <span class="font-mono text-glow-hover">$test_report</span></p>
+        </div>
+      </div>
+      <div class="code-block p-6 overflow-x-auto">
+        <div class="flex items-center justify-between mb-4"><span class="font-mono text-xs text-muted">Test report (JSON format)</span></div>
+        <pre class="font-mono text-sm leading-relaxed"><code>{
+  <span class="var">"status"</span>: <span class="string">"pass"</span>,
+  <span class="var">"total_tests"</span>: 112,
+  <span class="var">"passed"</span>: 112,
+  <span class="var">"failed"</span>: 0,
+  <span class="var">"skipped"</span>: 0,
+  <span class="var">"iterations"</span>: 1,
+  <span class="var">"fixes_applied"</span>: [],
+  <span class="var">"coverage"</span>: {
+    <span class="var">"statements"</span>: 91.3,
+    <span class="var">"branches"</span>: 84.7,
+    <span class="var">"functions"</span>: 93.2,
+    <span class="var">"lines"</span>: 90.8
+  }
+}</code></pre>
+        <p class="text-xs text-muted italic mt-4">Example: extracting a shared validation module from 3 controller files. All 112 existing tests pass on first run, a clean refactor with no fixes needed.</p>
+      </div>
+    </div></section>
+
+    <!-- AGENT PATTERN -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-8 bl-3-test section-heading-accent">Agent pattern</h2>
+      <div class="mb-6"><span class="px-3 py-1 text-xs font-mono rounded-full bg-test/10 text-test border border-test/20">Single Agent with Conditional Builder Subagent</span></div>
+      <div class="mb-8 flex justify-center">
+        <svg viewBox="0 0 340 180" class="w-full max-w-sm" role="img" aria-label="Test agent runs tests, spawns builder subagent on failure">
+          <rect x="110" y="10" width="120" height="40" rx="8" fill="#111113" stroke="#10B981" stroke-width="1.5"/>
+          <text x="170" y="35" text-anchor="middle" fill="#10B981" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Test Agent</text>
+          <line x1="170" y1="50" x2="170" y2="80" stroke="#10B981" stroke-width="1" opacity="0.4"/>
+          <text x="195" y="70" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">on failure</text>
+          <rect x="110" y="80" width="120" height="40" rx="8" fill="#111113" stroke="#F59E0B" stroke-width="1" opacity="0.7"/>
+          <text x="170" y="105" text-anchor="middle" fill="#EAB308" font-size="10" font-family="JetBrains Mono, monospace">Builder Sub</text>
+          <path d="M 230 100 C 280 100 280 30 230 30" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3 3" opacity="0.4" class="loop-arc"/>
+          <text x="290" y="65" fill="#10B981" font-size="8" font-family="JetBrains Mono, monospace" opacity="0.6">max 3x</text>
+          <rect x="110" y="135" width="120" height="36" rx="8" fill="#111113" stroke="#52525B" stroke-width="1"/>
+          <text x="170" y="158" text-anchor="middle" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace">Test Report</text>
+          <line x1="170" y1="120" x2="170" y2="135" stroke="#10B981" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/>
+        </svg>
+      </div>
+      <p class="text-sm text-secondary leading-relaxed">The Test agent runs tests and analyzes results. When failures occur, it spawns a Builder Subagent to apply fixes. After each fix, it re-runs the full suite. The loop continues until all tests pass or the retry limit is reached.</p>
+    </div></section>
+
+    <!-- TOOL PERMISSIONS -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-6 bl-3-test section-heading-accent">Tool permissions</h2>
+      <div class="flex gap-2 flex-wrap mb-6">
+        <span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Read</span>
+        <span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Search</span>
+        <span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Execute</span>
+        <span class="perm-allowed px-3 py-1.5 text-xs font-mono rounded">Write</span>
+      </div>
+      <p class="text-sm text-secondary leading-relaxed">Test needs Execute to run test suites and Write to fix issues during self-healing. Without Write access, the self-healing loop would be impossible; the agent could detect failures but not fix them.</p>
+    </div></section>
+
+    <!-- PROMPT TEMPLATE -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-8 bl-3-test section-heading-accent">Prompt template</h2>
+      <div class="code-block p-6 overflow-x-auto bl-4-test">
+        <pre class="font-mono text-sm leading-relaxed"><code><span class="comment"># Test Phase -- QA Engineer</span>
+
+<span class="keyword">## Role</span>
+You are a <span class="type">QA Engineer</span>. Your job is to validate the
+implementation by running all tests, analyzing failures
+systematically, and fixing issues one at a time.
+
+You are methodical. You never fix multiple issues at once.
+You always run the full suite first, analyze everything,
+then fix sequentially.
+
+<span class="keyword">## Context</span>
+Build Report:
+<span class="var">${build_report}</span>
+
+Test Command: <span class="var">${test_command}</span>
+Coverage Command: <span class="var">${coverage_command}</span>   <span class="comment"># optional</span>
+Working Directory: <span class="var">${working_directory}</span>
+Max Retry Iterations: <span class="var">${max_retries}</span>    <span class="comment"># default: 3</span>
+
+<span class="keyword">## Methodology -- Systematic Validation</span>
+
+<span class="keyword">### Step 1: Run Everything</span>
+Execute: <span class="var">${test_command}</span>
+Capture the full output. Do <span class="string">NOT</span> stop at the first failure.
+
+<span class="keyword">### Step 2: Analyze ALL Failures</span>
+For each failing test, determine:
+- Is this a <span class="string">TEST BUG</span>? (wrong assertion, outdated expectation)
+- Is this an <span class="string">IMPLEMENTATION BUG</span>? (code doesn't match spec)
+- Is this an <span class="string">INTEGRATION ISSUE</span>? (change broke adjacent module)
+
+<span class="keyword">### Step 3: Fix One at a Time</span>
+Starting with the most fundamental issue:
+1. Fix the single issue
+2. Re-run the full test suite
+3. Verify the fix didn't introduce new failures
+4. Move to the next issue
+
+<span class="keyword">### Step 4: Coverage Check</span> <span class="comment">(if coverage command provided)</span>
+Run: <span class="var">${coverage_command}</span>
+Report coverage metrics in the output.
+
+<span class="keyword">## Self-Healing Loop</span>
+If tests fail after your fixes:
+- Iteration 1: Analyze and fix
+- Iteration 2: Re-analyze remaining failures
+- Iteration 3: Final attempt
+- After <span class="var">${max_retries}</span> iterations: <span class="string">ESCALATE</span> with full context
+
+<span class="keyword">## Failure Categorization Rules</span>
+- <span class="string">TEST BUG</span>: The test asserts the wrong thing. Fix the test.
+- <span class="string">IMPLEMENTATION BUG</span>: The code is wrong. Fix the implementation.
+  Refer back to <span class="var">${plan_artifact}</span> for intended behavior.
+- <span class="string">INTEGRATION ISSUE</span>: The change broke something else. This may
+  need to go back to Build for a broader fix.
+
+<span class="keyword">## Constraints</span>
+- Run the <span class="string">FULL</span> test suite first. Do not run partial tests.
+- Analyze <span class="string">ALL</span> failures before fixing any.
+- Fix <span class="string">ONE</span> issue at a time. Re-run after each fix.
+- Never fix multiple issues in a single edit.
+- Track every fix with <span class="var">file:line</span> and category.
+- Distinguish test bugs from implementation bugs.
+
+<span class="keyword">## Output Format</span>
+Produce a Test Report in <span class="string">BOTH</span> formats:
+
+<span class="keyword">### JSON</span> <span class="comment">(for machine consumption):</span>
+{
+  <span class="var">"status"</span>: <span class="string">"pass|fail"</span>,
+  <span class="var">"total_tests"</span>: N,
+  <span class="var">"passed"</span>: N, <span class="var">"failed"</span>: N, <span class="var">"skipped"</span>: N,
+  <span class="var">"iterations"</span>: N,
+  <span class="var">"fixes_applied"</span>: [{<span class="var">"file"</span>: "", <span class="var">"line"</span>: N, <span class="var">"category"</span>: "", <span class="var">"description"</span>: ""}],
+  <span class="var">"coverage"</span>: {<span class="var">"statements"</span>: N, <span class="var">"branches"</span>: N, <span class="var">"functions"</span>: N, <span class="var">"lines"</span>: N},
+  <span class="var">"escalation_needed"</span>: false,
+  <span class="var">"escalation_reason"</span>: ""
+}
+
+<span class="keyword">### Markdown</span> <span class="comment">(for human review):</span>
+Summary table, fixes list, coverage table.</code></pre>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-test/8 text-test border border-test/15">Role Assignment</span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-glow/8 text-glow-hover border border-glow/15">Template Variables</span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-fail/8 text-fail border border-fail/15">Failure Categorization</span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-build/8 text-build border border-build/15">Self-Healing Protocol</span>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono rounded bg-monitor/8 text-monitor border border-monitor/15">Dual Output Format</span>
+      </div>
+    </div></section>
+
+    <!-- BEST PRACTICES -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-8 bl-3-test section-heading-accent">Best practices</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-xl bg-surface border border-subtle bl-3-pass"><h3 class="font-mono text-sm font-semibold text-pass mb-4">Do</h3><ul class="space-y-2 text-sm text-secondary"><li>Run the full suite first, always</li><li>Categorize every failure before fixing</li><li>Fix one issue per iteration</li><li>Track all fixes with file:line and category</li><li>Generate both JSON and Markdown output</li></ul></div>
+        <div class="p-6 rounded-xl bg-surface border border-subtle bl-3-fail"><h3 class="font-mono text-sm font-semibold text-fail mb-4">Don't</h3><ul class="space-y-2 text-sm text-secondary"><li>Stop at the first failure</li><li>Fix multiple issues at once</li><li>Skip the full re-run after each fix</li><li>Change test assertions just to make them pass</li><li>Run partial test suites</li></ul></div>
+      </div>
+    </div></section>
+
+    <!-- FEEDBACK LOOP -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-8 bl-3-test section-heading-accent">Self-healing loop</h2>
+      <div class="mb-8 flex justify-center">
+        <svg viewBox="0 0 500 200" class="w-full max-w-lg" role="img" aria-label="Test self-healing loop flowchart">
+          <rect x="10" y="80" width="90" height="36" rx="6" fill="#111113" stroke="#10B981" stroke-width="1.2"/><text x="55" y="103" text-anchor="middle" fill="#10B981" font-size="9" font-weight="600" font-family="JetBrains Mono, monospace">Run Tests</text>
+          <line x1="100" y1="98" x2="130" y2="98" stroke="#10B981" stroke-width="1" opacity="0.5"/>
+          <polygon points="130,80 170,98 130,116" fill="none" stroke="#10B981" stroke-width="1" opacity="0.6"/>
+          <text x="150" y="75" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">All pass?</text>
+          <line x1="170" y1="98" x2="200" y2="98" stroke="#10B981" stroke-width="1" opacity="0.3"/>
+          <text x="185" y="92" fill="#22C55E" font-size="7" font-family="JetBrains Mono, monospace">YES</text>
+          <rect x="200" y="80" width="80" height="36" rx="6" fill="#111113" stroke="#22C55E" stroke-width="1"/><text x="240" y="103" text-anchor="middle" fill="#22C55E" font-size="8" font-weight="600" font-family="JetBrains Mono, monospace">Report</text>
+          <line x1="150" y1="116" x2="150" y2="150" stroke="#10B981" stroke-width="1" opacity="0.3"/>
+          <text x="160" y="140" fill="#EF4444" font-size="7" font-family="JetBrains Mono, monospace">NO</text>
+          <rect x="110" y="150" width="80" height="36" rx="6" fill="#111113" stroke="#F59E0B" stroke-width="1" opacity="0.7"/><text x="150" y="173" text-anchor="middle" fill="#EAB308" font-size="8" font-family="JetBrains Mono, monospace">Analyze</text>
+          <line x1="190" y1="168" x2="230" y2="168" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
+          <rect x="230" y="150" width="70" height="36" rx="6" fill="#111113" stroke="#F59E0B" stroke-width="1" opacity="0.7"/><text x="265" y="173" text-anchor="middle" fill="#EAB308" font-size="8" font-family="JetBrains Mono, monospace">Fix One</text>
+          <path d="M 300 168 C 340 168 340 98 300 98" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+          <text x="330" y="140" fill="#10B981" font-size="7" font-family="JetBrains Mono, monospace" opacity="0.6">re-run</text>
+          <polygon points="360,150 400,168 360,186" fill="none" stroke="#EF4444" stroke-width="1" opacity="0.5"/>
+          <text x="380" y="145" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">iter &lt; max?</text>
+          <line x1="400" y1="168" x2="430" y2="168" stroke="#EF4444" stroke-width="1" opacity="0.3"/>
+          <text x="415" y="162" fill="#EF4444" font-size="7" font-family="JetBrains Mono, monospace">NO</text>
+          <rect x="430" y="150" width="65" height="36" rx="6" fill="#111113" stroke="#EF4444" stroke-width="1"/><text x="462" y="173" text-anchor="middle" fill="#EF4444" font-size="8" font-weight="600" font-family="JetBrains Mono, monospace">ESCALATE</text>
+        </svg>
+      </div>
+      <div class="space-y-3 text-sm text-secondary leading-relaxed">
+        <p><span class="font-semibold text-primary">Retry limit:</span> default <span class="font-mono text-test">3</span>, configurable via <span class="font-mono text-glow-hover text-xs">${max_retries}</span>.</p>
+        <p><span class="font-semibold text-primary">Escalation:</span> after max retries, produce a full report with <span class="font-mono text-xs text-fail">escalation_needed: true</span>, include all attempted fixes, remaining failures, and suggested root causes for human review.</p>
+      </div>
+    </div></section>
+
+    <!-- NUANCES -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+      <h2 class="text-2xl font-bold text-primary mb-8 bl-3-test section-heading-accent">Nuances</h2>
+      <div class="space-y-6">
+        <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">"Analyze all failures first" prevents cascading fix attempts</h3><p class="text-sm text-secondary leading-relaxed">Often, 5 test failures share one root cause. Fixing that root cause resolves all 5. Fixing them individually wastes iterations and can introduce new issues.</p></div>
+        <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Test bugs vs. implementation bugs</h3><p class="text-sm text-secondary leading-relaxed">The agent must distinguish between "the test is wrong" and "the code is wrong." Without this distinction, agents default to weakening assertions until tests pass, which defeats the point.</p></div>
+        <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Integration issues are special</h3><p class="text-sm text-secondary leading-relaxed">If a change in <span class="font-mono text-xs">auth/login.ts</span> breaks a test in <span class="font-mono text-xs">billing/invoice.ts</span>, that is an integration issue. It may require going back to Build for a broader fix rather than patching in Test.</p></div>
+        <div class="p-5 rounded-xl bg-surface border border-subtle"><h3 class="font-semibold text-primary mb-2">Coverage is advisory, not blocking</h3><p class="text-sm text-secondary leading-relaxed">Coverage metrics are reported but do not fail the phase by default. Teams can configure coverage thresholds as quality gates to make them blocking.</p></div>
+      </div>
+    </div></section>
+
+    <!-- PREV/NEXT -->
+    <section class="py-12 sm:py-16 border-t border-subtle"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center">
+      <a href="build.html" class="inline-flex items-center gap-2 text-sm text-build hover:text-primary transition-colors"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>Build Phase</a>
+      <a href="review.html" class="inline-flex items-center gap-2 text-sm text-review hover:text-primary transition-colors">Review Phase<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+    </div></div></section>
+
+  </div></main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-subtle py-12 lg:pl-64"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex items-center gap-3"><div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3"/></svg></div><span class="font-mono text-xs text-muted">Agentic Engineering Framework</span></div><div class="flex items-center gap-6"><a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a><a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a><a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a><a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a></div><p class="text-xs text-muted">The code is output. The agentic layer is the product.</p></div></div></footer>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('hidden'));
+    document.querySelectorAll('#mobile-menu a').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobile-menu').classList.add('hidden')));
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+    const reveals=document.querySelectorAll('.reveal');const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});reveals.forEach(el=>ro.observe(el));
+  </script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>

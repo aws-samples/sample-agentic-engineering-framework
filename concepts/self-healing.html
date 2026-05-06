@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="base-path" content="..">
+  <title>Self-Healing Loops - AEF Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/tailwind.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-void text-primary font-sans antialiased page-concepts">
+
+  <!-- Skip navigation -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-glow focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+    Skip to main content
+  </a>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-md border-b border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-4 h-4 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg></div>
+          <span class="font-mono font-semibold text-sm tracking-tight">Agentic Engineering Framework</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <!-- Learn dropdown -->
+          <div class="relative group">
+            <button class="nav-link active text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Learn
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Framework</p>
+              <a href="../framework/overview.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Overview</a>
+              <a href="../framework/principles.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Principles</a>
+              <a href="../framework/architecture.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Architecture</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Concepts</p>
+              <a href="../concepts/ase.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Autonomous Software Engineering</a>
+              <a href="../concepts/agentic-layer.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agentic layer</a>
+              <a href="../concepts/self-healing.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Self-healing loops</a>
+              <a href="../concepts/artifact-chaining.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Artifact chaining</a>
+              <a href="../concepts/prompt-engineering.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt engineering</a>
+              <a href="../concepts/tool-permissions.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool permissions</a>
+              <a href="../concepts/agent-patterns.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Agent patterns</a>
+            </div>
+          </div>
+          <!-- Build dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Build<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-56 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Workflow</p>
+              <a href="../workflow/index.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow overview</a>
+              <a href="../workflow/intent.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Intent</a>
+              <a href="../workflow/plan.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Plan</a>
+              <a href="../workflow/build.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Build</a>
+              <a href="../workflow/test.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Test</a>
+              <a href="../workflow/review.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Review</a>
+              <a href="../workflow/document.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Document</a>
+              <a href="../workflow/deploy.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Deploy</a>
+              <a href="../workflow/monitor.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Monitor</a>
+              <div class="border-t border-subtle my-2"></div>
+              <p class="px-4 py-1 text-[10px] font-mono text-muted uppercase tracking-wider">Configuration</p>
+              <a href="../agentic-layer/prompt-templates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prompt templates</a>
+              <a href="../agentic-layer/commands-skills.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Commands &amp; skills</a>
+              <a href="../agentic-layer/tool-integrations.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Tool integrations</a>
+              <a href="../agentic-layer/quality-gates.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Quality gates</a>
+              <a href="../agentic-layer/workflow-config.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow config</a>
+            </div>
+          </div>
+          <!-- Adopt dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Adopt<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../adopt/getting-started.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Getting started</a>
+              <a href="../adopt/by-team-size.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">By team size</a>
+              <a href="../adopt/maturity-path.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Maturity path</a>
+              <a href="../adopt/customization.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Customization</a>
+            </div>
+          </div>
+          <!-- Reference dropdown -->
+          <div class="relative group">
+            <button class="nav-link text-sm text-secondary hover:text-primary transition-colors duration-200 flex items-center gap-1" aria-expanded="false" aria-haspopup="true">Reference<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+            <div class="absolute top-full left-0 mt-2 w-48 bg-surface border border-subtle rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <a href="../reference/glossary.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Glossary</a>
+              <a href="../reference/workflow-schema.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Workflow Schema</a>
+              <a href="../reference/prerequisites.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Prerequisites</a>
+              <a href="../reference/troubleshooting.html" class="block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-raised transition-colors">Troubleshooting</a>
+            </div>
+          </div>
+          <a href="../adopt/getting-started.html" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-glow hover:bg-glow-hover text-white transition-colors duration-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">Get Started</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-secondary hover:text-primary" aria-label="Toggle navigation menu"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg></button>
+      </div>
+    </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-void/95 backdrop-blur-md">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Learn section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Learn
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-1 pb-1">Framework</p>
+          <a href="../framework/overview.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Overview</a>
+          <a href="../framework/principles.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Principles</a>
+          <a href="../framework/architecture.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Architecture</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-2 pb-1">Concepts</p>
+          <a href="../concepts/ase.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Autonomous Software Engineering</a>
+          <a href="../concepts/agentic-layer.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Agentic layer</a>
+          <a href="../concepts/self-healing.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Self-healing loops</a>
+          <a href="../concepts/artifact-chaining.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Artifact chaining</a>
+          <a href="../concepts/prompt-engineering.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prompt engineering</a>
+          <a href="../concepts/tool-permissions.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Tool permissions</a>
+          <a href="../concepts/agent-patterns.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Agent patterns</a>
+        </div>
+        <!-- Build section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Build
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-1 pb-1">Workflow</p>
+          <a href="../workflow/index.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow overview</a>
+          <a href="../workflow/intent.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Intent</a>
+          <a href="../workflow/plan.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Plan</a>
+          <a href="../workflow/build.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Build</a>
+          <a href="../workflow/test.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Test</a>
+          <a href="../workflow/review.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Review</a>
+          <a href="../workflow/document.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Document</a>
+          <a href="../workflow/deploy.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Deploy</a>
+          <a href="../workflow/monitor.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Monitor</a>
+          <p class="text-[10px] font-mono text-muted uppercase tracking-wider pt-2 pb-1">Configuration</p>
+          <a href="../agentic-layer/prompt-templates.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prompt templates</a>
+          <a href="../agentic-layer/commands-skills.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Commands &amp; skills</a>
+          <a href="../agentic-layer/tool-integrations.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Tool integrations</a>
+          <a href="../agentic-layer/quality-gates.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Quality gates</a>
+          <a href="../agentic-layer/workflow-config.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow config</a>
+        </div>
+        <!-- Adopt section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Adopt
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <a href="../adopt/getting-started.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Getting started</a>
+          <a href="../adopt/by-team-size.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">By team size</a>
+          <a href="../adopt/maturity-path.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Maturity path</a>
+          <a href="../adopt/customization.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Customization</a>
+        </div>
+        <!-- Reference section -->
+        <button class="mobile-section-toggle w-full flex items-center justify-between py-2 text-sm font-medium text-primary" aria-expanded="false">
+          Reference
+          <svg class="w-3 h-3 text-muted transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="mobile-section-content hidden pl-3 space-y-1 pb-2">
+          <a href="../reference/glossary.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Glossary</a>
+          <a href="../reference/workflow-schema.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Workflow Schema</a>
+          <a href="../reference/prerequisites.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Prerequisites</a>
+          <a href="../reference/troubleshooting.html" class="block py-1.5 text-sm text-secondary hover:text-primary transition-colors">Troubleshooting</a>
+        </div>
+        <div class="pt-2 border-t border-subtle">
+          <a href="../adopt/getting-started.html" class="block py-2 text-sm font-medium text-glow hover:text-glow-hover transition-colors">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pt-16 flex">
+    <aside class="hidden lg:block w-64 flex-shrink-0">
+      <div class="fixed top-16 w-64 h-[calc(100vh-4rem)] overflow-y-auto border-r border-subtle py-8 px-4">
+        <p class="text-xs font-mono text-muted uppercase tracking-wider mb-4">Concepts</p>
+        <nav class="space-y-1 mb-6">
+          <a href="agentic-layer.html" class="sidebar-link">The Agentic Layer</a>
+          <a href="agent-patterns.html" class="sidebar-link">Agent Patterns</a>
+          <a href="self-healing.html" class="sidebar-link active">Self-Healing Loops</a>
+          <a href="artifact-chaining.html" class="sidebar-link">Artifact Chaining</a>
+          <a href="prompt-engineering.html" class="sidebar-link">Prompt Engineering</a>
+          <a href="tool-permissions.html" class="sidebar-link">Tool Permissions</a>
+          <a href="ase.html" class="sidebar-link">Autonomous Software Engineering</a>
+        </nav>
+        <p class="text-xs font-mono text-muted uppercase tracking-wider mb-4">On This Page</p>
+        <nav class="space-y-1" id="page-toc">
+          <a href="#why-linear-fails" class="sidebar-link">Why Linear Workflows Fail</a>
+          <a href="#test-retry" class="sidebar-link">The Test Retry Loop</a>
+          <a href="#review-patch" class="sidebar-link">The Review-Patch Loop</a>
+          <a href="#full-rebuild" class="sidebar-link">The Full Rebuild Loop</a>
+          <a href="#termination" class="sidebar-link">Loop Termination</a>
+          <a href="#escalation" class="sidebar-link">Escalation</a>
+          <a href="#anti-patterns" class="sidebar-link">Anti-Patterns</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main id="main-content" class="flex-1 min-w-0">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <nav aria-label="Breadcrumb" class="text-xs font-mono text-muted mb-8">
+          <ol class="flex items-center gap-0">
+            <li><a href="../index.html" class="hover:text-secondary transition-colors">Home</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><a href="../framework/overview.html" class="hover:text-secondary transition-colors">Learn</a></li>
+            <li><span class="mx-2 text-subtle">/</span></li>
+            <li><span class="text-secondary" aria-current="page">Self-Healing Loops</span></li>
+          </ol>
+        </nav>
+      </div>
+
+      <section class="relative py-16 sm:py-24 overflow-hidden">
+        <div class="absolute inset-0 dot-grid opacity-40"></div>
+        <div class="ambient-glow w-[500px] h-[500px] bg-test/[0.04] -top-40 -right-40"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="reveal">
+            <p class="text-sm font-mono text-glow mb-4 tracking-wider uppercase">Concept 03</p>
+            <h1 class="text-4xl sm:text-5xl font-bold text-primary mb-6">Self-Healing Loops</h1>
+            <p class="text-lg text-secondary max-w-2xl leading-relaxed">Workflows that diagnose failures, attempt fixes, and escalate only when self-correction runs out. Designed to fail gracefully, not to never fail.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="reveal bg-glow-faint border border-glow/20 rounded-xl p-6 sm:p-8">
+          <p class="text-lg sm:text-xl font-medium text-primary leading-relaxed">"A workflow that stops on first failure requires human intervention for every routine error. Loops handle those automatically."</p>
+          <p class="text-sm text-secondary mt-2">AI agents produce imperfect output. Tests will fail. Reviews will find issues. This is expected, not exceptional. Self-healing loops make this manageable.</p>
+        </div>
+      </section>
+
+      <!-- Why Linear Workflows Fail -->
+      <section id="why-linear-fails" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Why loops improve on linear workflows</h2>
+          <p class="text-secondary leading-relaxed mb-6">The straightforward approach: run Plan, run Build, run Test, run Review. If anything fails, throw an error and stop. This works for deterministic systems like compilers, where the same input always produces the same output. But AI agents are probabilistic. A builder might produce code that fails a test case. A reviewer might flag a style issue. These are not catastrophic failures. They are expected imperfections in a probabilistic process.</p>
+          <p class="text-secondary leading-relaxed mb-8">Self-healing treats failures as normal operations to handle, not exceptions that stall the workflow. When a test fails or a review finds issues, the workflow diagnoses the problem, applies a fix, and retries automatically.</p>
+
+          <!-- Contrast diagram: linear vs loop -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div class="p-5 rounded-xl bg-surface border border-fail/20">
+              <p class="text-xs font-mono text-fail mb-3">Without loops</p>
+              <p class="text-sm text-secondary leading-relaxed">Build -> Test -> FAIL -> Stop. The developer reviews the failure and restarts.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-surface border border-pass/20">
+              <p class="text-xs font-mono text-pass mb-3">With self-healing</p>
+              <p class="text-sm text-secondary leading-relaxed">Build -> Test -> FAIL -> Diagnose -> Patch -> Re-test -> PASS -> Continue. Routine failures are resolved automatically, saving developer time for non-routine problems.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Test Retry Loop -->
+      <section id="test-retry" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">The test retry loop</h2>
+          <p class="text-secondary leading-relaxed mb-8">Triggered when tests fail after the Build phase produces code. The workflow packages the failure details (test name, expected vs. actual, stack trace, relevant source file) and hands them to a builder agent with the original plan. The builder patches the code, tests re-run, and the cycle repeats until all pass or the retry limit is reached.</p>
+
+          <!-- Test Retry Loop SVG -->
+          <div class="mb-8">
+            <svg viewBox="0 0 620 240" class="w-full max-w-xl mx-auto" role="img" aria-label="Test retry loop flowchart">
+              <defs>
+                <marker id="arrTest" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10B981" opacity="0.7" /></marker>
+                <marker id="arrFail" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#EF4444" opacity="0.7" /></marker>
+                <marker id="arrPass" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#22C55E" opacity="0.7" /></marker>
+              </defs>
+
+              <!-- Run Tests box -->
+              <rect x="30" y="60" width="130" height="50" rx="10" fill="#111113" stroke="#10B981" stroke-width="1.5" />
+              <text x="95" y="83" text-anchor="middle" fill="#10B981" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Run Tests</text>
+              <text x="95" y="98" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">All suites</text>
+
+              <!-- Arrow to diamond -->
+              <line x1="165" y1="85" x2="220" y2="85" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrTest)" />
+
+              <!-- Diamond: Tests pass? -->
+              <polygon points="280,55 340,85 280,115 220,85" fill="#111113" stroke="#10B981" stroke-width="1.5" />
+              <text x="280" y="83" text-anchor="middle" fill="#F4F4F5" font-size="10" font-family="IBM Plex Sans, sans-serif">Pass?</text>
+
+              <!-- YES -> proceed -->
+              <line x1="340" y1="85" x2="420" y2="85" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrPass)" />
+              <text x="375" y="78" text-anchor="middle" fill="#22C55E" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
+              <rect x="425" y="65" width="100" height="40" rx="8" fill="#111113" stroke="#3B82F6" stroke-width="1.5" />
+              <text x="475" y="89" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
+
+              <!-- NO -> Builder patches -->
+              <line x1="280" y1="115" x2="280" y2="155" stroke="#EF4444" stroke-width="1.5" marker-end="url(#arrFail)" />
+              <text x="295" y="140" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">NO</text>
+              <rect x="210" y="160" width="140" height="50" rx="10" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
+              <text x="280" y="183" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Builder Patches</text>
+              <text x="280" y="198" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Fix failures</text>
+
+              <!-- Loop back to Run Tests -->
+              <path d="M 210 185 C 140 185 95 155 95 115" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="5 4" class="loop-arc" marker-end="url(#arrTest)" />
+
+              <!-- Retry counter -->
+              <text x="130" y="170" text-anchor="middle" fill="#52525B" font-size="9" font-family="JetBrains Mono, monospace">retry</text>
+
+              <!-- Max retries -> escalate -->
+              <line x1="355" y1="185" x2="425" y2="185" stroke="#EF4444" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrFail)" />
+              <text x="390" y="178" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">max 3</text>
+              <rect x="430" y="165" width="90" height="40" rx="8" fill="#111113" stroke="#EF4444" stroke-width="1" />
+              <text x="475" y="189" text-anchor="middle" fill="#EF4444" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Escalate</text>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-semibold text-primary mb-3">What the builder agent receives on retry</h3>
+          <p class="text-secondary text-sm leading-relaxed mb-4">Each retry gives the builder progressively richer context. This is <a href="artifact-chaining.html" class="concept-link">artifact chaining</a> in action. Failure details become input for the fix:</p>
+          <ul class="space-y-2 text-sm text-secondary mb-6">
+            <li class="flex items-start gap-2"><span class="text-glow">1.</span> The original plan artifact (what was supposed to be built)</li>
+            <li class="flex items-start gap-2"><span class="text-glow">2.</span> The current code state (what exists now)</li>
+            <li class="flex items-start gap-2"><span class="text-glow">3.</span> Specific test failure details (expected vs. actual, stack traces)</li>
+            <li class="flex items-start gap-2"><span class="text-glow">4.</span> Previous fix attempts (what was already tried and did not work)</li>
+          </ul>
+          <p class="text-secondary text-sm leading-relaxed">The fourth item is critical. Without the history of previous attempts, the builder might try the same fix twice. The retry prompt explicitly instructs: "If a failure was present in the previous iteration and your prior fix did not work, try a DIFFERENT approach."</p>
+        </div>
+      </section>
+
+      <!-- Review-Patch Loop -->
+      <section id="review-patch" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">The review-patch loop</h2>
+          <p class="text-secondary leading-relaxed mb-8">Triggered when the Review phase finds blocker-severity issues. The workflow packages the issue details (file, line, severity, description, suggested fix) and sends them to a builder agent. After patching, tests re-run (the test retry loop may fire within this), then review runs again. The cycle continues until there are no blockers or the retry limit is reached.</p>
+
+          <!-- Review-Patch Loop SVG -->
+          <div class="mb-8">
+            <svg viewBox="0 0 680 280" class="w-full max-w-2xl mx-auto" role="img" aria-label="Review-patch loop flowchart">
+              <defs>
+                <marker id="arrRev" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3B82F6" opacity="0.7" /></marker>
+              </defs>
+
+              <!-- Review box -->
+              <rect x="30" y="40" width="120" height="50" rx="10" fill="#111113" stroke="#3B82F6" stroke-width="1.5" />
+              <text x="90" y="63" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
+              <text x="90" y="78" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Analyze code</text>
+
+              <!-- Arrow to diamond -->
+              <line x1="155" y1="65" x2="210" y2="65" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrRev)" />
+
+              <!-- Diamond: Clean? -->
+              <polygon points="270,35 330,65 270,95 210,65" fill="#111113" stroke="#3B82F6" stroke-width="1.5" />
+              <text x="270" y="63" text-anchor="middle" fill="#F4F4F5" font-size="10" font-family="IBM Plex Sans, sans-serif">Clean?</text>
+
+              <!-- YES -> Document -->
+              <line x1="330" y1="65" x2="420" y2="65" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrPass)" />
+              <text x="370" y="58" fill="#22C55E" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
+              <rect x="425" y="45" width="100" height="40" rx="8" fill="#111113" stroke="#A78BFA" stroke-width="1.5" />
+              <text x="475" y="69" text-anchor="middle" fill="#A78BFA" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Document</text>
+
+              <!-- NO (blocker) -> Builder patches -->
+              <line x1="270" y1="95" x2="270" y2="130" stroke="#EF4444" stroke-width="1.5" marker-end="url(#arrFail)" />
+              <text x="288" y="118" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">BLOCKER</text>
+
+              <rect x="200" y="135" width="140" height="45" rx="10" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
+              <text x="270" y="157" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Builder Patches</text>
+              <text x="270" y="170" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Fix issues</text>
+
+              <!-- Patch -> Re-test -->
+              <line x1="270" y1="185" x2="270" y2="215" stroke="#F59E0B" stroke-width="1" marker-end="url(#arrTest)" />
+              <rect x="210" y="220" width="120" height="40" rx="8" fill="#111113" stroke="#10B981" stroke-width="1" />
+              <text x="270" y="244" text-anchor="middle" fill="#10B981" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Re-test</text>
+
+              <!-- Re-test -> loop back to Review -->
+              <path d="M 210 240 C 60 240 30 140 30 95" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="5 4" class="loop-arc" />
+              <line x1="30" y1="95" x2="30" y2="85" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrTest)" />
+
+              <!-- Escalate -->
+              <line x1="340" y1="157" x2="430" y2="157" stroke="#EF4444" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrFail)" />
+              <text x="385" y="150" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">max 3</text>
+              <rect x="435" y="137" width="90" height="40" rx="8" fill="#111113" stroke="#EF4444" stroke-width="1" />
+              <text x="480" y="161" text-anchor="middle" fill="#EF4444" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Escalate</text>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-semibold text-primary mb-3">Severity classification matters</h3>
+          <p class="text-secondary text-sm leading-relaxed mb-4">Not every review finding triggers the loop. The Review agent classifies issues by severity:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="p-4 rounded-lg bg-surface border border-fail/20">
+              <p class="font-mono text-xs text-fail mb-1">Blocker</p>
+              <p class="text-xs text-secondary">Triggers the loop. Must be fixed before the workflow can continue.</p>
+            </div>
+            <div class="p-4 rounded-lg bg-surface border border-warning/20">
+              <p class="font-mono text-xs text-warning mb-1">Tech-debt</p>
+              <p class="text-xs text-secondary">Logged but does not block. Becomes a future task.</p>
+            </div>
+            <div class="p-4 rounded-lg bg-surface border border-subtle">
+              <p class="font-mono text-xs text-muted mb-1">Skippable</p>
+              <p class="text-xs text-secondary">Noted, no action. Style preferences, minor suggestions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Full Rebuild Loop -->
+      <section id="full-rebuild" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">The full rebuild loop</h2>
+          <p class="text-secondary leading-relaxed mb-4">The nuclear option. Triggered when Review finds architectural issues that patches cannot fix. The approach itself is wrong, not just the implementation details. The workflow returns to the Build phase with the review feedback as additional context.</p>
+          <p class="text-secondary leading-relaxed mb-4">Default max retries: 1. This is expensive. If the approach is fundamentally wrong, a human should probably weigh in. But one automatic retry with the review feedback often resolves the issue. The builder now knows what went wrong and can take a different approach.</p>
+        </div>
+      </section>
+
+      <!-- Loop Termination -->
+      <section id="termination" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Loop termination conditions</h2>
+          <div class="space-y-4 mb-8">
+            <div class="p-5 rounded-xl bg-surface border border-pass/20">
+              <h4 class="font-mono text-sm text-pass mb-2">Happy path</h4>
+              <p class="text-sm text-secondary">All gates pass. Loop exits, workflow continues to the next phase.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-surface border border-fail/20">
+              <h4 class="font-mono text-sm text-fail mb-2">Max retries exhausted</h4>
+              <p class="text-sm text-secondary">Loop exits, workflow escalates to human with full context.</p>
+            </div>
+            <div class="p-5 rounded-xl bg-surface border border-warning/20">
+              <h4 class="font-mono text-sm text-warning mb-2">No new information</h4>
+              <p class="text-sm text-secondary">If the retry produces the same failure as the previous attempt, the loop detects this and exits early rather than wasting retries. The system diffs failure outputs between iterations.</p>
+            </div>
+          </div>
+
+          <h3 class="text-lg font-semibold text-primary mb-4">Why 3 retries is the default</h3>
+          <p class="text-secondary text-sm leading-relaxed mb-4">In practice, most fixable issues resolve within 1-2 retries. If 3 retries have not fixed the problem, the issue is likely deeper: wrong approach, underspecified plan, or missing context. Each retry invokes an agent, so 3 retries triples the cost of a phase. Diminishing returns set in fast.</p>
+          <p class="text-secondary text-sm leading-relaxed">Teams can configure this: set 1 for fail-fast workflows, or 5 for complex integration tests where more iterations are justified.</p>
+        </div>
+      </section>
+
+      <!-- Escalation -->
+      <section id="escalation" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Escalation: when loops fail</h2>
+          <p class="text-secondary leading-relaxed mb-8">When a loop exhausts its retries, the workflow does not just say "Error: tests failed." It hands over a full forensic picture: what happened, what was tried, and why it did not work.</p>
+
+          <!-- Escalation report mockup -->
+          <div class="rounded-xl border border-subtle overflow-hidden mb-8">
+            <div class="flex border-b border-subtle bg-raised/50 overflow-x-auto">
+              <button class="esc-tab px-4 py-3 text-xs font-mono text-glow border-b-2 border-glow bg-raised/50 whitespace-nowrap" data-tab="plan" onclick="showEscTab('plan')">Plan</button>
+              <button class="esc-tab px-4 py-3 text-xs font-mono text-secondary border-b-2 border-transparent hover:border-subtle whitespace-nowrap" data-tab="build" onclick="showEscTab('build')">Build report</button>
+              <button class="esc-tab px-4 py-3 text-xs font-mono text-secondary border-b-2 border-transparent hover:border-subtle whitespace-nowrap" data-tab="tests" onclick="showEscTab('tests')">Tests (3 iterations)</button>
+              <button class="esc-tab px-4 py-3 text-xs font-mono text-secondary border-b-2 border-transparent hover:border-subtle whitespace-nowrap" data-tab="review" onclick="showEscTab('review')">Review findings</button>
+            </div>
+            <div class="p-6 bg-surface">
+              <div id="esc-plan" class="esc-content">
+                <p class="text-xs font-mono text-muted mb-2">Original plan artifact</p>
+                <p class="text-sm text-secondary leading-relaxed">Add token refresh logic to <span class="font-mono text-glow-hover">src/auth/tokens.py</span>. Modify the <span class="font-mono text-glow-hover">refresh_token()</span> method to check expiry before attempting refresh. Add a fallback to re-authenticate if the refresh token itself has expired.</p>
+                <p class="text-sm text-secondary leading-relaxed mt-2">Files targeted: <span class="font-mono text-glow-hover">src/auth/tokens.py:112-130</span>, <span class="font-mono text-glow-hover">src/auth/session.py:55-67</span></p>
+              </div>
+              <div id="esc-build" class="esc-content hidden">
+                <p class="text-xs font-mono text-muted mb-2">Build report</p>
+                <p class="text-sm text-secondary leading-relaxed">Modified 2 files, created 1 test file. Implemented token refresh with expiry check. Added fallback re-authentication path. Test file: <span class="font-mono text-glow-hover">tests/auth/test_tokens.py</span> with 6 test cases.</p>
+              </div>
+              <div id="esc-tests" class="esc-content hidden">
+                <p class="text-xs font-mono text-muted mb-2">Test results across iterations</p>
+                <div class="space-y-2 mt-2">
+                  <div class="flex items-center gap-3 text-sm">
+                    <span class="font-mono text-xs text-muted w-6">i1</span>
+                    <span class="text-fail font-mono text-xs">2 failed</span>
+                    <span class="text-secondary">(token_refresh, session_expiry)</span>
+                  </div>
+                  <div class="flex items-center gap-3 text-sm">
+                    <span class="font-mono text-xs text-muted w-6">i2</span>
+                    <span class="text-warning font-mono text-xs">1 failed,</span>
+                    <span class="text-secondary">session_expiry (token_refresh fixed)</span>
+                  </div>
+                  <div class="flex items-center gap-3 text-sm">
+                    <span class="font-mono text-xs text-muted w-6">i3</span>
+                    <span class="text-fail font-mono text-xs">1 failed,</span>
+                    <span class="text-secondary">session_expiry (same failure, different approach attempted)</span>
+                  </div>
+                </div>
+              </div>
+              <div id="esc-review" class="esc-content hidden">
+                <p class="text-xs font-mono text-muted mb-2">Review findings</p>
+                <p class="text-sm text-secondary leading-relaxed">Likely root cause: the session expiry test depends on a timing mechanism that is not properly mocked. The builder attempted three different mocking strategies. Recommendation: the developer should verify the test environment's time-mocking capabilities.</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-secondary text-sm leading-relaxed">After providing input, the workflow resumes from the phase where it stopped, not from scratch (unless the human directs otherwise).</p>
+        </div>
+      </section>
+
+      <!-- Anti-Patterns -->
+      <section id="anti-patterns" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-6">Anti-patterns</h2>
+          <div class="space-y-4 mb-8">
+            <div class="p-5 rounded-xl bg-surface border border-fail/20">
+              <div class="flex items-start gap-3">
+                <span class="text-fail text-lg">!</span>
+                <div>
+                  <h4 class="font-mono text-sm text-primary mb-1">Infinite loops</h4>
+                  <p class="text-sm text-secondary leading-relaxed">Never remove the max retry limit. Always have a termination condition. An uncapped loop can burn through your entire budget on a single unfixable issue.</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 rounded-xl bg-surface border border-fail/20">
+              <div class="flex items-start gap-3">
+                <span class="text-fail text-lg">!</span>
+                <div>
+                  <h4 class="font-mono text-sm text-primary mb-1">Retrying without new information</h4>
+                  <p class="text-sm text-secondary leading-relaxed">If the builder agent patches the same code the same way twice, the loop should break. Inject the failure history into the retry prompt so the agent tries a different approach each time.</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 rounded-xl bg-surface border border-fail/20">
+              <div class="flex items-start gap-3">
+                <span class="text-fail text-lg">!</span>
+                <div>
+                  <h4 class="font-mono text-sm text-primary mb-1">Retrying non-deterministic failures</h4>
+                  <p class="text-sm text-secondary leading-relaxed">Flaky tests should be identified and quarantined, not retried endlessly. Add a "known flaky" list to the test gate config so the loop can distinguish real failures from noise.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Configuration -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-lg font-semibold text-primary mb-4">Configuring loops</h2>
+          <div class="code-block p-6 mb-6">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="comment"># workflow.yaml -- loop configuration</span>
+<span class="keyword">loops:</span>
+  <span class="type">test_retry:</span>
+    <span class="var">max:</span> <span class="string">3</span>
+    <span class="var">trigger:</span> <span class="string">test_failure</span>
+    <span class="var">on_exhaust:</span> <span class="string">escalate</span>
+  <span class="type">review_patch:</span>
+    <span class="var">max:</span> <span class="string">3</span>
+    <span class="var">trigger:</span> <span class="string">blocker</span>
+    <span class="var">ignore:</span> [<span class="string">tech_debt</span>, <span class="string">skippable</span>]
+    <span class="var">on_exhaust:</span> <span class="string">escalate</span>
+  <span class="type">full_rebuild:</span>
+    <span class="var">max:</span> <span class="string">1</span>
+    <span class="var">trigger:</span> <span class="string">architectural_issue</span>
+    <span class="var">on_exhaust:</span> <span class="string">escalate</span>
+
+<span class="keyword">escalation:</span>
+  <span class="var">target:</span> <span class="string">human</span>
+  <span class="var">include:</span> [<span class="string">plan</span>, <span class="string">build_report</span>, <span class="string">test_results</span>, <span class="string">review_issues</span>]</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cross-links -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-subtle">
+        <div class="reveal">
+          <h2 class="text-lg font-semibold text-primary mb-6">Related concepts</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a href="artifact-chaining.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Artifact Chaining</p>
+              <p class="text-xs text-muted mt-1">how failure context flows between retry iterations</p>
+            </a>
+            <a href="agent-patterns.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Agent Patterns</p>
+              <p class="text-xs text-muted mt-1">loops use sequential handoff between agents</p>
+            </a>
+            <a href="tool-permissions.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">Tool Permissions</p>
+              <p class="text-xs text-muted mt-1">builder agents in loops get Build-phase permissions</p>
+            </a>
+            <a href="ase.html" class="p-4 rounded-lg bg-surface border border-subtle hover:border-glow-faint transition-all duration-200 group">
+              <p class="font-mono text-sm text-primary group-hover:text-glow-hover transition-colors">ASE</p>
+              <p class="text-xs text-muted mt-1">higher autonomy levels depend on reliable loops</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prev/Next -->
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-subtle">
+        <div class="flex justify-between items-center">
+          <a href="agent-patterns.html" class="group flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors">
+            <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            Agent Patterns
+          </a>
+          <a href="artifact-chaining.html" class="group flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors">
+            Artifact Chaining
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-subtle py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded bg-glow/20 border border-glow/30 flex items-center justify-center"><svg class="w-3 h-3 text-glow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12 12V3" /></svg></div>
+          <span class="font-mono text-xs text-muted">Agentic Engineering Framework</span>
+        </div>
+                <div class="flex items-center gap-6">
+          <a href="../framework/overview.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Learn</a>
+          <a href="../workflow/index.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Build</a>
+          <a href="../adopt/getting-started.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Adopt</a>
+          <a href="../reference/glossary.html" class="text-xs text-muted hover:text-secondary transition-colors duration-200">Reference</a>
+        </div>
+        <p class="text-xs text-muted">The code is output. The agentic layer is the product.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-section-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        content.classList.toggle('hidden');
+        btn.querySelector('svg').style.transform = expanded ? '' : 'rotate(180deg)';
+      });
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    const tocLinks = document.querySelectorAll('#page-toc .sidebar-link');
+    const tocSections = Array.from(tocLinks).map(l => document.getElementById(l.getAttribute('href').slice(1))).filter(Boolean);
+    window.addEventListener('scroll', () => {
+      let current = '';
+      tocSections.forEach(s => { if (scrollY >= s.offsetTop - 120) current = s.id; });
+      tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+    });
+
+    // Escalation tabs
+    function showEscTab(tab) {
+      document.querySelectorAll('.esc-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.esc-tab').forEach(el => {
+        el.classList.remove('text-glow', 'border-glow', 'bg-raised/50');
+        el.classList.add('text-secondary', 'border-transparent');
+      });
+      document.getElementById('esc-' + tab).classList.remove('hidden');
+      const activeTab = document.querySelector(`.esc-tab[data-tab="${tab}"]`);
+      activeTab.classList.add('text-glow', 'border-glow', 'bg-raised/50');
+      activeTab.classList.remove('text-secondary', 'border-transparent');
+    }
+  </script>
+  <!-- Search modal -->
+  <div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="absolute inset-0 bg-void/80 backdrop-blur-sm" id="search-backdrop"></div>
+    <div class="relative max-w-xl mx-auto mt-24 bg-surface border border-subtle rounded-xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 border-b border-subtle">
+        <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Search pages..." class="w-full py-4 bg-transparent text-primary text-sm outline-none placeholder:text-muted" autocomplete="off">
+        <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-muted border border-subtle rounded">Esc</kbd>
+      </div>
+      <div id="search-results" class="max-h-80 overflow-y-auto p-2">
+        <p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  // Search functionality
+  (function() {
+    let searchData = null;
+    const modal = document.getElementById('search-modal');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const trigger = document.getElementById('search-trigger');
+    const basePath = document.querySelector('meta[name="base-path"]')?.content || '.';
+
+    async function loadIndex() {
+      if (searchData) return searchData;
+      const res = await fetch(basePath + '/search-index.json');
+      searchData = await res.json();
+      return searchData;
+    }
+
+    function openSearch() {
+      modal.classList.remove('hidden');
+      input.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      modal.classList.add('hidden');
+      input.value = '';
+      results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>';
+      document.body.style.overflow = '';
+    }
+
+    function renderResults(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">No results found</p>';
+        return;
+      }
+      results.innerHTML = matches.map(m => 
+        '<a href="' + basePath + '/' + m.url + '" class="block px-4 py-3 rounded-lg hover:bg-raised transition-colors">' +
+          '<span class="text-[10px] font-mono text-glow uppercase tracking-wider">' + m.section + '</span>' +
+          '<p class="text-sm text-primary font-medium">' + m.title + '</p>' +
+          '<p class="text-xs text-muted mt-0.5">' + m.description + '</p>' +
+        '</a>'
+      ).join('');
+    }
+
+    async function search(query) {
+      const data = await loadIndex();
+      const q = query.toLowerCase().trim();
+      if (!q) { results.innerHTML = '<p class="px-4 py-8 text-sm text-muted text-center">Type to search across all pages</p>'; return; }
+      const matches = data.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.keywords.some(k => k.includes(q))
+      ).slice(0, 8);
+      renderResults(matches);
+    }
+
+    if (trigger) trigger.addEventListener('click', openSearch);
+    document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
+    document.addEventListener('keydown', function(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeSearch();
+    });
+    if (input) input.addEventListener('input', function(e) { search(e.target.value); });
+  })();
+  </script>
+
+</body>
+</html>
