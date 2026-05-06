@@ -189,7 +189,7 @@
         <span class="w-2 h-2 rounded-full bg-glow"></span>
         <span class="font-mono text-xs text-glow whitespace-nowrap">Overview</span>
       </a>
-      <a href="intent.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full" style="background: #EC4899"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Intent</span></a>
+      <a href="intent.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity"><span class="w-2 h-2 rounded-full" style="background: #c06b7a"></span><span class="font-mono text-xs text-secondary whitespace-nowrap">Intent</span></a>
       <a href="plan.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
         <span class="w-2 h-2 rounded-full bg-plan"></span>
         <span class="font-mono text-xs text-secondary whitespace-nowrap">Plan</span>
@@ -228,12 +228,12 @@
     </div>
     <nav class="space-y-1">
       <a href="./" class="phase-sidebar-item active flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-overview">
-        <span class="phase-dot w-2 h-2 rounded-full bg-glow shadow-[0_0_10px_rgba(99,102,241,0.5)]"></span>
+        <span class="phase-dot w-2 h-2 rounded-full bg-glow shadow-[0_0_10px_rgba(200, 112, 64,0.5)]"></span>
         <div>
           <span class="phase-name font-mono text-xs text-glow">Overview</span>
         </div>
       </a>
-      <a href="intent.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50" style="--phase-color: #EC4899"><span class="phase-dot w-2 h-2 rounded-full" style="background: #EC4899"></span><div><span class="phase-name font-mono text-xs text-primary">Intent</span><span class="block text-[10px] text-muted">Requirements Analyst</span></div></a>
+      <a href="intent.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50" style="--phase-color: #c06b7a"><span class="phase-dot w-2 h-2 rounded-full" style="background: #c06b7a"></span><div><span class="phase-name font-mono text-xs text-primary">Intent</span><span class="block text-[10px] text-muted">Requirements Analyst</span></div></a>
       <a href="plan.html" class="phase-sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-raised/50 transition-colors phase-color-plan">
         <span class="phase-dot w-2 h-2 rounded-full bg-plan"></span>
         <div>
@@ -322,114 +322,114 @@
             <svg viewBox="0 0 1090 280" class="w-full pipeline-diagram" role="img" aria-label="Workflow diagram: Intent, Plan, Build, Test, Review, Document, Deploy, Monitor with feedback loops">
               <defs>
                 <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.6" />
-                  <stop offset="50%" stop-color="#6366F1" stop-opacity="0.8" />
-                  <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.6" />
+                  <stop offset="0%" stop-color="#9b6b8a" stop-opacity="0.6" />
+                  <stop offset="50%" stop-color="#c87040" stop-opacity="0.8" />
+                  <stop offset="100%" stop-color="#5a9ba0" stop-opacity="0.6" />
                 </linearGradient>
                 <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" fill="#6366F1" opacity="0.6" />
+                  <polygon points="0 0, 8 3, 0 6" fill="#c87040" opacity="0.6" />
                 </marker>
                 <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" fill="#10B981" opacity="0.5" />
+                  <polygon points="0 0, 8 3, 0 6" fill="#7a9b5e" opacity="0.5" />
                 </marker>
                 <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" fill="#3B82F6" opacity="0.5" />
+                  <polygon points="0 0, 8 3, 0 6" fill="#6b8a9b" opacity="0.5" />
                 </marker>
                 <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" fill="#EF4444" opacity="0.5" />
+                  <polygon points="0 0, 8 3, 0 6" fill="#c25450" opacity="0.5" />
                 </marker>
               </defs>
 
               <!-- Intent -> Plan connection -->
               <line x1="128" y1="100" x2="188" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-0" />
-              <text x="158" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">intent spec</text>
+              <text x="158" y="92" text-anchor="middle" fill="#6b5849" font-size="7" font-family="JetBrains Mono, monospace">intent spec</text>
 
               <!-- Main flow connections with artifact labels -->
               <line x1="258" y1="100" x2="318" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-300" />
-              <text x="288" y="92" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">spec</text>
+              <text x="288" y="92" text-anchor="middle" fill="#6b5849" font-size="8" font-family="JetBrains Mono, monospace">spec</text>
 
               <line x1="388" y1="100" x2="448" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-600" />
-              <text x="418" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">code+tests</text>
+              <text x="418" y="92" text-anchor="middle" fill="#6b5849" font-size="7" font-family="JetBrains Mono, monospace">code+tests</text>
 
               <line x1="518" y1="100" x2="578" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-900" />
-              <text x="548" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">test report</text>
+              <text x="548" y="92" text-anchor="middle" fill="#6b5849" font-size="7" font-family="JetBrains Mono, monospace">test report</text>
 
               <line x1="648" y1="100" x2="708" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-1200" />
-              <text x="678" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">verdict</text>
+              <text x="678" y="92" text-anchor="middle" fill="#6b5849" font-size="7" font-family="JetBrains Mono, monospace">verdict</text>
 
               <line x1="778" y1="100" x2="838" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-1500" />
-              <text x="808" y="92" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">docs</text>
+              <text x="808" y="92" text-anchor="middle" fill="#6b5849" font-size="8" font-family="JetBrains Mono, monospace">docs</text>
 
               <line x1="908" y1="100" x2="968" y2="100" stroke="url(#flowGrad)" stroke-width="1.5" class="flow-line anim-delay-1800" />
-              <text x="938" y="92" text-anchor="middle" fill="#52525B" font-size="7" font-family="JetBrains Mono, monospace">PR/commits</text>
+              <text x="938" y="92" text-anchor="middle" fill="#6b5849" font-size="7" font-family="JetBrains Mono, monospace">PR/commits</text>
 
               <!-- Test feedback loop -->
-              <path d="M 483 120 C 483 160 353 160 353 120" fill="none" stroke="#10B981" stroke-width="1.2" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowGreen)" opacity="0.5" />
-              <text x="418" y="172" text-anchor="middle" fill="#10B981" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.6">retry (3x)</text>
+              <path d="M 483 120 C 483 160 353 160 353 120" fill="none" stroke="#7a9b5e" stroke-width="1.2" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowGreen)" opacity="0.5" />
+              <text x="418" y="172" text-anchor="middle" fill="#7a9b5e" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.6">retry (3x)</text>
 
               <!-- Review-Patch loop -->
-              <path d="M 613 120 C 613 185 353 185 353 120" fill="none" stroke="#3B82F6" stroke-width="1.2" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowBlue)" opacity="0.4" />
-              <text x="483" y="200" text-anchor="middle" fill="#3B82F6" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.5">patch (3x)</text>
+              <path d="M 613 120 C 613 185 353 185 353 120" fill="none" stroke="#6b8a9b" stroke-width="1.2" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowBlue)" opacity="0.4" />
+              <text x="483" y="200" text-anchor="middle" fill="#6b8a9b" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.5">patch (3x)</text>
 
               <!-- Monitor -> Plan issues loop -->
-              <path d="M 1003 120 C 1030 240 190 240 217 120" fill="none" stroke="#EF4444" stroke-width="1.2" stroke-dasharray="6 4" class="issues-arc" opacity="0.35" marker-end="url(#arrowRed)" />
-              <text x="610" y="255" text-anchor="middle" fill="#EF4444" font-size="10" font-family="JetBrains Mono, monospace" opacity="0.4">issues</text>
+              <path d="M 1003 120 C 1030 240 190 240 217 120" fill="none" stroke="#c25450" stroke-width="1.2" stroke-dasharray="6 4" class="issues-arc" opacity="0.35" marker-end="url(#arrowRed)" />
+              <text x="610" y="255" text-anchor="middle" fill="#c25450" font-size="10" font-family="JetBrains Mono, monospace" opacity="0.4">issues</text>
 
               <!-- Phase nodes -->
               <a href="intent.html">
                 <g class="svg-phase-group">
-                  <rect x="58" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#EC4899" stroke-width="1.8" stroke-dasharray="6 3" class="pipeline-node" />
-                  <text x="93" y="95" text-anchor="middle" fill="#EC4899" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Intent</text>
-                  <text x="93" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Analyst</text>
+                  <rect x="58" y="72" width="70" height="56" rx="10" fill="#1c1410" stroke="#c06b7a" stroke-width="1.8" stroke-dasharray="6 3" class="pipeline-node" />
+                  <text x="93" y="95" text-anchor="middle" fill="#c06b7a" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Intent</text>
+                  <text x="93" y="117" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Analyst</text>
                 </g>
               </a>
               <a href="plan.html">
                 <g class="svg-phase-group">
-                  <rect x="188" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#8B5CF6" stroke-width="1.8" class="pipeline-node node-color-plan anim-delay-500" />
-                  <text x="223" y="95" text-anchor="middle" fill="#8B5CF6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Plan</text>
-                  <text x="223" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Architect</text>
+                  <rect x="188" y="72" width="70" height="56" rx="10" fill="#1c1410" stroke="#9b6b8a" stroke-width="1.8" class="pipeline-node node-color-plan anim-delay-500" />
+                  <text x="223" y="95" text-anchor="middle" fill="#9b6b8a" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Plan</text>
+                  <text x="223" y="117" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Architect</text>
                 </g>
               </a>
               <a href="build.html">
                 <g class="svg-phase-group">
-                  <rect x="318" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#F59E0B" stroke-width="1.8" class="pipeline-node node-color-build anim-delay-1000" />
-                  <text x="353" y="95" text-anchor="middle" fill="#F59E0B" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Build</text>
-                  <text x="353" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Engineer</text>
+                  <rect x="318" y="72" width="70" height="56" rx="10" fill="#1c1410" stroke="#d4a04a" stroke-width="1.8" class="pipeline-node node-color-build anim-delay-1000" />
+                  <text x="353" y="95" text-anchor="middle" fill="#d4a04a" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Build</text>
+                  <text x="353" y="117" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Engineer</text>
                 </g>
               </a>
               <a href="test.html">
                 <g class="svg-phase-group">
-                  <rect x="448" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#10B981" stroke-width="1.8" class="pipeline-node node-color-test anim-delay-1500" />
-                  <text x="483" y="95" text-anchor="middle" fill="#10B981" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Test</text>
-                  <text x="483" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">QA</text>
+                  <rect x="448" y="72" width="70" height="56" rx="10" fill="#1c1410" stroke="#7a9b5e" stroke-width="1.8" class="pipeline-node node-color-test anim-delay-1500" />
+                  <text x="483" y="95" text-anchor="middle" fill="#7a9b5e" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Test</text>
+                  <text x="483" y="117" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">QA</text>
                 </g>
               </a>
               <a href="review.html">
                 <g class="svg-phase-group">
-                  <rect x="578" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#3B82F6" stroke-width="1.8" class="pipeline-node node-color-review anim-delay-2000" />
-                  <text x="613" y="95" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
-                  <text x="613" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Reviewer</text>
+                  <rect x="578" y="72" width="70" height="56" rx="10" fill="#1c1410" stroke="#6b8a9b" stroke-width="1.8" class="pipeline-node node-color-review anim-delay-2000" />
+                  <text x="613" y="95" text-anchor="middle" fill="#6b8a9b" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
+                  <text x="613" y="117" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Reviewer</text>
                 </g>
               </a>
               <a href="document.html">
                 <g class="svg-phase-group">
-                  <rect x="708" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#A78BFA" stroke-width="1.8" class="pipeline-node node-color-document anim-delay-2500" />
-                  <text x="743" y="95" text-anchor="middle" fill="#A78BFA" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Document</text>
-                  <text x="743" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Writer</text>
+                  <rect x="708" y="72" width="70" height="56" rx="10" fill="#1c1410" stroke="#b89bb0" stroke-width="1.8" class="pipeline-node node-color-document anim-delay-2500" />
+                  <text x="743" y="95" text-anchor="middle" fill="#b89bb0" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Document</text>
+                  <text x="743" y="117" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Writer</text>
                 </g>
               </a>
               <a href="deploy.html">
                 <g class="svg-phase-group">
-                  <rect x="838" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#F97316" stroke-width="1.8" class="pipeline-node node-color-deploy anim-delay-3000" />
-                  <text x="873" y="95" text-anchor="middle" fill="#F97316" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Deploy</text>
-                  <text x="873" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Release</text>
+                  <rect x="838" y="72" width="70" height="56" rx="10" fill="#1c1410" stroke="#b35a30" stroke-width="1.8" class="pipeline-node node-color-deploy anim-delay-3000" />
+                  <text x="873" y="95" text-anchor="middle" fill="#b35a30" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Deploy</text>
+                  <text x="873" y="117" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Release</text>
                 </g>
               </a>
               <a href="monitor.html">
                 <g class="svg-phase-group">
-                  <rect x="968" y="72" width="70" height="56" rx="10" fill="#111113" stroke="#06B6D4" stroke-width="1.8" class="pipeline-node node-color-monitor anim-delay-3500" />
-                  <text x="1003" y="95" text-anchor="middle" fill="#06B6D4" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Monitor</text>
-                  <text x="1003" y="117" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Ops</text>
+                  <rect x="968" y="72" width="70" height="56" rx="10" fill="#1c1410" stroke="#5a9ba0" stroke-width="1.8" class="pipeline-node node-color-monitor anim-delay-3500" />
+                  <text x="1003" y="95" text-anchor="middle" fill="#5a9ba0" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Monitor</text>
+                  <text x="1003" y="117" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Ops</text>
                 </g>
               </a>
             </svg>
@@ -446,8 +446,8 @@
           </div>
           <div class="flex flex-nowrap gap-4 overflow-x-auto pb-4 reveal">
             <!-- Intent Spec -->
-            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle" style="border-left: 3px solid #EC4899">
-              <span class="font-mono text-xs" style="color: #EC4899">Intent spec</span>
+            <div class="flex-shrink-0 w-52 p-4 rounded-lg bg-surface border border-subtle" style="border-left: 3px solid #c06b7a">
+              <span class="font-mono text-xs" style="color: #c06b7a">Intent spec</span>
               <p class="text-xs text-secondary mt-1 leading-relaxed">normalized requirement with problem statement, acceptance criteria, and scope boundaries</p>
               <span class="inline-block mt-2 px-2 py-0.5 text-[9px] font-mono rounded bg-raised text-muted border border-subtle">Markdown</span>
             </div>
@@ -519,7 +519,7 @@
                 </thead>
                 <tbody>
                   <tr class="summary-row border-b border-subtle/50" style="--tw-bg-opacity: 0.04;">
-                    <td class="px-4 py-3"><a href="intent.html" class="font-mono hover:underline" style="color: #EC4899">Intent</a></td>
+                    <td class="px-4 py-3"><a href="intent.html" class="font-mono hover:underline" style="color: #c06b7a">Intent</a></td>
                     <td class="px-4 py-3 text-secondary text-xs">Requirements Analyst</td>
                     <td class="px-4 py-3 text-secondary text-xs">Raw request</td>
                     <td class="px-4 py-3 text-secondary text-xs">Intent spec with acceptance criteria</td>
@@ -687,9 +687,9 @@
             <p class="text-sm text-secondary leading-relaxed">Intent is optional at every complexity level. Add it when your input quality varies or when processing monitor-generated issues.</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 reveal">
-            <a href="intent.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer" style="--phase-card-color: #EC4899">
+            <a href="intent.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer" style="--phase-card-color: #c06b7a">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full" style="background: #EC4899; box-shadow: 0 0 8px rgba(236,72,153,0.4)"></div>
+                <div class="w-2.5 h-2.5 rounded-full" style="background: #c06b7a; box-shadow: 0 0 8px rgba(192, 107, 122,0.4)"></div>
                 <span class="font-mono text-xs text-muted">00</span>
               </div>
               <h3 class="font-semibold text-primary mb-1 group-hover:opacity-80 transition-colors duration-200">Intent <span class="text-xs font-normal text-muted">(optional)</span></h3>
@@ -704,7 +704,7 @@
             </a>
             <a href="plan.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-plan">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full bg-plan shadow-[0_0_8px_rgba(139,92,246,0.4)]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-plan shadow-[0_0_8px_rgba(155, 107, 138,0.4)]"></div>
                 <span class="font-mono text-xs text-muted">01</span>
               </div>
               <h3 class="font-semibold text-primary mb-1 group-hover:text-plan transition-colors duration-200">Plan</h3>
@@ -719,7 +719,7 @@
             </a>
             <a href="build.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-build">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full bg-build shadow-[0_0_8px_rgba(245,158,11,0.4)]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-build shadow-[0_0_8px_rgba(212, 160, 74,0.4)]"></div>
                 <span class="font-mono text-xs text-muted">02</span>
               </div>
               <h3 class="font-semibold text-primary mb-1 group-hover:text-build transition-colors duration-200">Build</h3>
@@ -734,7 +734,7 @@
             </a>
             <a href="test.html" data-level="beginner" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-test">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full bg-test shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-test shadow-[0_0_8px_rgba(122, 155, 94,0.4)]"></div>
                 <span class="font-mono text-xs text-muted">03</span>
               </div>
               <h3 class="font-semibold text-primary mb-1 group-hover:text-test transition-colors duration-200">Test</h3>
@@ -749,7 +749,7 @@
             </a>
             <a href="review.html" data-level="intermediate" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-review">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full bg-review shadow-[0_0_8px_rgba(59,130,246,0.4)]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-review shadow-[0_0_8px_rgba(107, 138, 155,0.4)]"></div>
                 <span class="font-mono text-xs text-muted">04</span>
               </div>
               <h3 class="font-semibold text-primary mb-1 group-hover:text-review transition-colors duration-200">Review</h3>
@@ -764,7 +764,7 @@
             </a>
             <a href="document.html" data-level="intermediate" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-document">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full bg-document shadow-[0_0_8px_rgba(167,139,250,0.4)]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-document shadow-[0_0_8px_rgba(184, 155, 176,0.4)]"></div>
                 <span class="font-mono text-xs text-muted">05</span>
               </div>
               <h3 class="font-semibold text-primary mb-1 group-hover:text-document transition-colors duration-200">Document</h3>
@@ -779,7 +779,7 @@
             </a>
             <a href="deploy.html" data-level="advanced" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-deploy">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full bg-deploy shadow-[0_0_8px_rgba(249,115,22,0.4)]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-deploy shadow-[0_0_8px_rgba(179, 90, 48,0.4)]"></div>
                 <span class="font-mono text-xs text-muted">06</span>
               </div>
               <h3 class="font-semibold text-primary mb-1 group-hover:text-deploy transition-colors duration-200">Deploy</h3>
@@ -794,7 +794,7 @@
             </a>
             <a href="monitor.html" data-level="advanced" class="phase-card group p-6 rounded-xl bg-surface border border-subtle cursor-pointer phase-card-monitor">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full bg-monitor shadow-[0_0_8px_rgba(6,182,212,0.4)]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-monitor shadow-[0_0_8px_rgba(90, 155, 160,0.4)]"></div>
                 <span class="font-mono text-xs text-muted">07</span>
               </div>
               <h3 class="font-semibold text-primary mb-1 group-hover:text-monitor transition-colors duration-200">Monitor</h3>

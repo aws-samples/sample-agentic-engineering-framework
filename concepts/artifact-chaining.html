@@ -268,49 +268,49 @@ Reference specific <span class="var">file:line</span> for all changes.</code></p
           <div class="mb-10">
             <svg viewBox="0 0 600 635" class="w-full max-w-md mx-auto" role="img" aria-label="Full artifact chain across all workflow phases">
               <defs>
-                <marker id="acArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6366F1" opacity="0.5" /></marker>
+                <marker id="acArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#c87040" opacity="0.5" /></marker>
               </defs>
               <!-- Issue -->
-              <rect x="200" y="10" width="200" height="40" rx="8" fill="#111113" stroke="#52525B" stroke-width="1" />
-              <text x="300" y="34" text-anchor="middle" fill="#A1A1AA" font-size="11" font-family="JetBrains Mono, monospace">Issue Description</text>
-              <line x1="300" y1="55" x2="300" y2="75" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
-              <text x="380" y="68" fill="#818CF8" font-size="8" font-family="JetBrains Mono, monospace">${raw_request}</text>
+              <rect x="200" y="10" width="200" height="40" rx="8" fill="#1c1410" stroke="#6b5849" stroke-width="1" />
+              <text x="300" y="34" text-anchor="middle" fill="#b89f88" font-size="11" font-family="JetBrains Mono, monospace">Issue Description</text>
+              <line x1="300" y1="55" x2="300" y2="75" stroke="#c87040" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
+              <text x="380" y="68" fill="#e08a5a" font-size="8" font-family="JetBrains Mono, monospace">${raw_request}</text>
               <!-- Intent (optional) -->
-              <rect x="215" y="80" width="170" height="40" rx="8" fill="#111113" stroke="#EC4899" stroke-width="1.5" stroke-dasharray="6 3" />
-              <text x="300" y="104" text-anchor="middle" fill="#EC4899" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Intent</text>
-              <line x1="300" y1="125" x2="300" y2="150" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
-              <text x="380" y="140" fill="#818CF8" font-size="8" font-family="JetBrains Mono, monospace">${intent_artifact}</text>
+              <rect x="215" y="80" width="170" height="40" rx="8" fill="#1c1410" stroke="#c06b7a" stroke-width="1.5" stroke-dasharray="6 3" />
+              <text x="300" y="104" text-anchor="middle" fill="#c06b7a" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Intent</text>
+              <line x1="300" y1="125" x2="300" y2="150" stroke="#c87040" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
+              <text x="380" y="140" fill="#e08a5a" font-size="8" font-family="JetBrains Mono, monospace">${intent_artifact}</text>
               <!-- Plan -->
-              <rect x="215" y="155" width="170" height="40" rx="8" fill="#111113" stroke="#8B5CF6" stroke-width="1.5" />
-              <text x="300" y="179" text-anchor="middle" fill="#8B5CF6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Plan</text>
-              <line x1="300" y1="200" x2="300" y2="225" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
-              <text x="380" y="215" fill="#818CF8" font-size="8" font-family="JetBrains Mono, monospace">${plan_artifact}</text>
+              <rect x="215" y="155" width="170" height="40" rx="8" fill="#1c1410" stroke="#9b6b8a" stroke-width="1.5" />
+              <text x="300" y="179" text-anchor="middle" fill="#9b6b8a" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Plan</text>
+              <line x1="300" y1="200" x2="300" y2="225" stroke="#c87040" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
+              <text x="380" y="215" fill="#e08a5a" font-size="8" font-family="JetBrains Mono, monospace">${plan_artifact}</text>
               <!-- Build -->
-              <rect x="215" y="230" width="170" height="40" rx="8" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
-              <text x="300" y="254" text-anchor="middle" fill="#F59E0B" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Build</text>
-              <line x1="300" y1="275" x2="300" y2="300" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
-              <text x="380" y="290" fill="#818CF8" font-size="8" font-family="JetBrains Mono, monospace">${build_artifact}</text>
+              <rect x="215" y="230" width="170" height="40" rx="8" fill="#1c1410" stroke="#d4a04a" stroke-width="1.5" />
+              <text x="300" y="254" text-anchor="middle" fill="#d4a04a" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Build</text>
+              <line x1="300" y1="275" x2="300" y2="300" stroke="#c87040" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
+              <text x="380" y="290" fill="#e08a5a" font-size="8" font-family="JetBrains Mono, monospace">${build_artifact}</text>
               <!-- Test -->
-              <rect x="215" y="305" width="170" height="40" rx="8" fill="#111113" stroke="#10B981" stroke-width="1.5" />
-              <text x="300" y="329" text-anchor="middle" fill="#10B981" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Test</text>
-              <line x1="300" y1="350" x2="300" y2="375" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
-              <text x="380" y="365" fill="#818CF8" font-size="8" font-family="JetBrains Mono, monospace">${test_results}</text>
+              <rect x="215" y="305" width="170" height="40" rx="8" fill="#1c1410" stroke="#7a9b5e" stroke-width="1.5" />
+              <text x="300" y="329" text-anchor="middle" fill="#7a9b5e" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Test</text>
+              <line x1="300" y1="350" x2="300" y2="375" stroke="#c87040" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
+              <text x="380" y="365" fill="#e08a5a" font-size="8" font-family="JetBrains Mono, monospace">${test_results}</text>
               <!-- Review -->
-              <rect x="215" y="380" width="170" height="40" rx="8" fill="#111113" stroke="#3B82F6" stroke-width="1.5" />
-              <text x="300" y="404" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
-              <line x1="300" y1="425" x2="300" y2="450" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
-              <text x="380" y="440" fill="#818CF8" font-size="8" font-family="JetBrains Mono, monospace">${review_results}</text>
+              <rect x="215" y="380" width="170" height="40" rx="8" fill="#1c1410" stroke="#6b8a9b" stroke-width="1.5" />
+              <text x="300" y="404" text-anchor="middle" fill="#6b8a9b" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
+              <line x1="300" y1="425" x2="300" y2="450" stroke="#c87040" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
+              <text x="380" y="440" fill="#e08a5a" font-size="8" font-family="JetBrains Mono, monospace">${review_results}</text>
               <!-- Document -->
-              <rect x="215" y="455" width="170" height="40" rx="8" fill="#111113" stroke="#A78BFA" stroke-width="1.5" />
-              <text x="300" y="479" text-anchor="middle" fill="#A78BFA" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Document</text>
-              <line x1="300" y1="500" x2="300" y2="525" stroke="#6366F1" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
-              <text x="380" y="515" fill="#818CF8" font-size="8" font-family="JetBrains Mono, monospace">${doc_artifact}</text>
+              <rect x="215" y="455" width="170" height="40" rx="8" fill="#1c1410" stroke="#b89bb0" stroke-width="1.5" />
+              <text x="300" y="479" text-anchor="middle" fill="#b89bb0" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Document</text>
+              <line x1="300" y1="500" x2="300" y2="525" stroke="#c87040" stroke-width="1" opacity="0.4" marker-end="url(#acArrow)" />
+              <text x="380" y="515" fill="#e08a5a" font-size="8" font-family="JetBrains Mono, monospace">${doc_artifact}</text>
               <!-- Deploy -->
-              <rect x="215" y="530" width="170" height="40" rx="8" fill="#111113" stroke="#F97316" stroke-width="1.5" />
-              <text x="300" y="554" text-anchor="middle" fill="#F97316" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Deploy</text>
+              <rect x="215" y="530" width="170" height="40" rx="8" fill="#1c1410" stroke="#b35a30" stroke-width="1.5" />
+              <text x="300" y="554" text-anchor="middle" fill="#b35a30" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Deploy</text>
               <!-- Loop back from Monitor -->
-              <path d="M 215 550 C 80 550 80 34 200 34" fill="none" stroke="#EF4444" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
-              <text x="60" y="298" text-anchor="middle" fill="#EF4444" font-size="8" font-family="JetBrains Mono, monospace" transform="rotate(-90, 60, 298)">issues feed back</text>
+              <path d="M 215 550 C 80 550 80 34 200 34" fill="none" stroke="#c25450" stroke-width="1" stroke-dasharray="6 4" opacity="0.3" />
+              <text x="60" y="298" text-anchor="middle" fill="#c25450" font-size="8" font-family="JetBrains Mono, monospace" transform="rotate(-90, 60, 298)">issues feed back</text>
             </svg>
           </div>
         </div>

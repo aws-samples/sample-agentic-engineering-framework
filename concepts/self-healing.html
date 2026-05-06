@@ -259,47 +259,47 @@
           <div class="mb-8">
             <svg viewBox="0 0 620 240" class="w-full max-w-xl mx-auto" role="img" aria-label="Test retry loop flowchart">
               <defs>
-                <marker id="arrTest" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10B981" opacity="0.7" /></marker>
-                <marker id="arrFail" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#EF4444" opacity="0.7" /></marker>
-                <marker id="arrPass" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#22C55E" opacity="0.7" /></marker>
+                <marker id="arrTest" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7a9b5e" opacity="0.7" /></marker>
+                <marker id="arrFail" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#c25450" opacity="0.7" /></marker>
+                <marker id="arrPass" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#8ab06a" opacity="0.7" /></marker>
               </defs>
 
               <!-- Run Tests box -->
-              <rect x="30" y="60" width="130" height="50" rx="10" fill="#111113" stroke="#10B981" stroke-width="1.5" />
-              <text x="95" y="83" text-anchor="middle" fill="#10B981" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Run Tests</text>
-              <text x="95" y="98" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">All suites</text>
+              <rect x="30" y="60" width="130" height="50" rx="10" fill="#1c1410" stroke="#7a9b5e" stroke-width="1.5" />
+              <text x="95" y="83" text-anchor="middle" fill="#7a9b5e" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Run Tests</text>
+              <text x="95" y="98" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">All suites</text>
 
               <!-- Arrow to diamond -->
-              <line x1="165" y1="85" x2="220" y2="85" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrTest)" />
+              <line x1="165" y1="85" x2="220" y2="85" stroke="#7a9b5e" stroke-width="1.5" marker-end="url(#arrTest)" />
 
               <!-- Diamond: Tests pass? -->
-              <polygon points="280,55 340,85 280,115 220,85" fill="#111113" stroke="#10B981" stroke-width="1.5" />
-              <text x="280" y="83" text-anchor="middle" fill="#F4F4F5" font-size="10" font-family="IBM Plex Sans, sans-serif">Pass?</text>
+              <polygon points="280,55 340,85 280,115 220,85" fill="#1c1410" stroke="#7a9b5e" stroke-width="1.5" />
+              <text x="280" y="83" text-anchor="middle" fill="#f0e4d8" font-size="10" font-family="IBM Plex Sans, sans-serif">Pass?</text>
 
               <!-- YES -> proceed -->
-              <line x1="340" y1="85" x2="420" y2="85" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrPass)" />
-              <text x="375" y="78" text-anchor="middle" fill="#22C55E" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
-              <rect x="425" y="65" width="100" height="40" rx="8" fill="#111113" stroke="#3B82F6" stroke-width="1.5" />
-              <text x="475" y="89" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
+              <line x1="340" y1="85" x2="420" y2="85" stroke="#8ab06a" stroke-width="1.5" marker-end="url(#arrPass)" />
+              <text x="375" y="78" text-anchor="middle" fill="#8ab06a" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
+              <rect x="425" y="65" width="100" height="40" rx="8" fill="#1c1410" stroke="#6b8a9b" stroke-width="1.5" />
+              <text x="475" y="89" text-anchor="middle" fill="#6b8a9b" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
 
               <!-- NO -> Builder patches -->
-              <line x1="280" y1="115" x2="280" y2="155" stroke="#EF4444" stroke-width="1.5" marker-end="url(#arrFail)" />
-              <text x="295" y="140" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">NO</text>
-              <rect x="210" y="160" width="140" height="50" rx="10" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
-              <text x="280" y="183" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Builder Patches</text>
-              <text x="280" y="198" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Fix failures</text>
+              <line x1="280" y1="115" x2="280" y2="155" stroke="#c25450" stroke-width="1.5" marker-end="url(#arrFail)" />
+              <text x="295" y="140" fill="#c25450" font-size="9" font-family="JetBrains Mono, monospace">NO</text>
+              <rect x="210" y="160" width="140" height="50" rx="10" fill="#1c1410" stroke="#d4a04a" stroke-width="1.5" />
+              <text x="280" y="183" text-anchor="middle" fill="#d4a04a" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Builder Patches</text>
+              <text x="280" y="198" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Fix failures</text>
 
               <!-- Loop back to Run Tests -->
-              <path d="M 210 185 C 140 185 95 155 95 115" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="5 4" class="loop-arc" marker-end="url(#arrTest)" />
+              <path d="M 210 185 C 140 185 95 155 95 115" fill="none" stroke="#d4a04a" stroke-width="1.5" stroke-dasharray="5 4" class="loop-arc" marker-end="url(#arrTest)" />
 
               <!-- Retry counter -->
-              <text x="130" y="170" text-anchor="middle" fill="#52525B" font-size="9" font-family="JetBrains Mono, monospace">retry</text>
+              <text x="130" y="170" text-anchor="middle" fill="#6b5849" font-size="9" font-family="JetBrains Mono, monospace">retry</text>
 
               <!-- Max retries -> escalate -->
-              <line x1="355" y1="185" x2="425" y2="185" stroke="#EF4444" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrFail)" />
-              <text x="390" y="178" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">max 3</text>
-              <rect x="430" y="165" width="90" height="40" rx="8" fill="#111113" stroke="#EF4444" stroke-width="1" />
-              <text x="475" y="189" text-anchor="middle" fill="#EF4444" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Escalate</text>
+              <line x1="355" y1="185" x2="425" y2="185" stroke="#c25450" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrFail)" />
+              <text x="390" y="178" text-anchor="middle" fill="#6b5849" font-size="8" font-family="JetBrains Mono, monospace">max 3</text>
+              <rect x="430" y="165" width="90" height="40" rx="8" fill="#1c1410" stroke="#c25450" stroke-width="1" />
+              <text x="475" y="189" text-anchor="middle" fill="#c25450" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Escalate</text>
             </svg>
           </div>
 
@@ -325,49 +325,49 @@
           <div class="mb-8">
             <svg viewBox="0 0 680 280" class="w-full max-w-2xl mx-auto" role="img" aria-label="Review-patch loop flowchart">
               <defs>
-                <marker id="arrRev" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3B82F6" opacity="0.7" /></marker>
+                <marker id="arrRev" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6b8a9b" opacity="0.7" /></marker>
               </defs>
 
               <!-- Review box -->
-              <rect x="30" y="40" width="120" height="50" rx="10" fill="#111113" stroke="#3B82F6" stroke-width="1.5" />
-              <text x="90" y="63" text-anchor="middle" fill="#3B82F6" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
-              <text x="90" y="78" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Analyze code</text>
+              <rect x="30" y="40" width="120" height="50" rx="10" fill="#1c1410" stroke="#6b8a9b" stroke-width="1.5" />
+              <text x="90" y="63" text-anchor="middle" fill="#6b8a9b" font-size="12" font-weight="600" font-family="JetBrains Mono, monospace">Review</text>
+              <text x="90" y="78" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Analyze code</text>
 
               <!-- Arrow to diamond -->
-              <line x1="155" y1="65" x2="210" y2="65" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrRev)" />
+              <line x1="155" y1="65" x2="210" y2="65" stroke="#6b8a9b" stroke-width="1.5" marker-end="url(#arrRev)" />
 
               <!-- Diamond: Clean? -->
-              <polygon points="270,35 330,65 270,95 210,65" fill="#111113" stroke="#3B82F6" stroke-width="1.5" />
-              <text x="270" y="63" text-anchor="middle" fill="#F4F4F5" font-size="10" font-family="IBM Plex Sans, sans-serif">Clean?</text>
+              <polygon points="270,35 330,65 270,95 210,65" fill="#1c1410" stroke="#6b8a9b" stroke-width="1.5" />
+              <text x="270" y="63" text-anchor="middle" fill="#f0e4d8" font-size="10" font-family="IBM Plex Sans, sans-serif">Clean?</text>
 
               <!-- YES -> Document -->
-              <line x1="330" y1="65" x2="420" y2="65" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrPass)" />
-              <text x="370" y="58" fill="#22C55E" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
-              <rect x="425" y="45" width="100" height="40" rx="8" fill="#111113" stroke="#A78BFA" stroke-width="1.5" />
-              <text x="475" y="69" text-anchor="middle" fill="#A78BFA" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Document</text>
+              <line x1="330" y1="65" x2="420" y2="65" stroke="#8ab06a" stroke-width="1.5" marker-end="url(#arrPass)" />
+              <text x="370" y="58" fill="#8ab06a" font-size="9" font-family="JetBrains Mono, monospace">YES</text>
+              <rect x="425" y="45" width="100" height="40" rx="8" fill="#1c1410" stroke="#b89bb0" stroke-width="1.5" />
+              <text x="475" y="69" text-anchor="middle" fill="#b89bb0" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Document</text>
 
               <!-- NO (blocker) -> Builder patches -->
-              <line x1="270" y1="95" x2="270" y2="130" stroke="#EF4444" stroke-width="1.5" marker-end="url(#arrFail)" />
-              <text x="288" y="118" fill="#EF4444" font-size="9" font-family="JetBrains Mono, monospace">BLOCKER</text>
+              <line x1="270" y1="95" x2="270" y2="130" stroke="#c25450" stroke-width="1.5" marker-end="url(#arrFail)" />
+              <text x="288" y="118" fill="#c25450" font-size="9" font-family="JetBrains Mono, monospace">BLOCKER</text>
 
-              <rect x="200" y="135" width="140" height="45" rx="10" fill="#111113" stroke="#F59E0B" stroke-width="1.5" />
-              <text x="270" y="157" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Builder Patches</text>
-              <text x="270" y="170" text-anchor="middle" fill="#52525B" font-size="9" font-family="IBM Plex Sans, sans-serif">Fix issues</text>
+              <rect x="200" y="135" width="140" height="45" rx="10" fill="#1c1410" stroke="#d4a04a" stroke-width="1.5" />
+              <text x="270" y="157" text-anchor="middle" fill="#d4a04a" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Builder Patches</text>
+              <text x="270" y="170" text-anchor="middle" fill="#6b5849" font-size="9" font-family="IBM Plex Sans, sans-serif">Fix issues</text>
 
               <!-- Patch -> Re-test -->
-              <line x1="270" y1="185" x2="270" y2="215" stroke="#F59E0B" stroke-width="1" marker-end="url(#arrTest)" />
-              <rect x="210" y="220" width="120" height="40" rx="8" fill="#111113" stroke="#10B981" stroke-width="1" />
-              <text x="270" y="244" text-anchor="middle" fill="#10B981" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Re-test</text>
+              <line x1="270" y1="185" x2="270" y2="215" stroke="#d4a04a" stroke-width="1" marker-end="url(#arrTest)" />
+              <rect x="210" y="220" width="120" height="40" rx="8" fill="#1c1410" stroke="#7a9b5e" stroke-width="1" />
+              <text x="270" y="244" text-anchor="middle" fill="#7a9b5e" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Re-test</text>
 
               <!-- Re-test -> loop back to Review -->
-              <path d="M 210 240 C 60 240 30 140 30 95" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="5 4" class="loop-arc" />
-              <line x1="30" y1="95" x2="30" y2="85" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrTest)" />
+              <path d="M 210 240 C 60 240 30 140 30 95" fill="none" stroke="#7a9b5e" stroke-width="1.5" stroke-dasharray="5 4" class="loop-arc" />
+              <line x1="30" y1="95" x2="30" y2="85" stroke="#7a9b5e" stroke-width="1.5" marker-end="url(#arrTest)" />
 
               <!-- Escalate -->
-              <line x1="340" y1="157" x2="430" y2="157" stroke="#EF4444" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrFail)" />
-              <text x="385" y="150" text-anchor="middle" fill="#52525B" font-size="8" font-family="JetBrains Mono, monospace">max 3</text>
-              <rect x="435" y="137" width="90" height="40" rx="8" fill="#111113" stroke="#EF4444" stroke-width="1" />
-              <text x="480" y="161" text-anchor="middle" fill="#EF4444" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Escalate</text>
+              <line x1="340" y1="157" x2="430" y2="157" stroke="#c25450" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrFail)" />
+              <text x="385" y="150" text-anchor="middle" fill="#6b5849" font-size="8" font-family="JetBrains Mono, monospace">max 3</text>
+              <rect x="435" y="137" width="90" height="40" rx="8" fill="#1c1410" stroke="#c25450" stroke-width="1" />
+              <text x="480" y="161" text-anchor="middle" fill="#c25450" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Escalate</text>
             </svg>
           </div>
 

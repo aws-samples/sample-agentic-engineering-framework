@@ -247,7 +247,7 @@
             <div class="max-w-3xl">
               <div class="p-4 rounded-lg border border-glow/20 bg-glow/[0.03]">
                 <p class="text-sm text-secondary leading-relaxed">
-                  <strong class="text-primary">Every team builds their own workflow.</strong> The architecture below is the blueprint. The <a href="https://github.com/aws-samples/sample-agentic-engineering-framework" target="_blank" rel="noopener noreferrer" class="text-glow hover:text-glow-hover transition-colors underline decoration-glow/30">reference example</a> shows one implementation using Kiro. Your implementation will look different: same patterns, your tooling, your conventions.
+                  <strong class="text-primary">Every team builds their own workflow.</strong> The architecture below is the blueprint. Browse the <a href="https://github.com/aws-samples/sample-agentic-engineering-framework" target="_blank" rel="noopener noreferrer" class="text-glow hover:text-glow-hover transition-colors underline decoration-glow/30">samples repository</a> for prompt templates, alternative implementations of each layer, and patterns across different AI coding tools. Your implementation will look different: same patterns, your tooling, your conventions.
                 </p>
               </div>
             </div>
@@ -546,18 +546,18 @@
             <svg viewBox="0 0 1020 200" class="w-full" role="img" aria-label="Pipeline: Intent, Plan, Build, Test, Review, Document, Deploy, Monitor with feedback loops">
               <defs>
                 <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.6" />
-                  <stop offset="50%" stop-color="#6366F1" stop-opacity="0.8" />
-                  <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.6" />
+                  <stop offset="0%" stop-color="#9b6b8a" stop-opacity="0.6" />
+                  <stop offset="50%" stop-color="#c87040" stop-opacity="0.8" />
+                  <stop offset="100%" stop-color="#5a9ba0" stop-opacity="0.6" />
                 </linearGradient>
                 <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" fill="#6366F1" opacity="0.6" />
+                  <polygon points="0 0, 8 3, 0 6" fill="#c87040" opacity="0.6" />
                 </marker>
                 <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" fill="#10B981" opacity="0.5" />
+                  <polygon points="0 0, 8 3, 0 6" fill="#7a9b5e" opacity="0.5" />
                 </marker>
                 <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" fill="#3B82F6" opacity="0.5" />
+                  <polygon points="0 0, 8 3, 0 6" fill="#6b8a9b" opacity="0.5" />
                 </marker>
               </defs>
               <line x1="115" y1="80" x2="175" y2="80" stroke="url(#flowGrad)" stroke-width="1.5" />
@@ -567,28 +567,28 @@
               <line x1="610" y1="80" x2="670" y2="80" stroke="url(#flowGrad)" stroke-width="1.5" />
               <line x1="735" y1="80" x2="795" y2="80" stroke="url(#flowGrad)" stroke-width="1.5" />
               <line x1="860" y1="80" x2="920" y2="80" stroke="url(#flowGrad)" stroke-width="1.5" />
-              <path d="M 453 95 C 453 130 328 130 328 95" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowGreen)" opacity="0.5" />
-              <text x="390" y="142" text-anchor="middle" fill="#10B981" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.5">retry</text>
-              <path d="M 578 95 C 578 150 328 150 328 95" fill="none" stroke="#3B82F6" stroke-width="1" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowBlue)" opacity="0.4" />
-              <text x="453" y="165" text-anchor="middle" fill="#3B82F6" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.4">patch</text>
-              <path d="M 953 95 C 980 180 160 180 187 95" fill="none" stroke="#EF4444" stroke-width="1" stroke-dasharray="6 4" class="issues-arc" opacity="0.35" marker-end="url(#arrowhead)" />
-              <text x="570" y="195" text-anchor="middle" fill="#EF4444" font-size="10" font-family="JetBrains Mono, monospace" opacity="0.4">issues</text>
-              <g><rect x="42" y="55" width="73" height="50" rx="8" fill="#111113" stroke="#EC4899" stroke-width="1.5" stroke-dasharray="6 3" /><text x="78" y="75" text-anchor="middle" fill="#EC4899" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Intent</text><text x="78" y="93" text-anchor="middle" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">Analyst</text></g>
-              <g><rect x="162" y="55" width="73" height="50" rx="8" fill="#111113" stroke="#8B5CF6" stroke-width="1.5" class="pipeline-node node-color-plan-20" /><text x="198" y="75" text-anchor="middle" fill="#8B5CF6" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Plan</text><text x="198" y="93" text-anchor="middle" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">Architect</text></g>
-              <g><rect x="287" y="55" width="73" height="50" rx="8" fill="#111113" stroke="#F59E0B" stroke-width="1.5" class="pipeline-node node-color-build-20" /><text x="323" y="75" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Build</text><text x="323" y="93" text-anchor="middle" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">Engineer</text></g>
-              <g><rect x="412" y="55" width="73" height="50" rx="8" fill="#111113" stroke="#10B981" stroke-width="1.5" class="pipeline-node node-color-test-20" /><text x="448" y="75" text-anchor="middle" fill="#10B981" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Test</text><text x="448" y="93" text-anchor="middle" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">QA</text></g>
-              <g><rect x="537" y="55" width="73" height="50" rx="8" fill="#111113" stroke="#3B82F6" stroke-width="1.5" class="pipeline-node node-color-review-20" /><text x="573" y="75" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Review</text><text x="573" y="93" text-anchor="middle" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">Reviewer</text></g>
-              <g><rect x="662" y="55" width="73" height="50" rx="8" fill="#111113" stroke="#A78BFA" stroke-width="1.5" class="pipeline-node node-color-document-20" /><text x="698" y="75" text-anchor="middle" fill="#A78BFA" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Document</text><text x="698" y="93" text-anchor="middle" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">Writer</text></g>
-              <g><rect x="787" y="55" width="73" height="50" rx="8" fill="#111113" stroke="#F97316" stroke-width="1.5" class="pipeline-node node-color-deploy-20" /><text x="823" y="75" text-anchor="middle" fill="#F97316" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Deploy</text><text x="823" y="93" text-anchor="middle" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">Release</text></g>
-              <g><rect x="912" y="55" width="73" height="50" rx="8" fill="#111113" stroke="#06B6D4" stroke-width="1.5" class="pipeline-node node-color-monitor-20" /><text x="948" y="75" text-anchor="middle" fill="#06B6D4" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Monitor</text><text x="948" y="93" text-anchor="middle" fill="#52525B" font-size="8" font-family="IBM Plex Sans, sans-serif">Ops</text></g>
+              <path d="M 453 95 C 453 130 328 130 328 95" fill="none" stroke="#7a9b5e" stroke-width="1" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowGreen)" opacity="0.5" />
+              <text x="390" y="142" text-anchor="middle" fill="#7a9b5e" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.5">retry</text>
+              <path d="M 578 95 C 578 150 328 150 328 95" fill="none" stroke="#6b8a9b" stroke-width="1" stroke-dasharray="4 4" class="loop-arc" marker-end="url(#arrowBlue)" opacity="0.4" />
+              <text x="453" y="165" text-anchor="middle" fill="#6b8a9b" font-size="9" font-family="JetBrains Mono, monospace" opacity="0.4">patch</text>
+              <path d="M 953 95 C 980 180 160 180 187 95" fill="none" stroke="#c25450" stroke-width="1" stroke-dasharray="6 4" class="issues-arc" opacity="0.35" marker-end="url(#arrowhead)" />
+              <text x="570" y="195" text-anchor="middle" fill="#c25450" font-size="10" font-family="JetBrains Mono, monospace" opacity="0.4">issues</text>
+              <g><rect x="42" y="55" width="73" height="50" rx="8" fill="#1c1410" stroke="#c06b7a" stroke-width="1.5" stroke-dasharray="6 3" /><text x="78" y="75" text-anchor="middle" fill="#c06b7a" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Intent</text><text x="78" y="93" text-anchor="middle" fill="#6b5849" font-size="8" font-family="IBM Plex Sans, sans-serif">Analyst</text></g>
+              <g><rect x="162" y="55" width="73" height="50" rx="8" fill="#1c1410" stroke="#9b6b8a" stroke-width="1.5" class="pipeline-node node-color-plan-20" /><text x="198" y="75" text-anchor="middle" fill="#9b6b8a" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Plan</text><text x="198" y="93" text-anchor="middle" fill="#6b5849" font-size="8" font-family="IBM Plex Sans, sans-serif">Architect</text></g>
+              <g><rect x="287" y="55" width="73" height="50" rx="8" fill="#1c1410" stroke="#d4a04a" stroke-width="1.5" class="pipeline-node node-color-build-20" /><text x="323" y="75" text-anchor="middle" fill="#d4a04a" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Build</text><text x="323" y="93" text-anchor="middle" fill="#6b5849" font-size="8" font-family="IBM Plex Sans, sans-serif">Engineer</text></g>
+              <g><rect x="412" y="55" width="73" height="50" rx="8" fill="#1c1410" stroke="#7a9b5e" stroke-width="1.5" class="pipeline-node node-color-test-20" /><text x="448" y="75" text-anchor="middle" fill="#7a9b5e" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Test</text><text x="448" y="93" text-anchor="middle" fill="#6b5849" font-size="8" font-family="IBM Plex Sans, sans-serif">QA</text></g>
+              <g><rect x="537" y="55" width="73" height="50" rx="8" fill="#1c1410" stroke="#6b8a9b" stroke-width="1.5" class="pipeline-node node-color-review-20" /><text x="573" y="75" text-anchor="middle" fill="#6b8a9b" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Review</text><text x="573" y="93" text-anchor="middle" fill="#6b5849" font-size="8" font-family="IBM Plex Sans, sans-serif">Reviewer</text></g>
+              <g><rect x="662" y="55" width="73" height="50" rx="8" fill="#1c1410" stroke="#b89bb0" stroke-width="1.5" class="pipeline-node node-color-document-20" /><text x="698" y="75" text-anchor="middle" fill="#b89bb0" font-size="10" font-weight="600" font-family="JetBrains Mono, monospace">Document</text><text x="698" y="93" text-anchor="middle" fill="#6b5849" font-size="8" font-family="IBM Plex Sans, sans-serif">Writer</text></g>
+              <g><rect x="787" y="55" width="73" height="50" rx="8" fill="#1c1410" stroke="#b35a30" stroke-width="1.5" class="pipeline-node node-color-deploy-20" /><text x="823" y="75" text-anchor="middle" fill="#b35a30" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Deploy</text><text x="823" y="93" text-anchor="middle" fill="#6b5849" font-size="8" font-family="IBM Plex Sans, sans-serif">Release</text></g>
+              <g><rect x="912" y="55" width="73" height="50" rx="8" fill="#1c1410" stroke="#5a9ba0" stroke-width="1.5" class="pipeline-node node-color-monitor-20" /><text x="948" y="75" text-anchor="middle" fill="#5a9ba0" font-size="11" font-weight="600" font-family="JetBrains Mono, monospace">Monitor</text><text x="948" y="93" text-anchor="middle" fill="#6b5849" font-size="8" font-family="IBM Plex Sans, sans-serif">Ops</text></g>
             </svg>
           </div>
 
           <!-- Phase summary cards -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-3 reveal">
             <div class="p-3 rounded-lg bg-surface border border-subtle border-dashed">
-              <div class="w-2 h-2 rounded-full mb-2" style="background-color: #EC4899"></div>
-              <p class="font-mono text-xs font-semibold" style="color: #EC4899">Intent <span class="text-muted font-normal">(optional)</span></p>
+              <div class="w-2 h-2 rounded-full mb-2" style="background-color: #c06b7a"></div>
+              <p class="font-mono text-xs font-semibold" style="color: #c06b7a">Intent <span class="text-muted font-normal">(optional)</span></p>
               <p class="text-[11px] text-muted mt-1">Clarify requirements, produce intent specification</p>
             </div>
             <div class="p-3 rounded-lg bg-surface border border-subtle">
@@ -644,7 +644,7 @@
             <!-- Step 0 -->
             <div class="flex gap-6 reveal">
               <div class="flex flex-col items-center">
-                <div class="w-10 h-10 rounded-full bg-surface border-2 flex items-center justify-center text-xs font-mono" style="border-color: #EC4899; color: #EC4899">00</div>
+                <div class="w-10 h-10 rounded-full bg-surface border-2 flex items-center justify-center text-xs font-mono" style="border-color: #c06b7a; color: #c06b7a">00</div>
                 <div class="step-connector flex-1 my-2"></div>
               </div>
               <div class="pb-8">
