@@ -4,7 +4,7 @@
 
 Reference implementations of the **Agentic Engineering Framework (AEF)** — a framework for building the "agentic layer" that turns ad-hoc AI coding sessions into a repeatable engineering process.
 
-📖 **[Read the guide](https://aws-samples.github.io/sample-agentic-engineering-framework/)** · 🗂️ **[Pick a sample](#samples)** · 🛠️ **[Customize the layer](#the-agentic-layer-what-you-customize)**
+📖 **[Read the guide](https://alejtraws.github.io/agentic-engineering-framework/workflow/build.html)** · 🗂️ **[Pick a sample](#samples)** · 🛠️ **[Customize the layer](#the-agentic-layer-what-you-customize)**
 
 [![License: MIT-0](https://img.shields.io/badge/License-MIT--0-blue.svg)](./LICENSE)
 [![AWS Samples](https://img.shields.io/badge/AWS-Samples-232F3E?logo=amazon-aws)](https://github.com/aws-samples)
